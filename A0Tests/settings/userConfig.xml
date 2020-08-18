@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <connectionSettings>
+    <!--Строка подключение к БД-->
+    <connectionString>Provider=SQLOLEDB.1;User ID=sa;Password="p@55w0rd";Persist Security Info=True;Initial Catalog=A0Data;Data Source=localhost\A0_28</connectionString>
+    
+    <!--Логин пользователя-->
+    <userName>A0Admin</userName>
+    
+    <!--Пароль пользователя-->
+    <passwword></passwword>
+
+    <!--Количество одновременно устанавливаемых соединений-->
+    <testMultiConnectCount>10</testMultiConnectCount>
+
+    <!--Время ожидания установки соединения в мс-->
+    <testConnectTimeOutMS>1000</testConnectTimeOutMS>
+
+    <!--Время ожидания установки соединения для параллельных соединений в мс-->
+    <testMultiConnectTimeOutMS>1000</testMultiConnectTimeOutMS>
+  </connectionSettings>
+  <filePaths>
+    <!--Путь импортируемого файла объектной сметы в формате А0-->
+    <importFrom>C:\A0\2.8\02-02-04 ПЕРЕУСТРОЙСТВО НЕФТЕПРОВОДА  Д 219  ПК0+88(A0_2.8.999).ls</importFrom>
+    
+    <!--Путь импортируемого файла объектной сметы в формате АРПС 1-->
+    <impormFromARPS>C:\A0\2.8\02-02-04 ПЕРЕУСТРОЙСТВО НЕФТЕПРОВОДА Д 219 ПК0+88.arp</impormFromARPS>
+    
+    <!--Путь импортируемого файла объектной сметы в формате XMLGrand-->
+    <importFromXMLGrand>C:\A0\2.8\02-02-04 ПЕРЕУСТРОЙСТВО НЕФТЕПРОВОДА Д 219 ПК0+88_grand.xml</importFromXMLGrand>   
+    
+    <!--Путь к файлам шаблонов печати-->
+    <printTemplates>C:\TEMPLATES3</printTemplates>
+  </filePaths>
+</configuration>
