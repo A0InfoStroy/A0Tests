@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-05 10:48:22 +0300 (Ср, 05 авг 2020) $
-// $Revision: 342 $
+﻿// $Date: 2020-09-21 13:30:09 +0300 (Пн, 21 сен 2020) $
+// $Revision: 376 $
 // $Author: agalkin $
 // Создание акта для тестов
 
@@ -86,6 +86,7 @@ namespace A0Tests
             base.SetUp();
             this.ActString = this.Act.CreateTxtString(EA0StringKind.skMK, "basing", this.Act.Tree.Head.ID);
             this.ActString.TotalVolume = 1;
+            this.ActString.Volume = 100;
             this.ImplRepo.Act.Save(this.Act);
             Assert.IsNotNull(this.ActString);
             Assert.IsTrue(this.Act.Strings.Count > 0, "В тестовой ЛС нет строк");
