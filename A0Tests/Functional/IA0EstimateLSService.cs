@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-20 09:38:28 +0300 (Пн, 20 июл 2020) $
-// $Revision: 308 $
+﻿// $Date: 2020-09-29 12:41:31 +0300 (Вт, 29 сен 2020) $
+// $Revision: 382 $
 // $Author: agalkin $
 // Тесты экспорта и импорта ЛС
 
@@ -56,7 +56,7 @@ namespace A0Tests.Functional
         {
             // Создаем в ЛС текстовые строки.
             this.LS.CreateTxtString(EA0StringKind.skWork, "1234", this.LS.Tree.Head.ID);
-            this.LS.CreateTxtString(EA0StringKind.skTZ, "1234", this.LS.Tree.Head.ID);
+            this.LS.CreateTxtString(EA0StringKind.skMK, "1234", this.LS.Tree.Head.ID);
             this.Repo.LS.Save(this.LS);
 
             // Экспортируем ЛС в поток.
@@ -114,7 +114,7 @@ namespace A0Tests.Functional
 
                 // Проверяем типы строк ЛС.
                 Assert.True(ls.Strings.Items[0].StringKind == EA0StringKind.skWork);
-                Assert.True(ls.Strings.Items[1].StringKind == EA0StringKind.skTZ);
+                Assert.True(ls.Strings.Items[1].StringKind == EA0StringKind.skMK);
             }
             finally
             {
