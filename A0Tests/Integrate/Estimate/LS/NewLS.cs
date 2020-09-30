@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-28 13:36:08 +0300 (Вт, 28 июл 2020) $
-// $Revision: 320 $
+﻿// $Date: 2020-09-21 13:30:09 +0300 (Пн, 21 сен 2020) $
+// $Revision: 376 $
 // $Author: agalkin $
 // Создание ЛС для тестов
 
@@ -81,6 +81,7 @@ namespace A0Tests
         {
             base.SetUp();
             this.LSString = this.LS.CreateTxtString(EA0StringKind.skWork, "1234", this.LS.Tree.Head.ID);
+            this.LSString.Volume = 100.0; // Устанавливаем объём для строки (необходим для создания акта)
             this.Repo.LS.Save(this.LS);
             Assert.IsNotNull(this.LSString);
             Assert.IsTrue(this.LS.Strings.Count > 0, "В тестовой ЛС нет строк");
