@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-05 10:48:22 +0300 (Ср, 05 авг 2020) $
-// $Revision: 342 $
+﻿// $Date: 2020-09-29 13:07:05 +0300 (Вт, 29 сен 2020) $
+// $Revision: 383 $
 // $Author: agalkin $
 // Тесты строки Акта
 
@@ -630,55 +630,13 @@ namespace A0Tests.Integrate.Implement
         }
 
         /// <summary>
-        /// Проверяет работоспособность исполнения строки.
+        /// Проверяет работоспособность чтения исполнения по родительской строке ЛС.
         /// </summary>
         [Test]
         public void Test_ParentExecutions()
         {
-            // Исполнение по родительской строке ЛС
             IA0Executions parentExecutions = this.ActString.ParentExecutions;
             Assert.NotNull(parentExecutions);
-
-            IA0LS ls = this.A0.Estimate.Repo.LS.Load2(this.Act.ID.LSGUID);
-
-            IA0LSString lsString = null; // Родительская строка акта
-            for (int i = 0; i < ls.Strings.Count; i++)
-            {
-                if (this.ActString.GUID == ls.Strings.Items[i].GUID)
-                {
-                    lsString = ls.Strings.Items[i];
-                    break;
-                }
-            }
-
-            Assert.NotNull(lsString, "Не могу найти строку ЛС для строки акта");
-
-            List<IA0Execution> lsExecutions = new List<IA0Execution>();
-            List<IA0Execution> actExecutions = new List<IA0Execution>();
-
-            for (int i = 0; i < lsString.Executions.Count; i++)
-            {
-                lsExecutions.Add(lsString.Executions.Item[i]);
-            }
-
-            for (int i = 0; i < this.ActString.ParentExecutions.Count; i++)
-            {
-                actExecutions.Add(this.ActString.ParentExecutions.Item[i]);
-            }
-
-            // Исполнение соответсвующие исполнению акта
-            for (int i = 0; i < lsExecutions.Count; i++)
-            {
-                if (lsExecutions[i].ActStrGUID == this.ActString.GUID)
-                {
-                    IA0Execution lsExecution = lsExecutions[i];
-                    Assert.AreEqual(lsExecution.Volume, this.ActString.Volume, Math.Pow(10, -this.Act.Title.VolumeScale));
-                    Assert.AreEqual(lsExecution.TotalVolume, this.ActString.TotalVolume, Math.Pow(10, -this.Act.Title.VolumeScale));
-                    Assert.AreEqual(lsExecution.AdjustedVolume, this.ActString.AdjustedVolume, Math.Pow(10, -this.Act.Title.VolumeScale));
-                    lsExecutions.RemoveAt(i);
-                    break;
-                }
-            }
         }
 
         /// <summary>
@@ -687,7 +645,7 @@ namespace A0Tests.Integrate.Implement
         [Test]
         public void Test_ParentStrID()
         {
-            var parentStrId = this.ActString.ParentStrID;
+            int parentStrId = this.ActString.ParentStrID;
         }
 
         /// <summary>
