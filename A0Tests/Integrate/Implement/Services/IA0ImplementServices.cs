@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-06 13:44:28 +0300 (Чт, 06 авг 2020) $
-// $Revision: 346 $
+﻿// $Date: 2020-09-29 12:18:23 +0300 (Вт, 29 сен 2020) $
+// $Revision: 380 $
 // $Author: agalkin $
 // Базовые тесты IA0ImplementServices
 
@@ -142,6 +142,14 @@ namespace A0Tests.Integrate.Implement
         {
             base.SetUp();
 
+            // Для создания актов со строками необходимо прочитать ЛС из БД.
+            this.LS = this.Repo.LS.Load2(this.LS.ID.GUID);
+            Assert.NotNull(this.LS);
+
+            // Проверяем наличие строки в загруженной ЛС.
+            Assert.Greater(this.LS.Strings.Count, 0, "В ЛС должны быть строки");
+            this.LSString = this.LS.Strings.Items[0];
+
             this.Services = this.A0.Implement.Services;
             Assert.NotNull(this.Services);
         }
@@ -162,16 +170,9 @@ namespace A0Tests.Integrate.Implement
         [Test(Description = "Создание акта")]
         public void Test_Create()
         {
-            // На основе этой ЛС создаем акт
-            IA0LS ls = this.A0.Estimate.Repo.LS.Load2(this.LS.ID.GUID);
-            Assert.NotNull(ls);
-
-            IA0Act act = this.Services.CreateAct(ls.Strings, this.ExecutorID, this.ContractID);
+            IA0Act act = this.Services.CreateAct(this.LS.Strings, this.ExecutorID, this.ContractID);
             Assert.NotNull(act);
-            this.A0.Implement.Repo.Act.UnLock(act.ID.GUID);
-
-            // Удаляем акт
-            this.A0.Implement.Repo.Act.Delete(act.ID.GUID);
+            this.DeleteAct(act.ID.GUID);
         }
 
         /// <summary>
@@ -180,34 +181,15 @@ namespace A0Tests.Integrate.Implement
         [Test(Description = "Создание акта")]
         public void Test_FromLS()
         {
-            // На основе этой ЛС создаем акт
-            IA0LS ls = this.A0.Estimate.Repo.LS.Load2(this.LS.ID.GUID);
-            Assert.NotNull(ls);
-            Assert.Greater(ls.Strings.Count, 0, "В ЛС должны быть строки");
+            // Создаем акт на основе ЛС.
+            double heelsPercent = 10.0; // Процент от остатка объема строки ЛС
+            IA0Act act = this.CreateActFromLS(heelsPercent);
 
-            // Для этой строки ЛС должна быть строка акта.
-            IA0LSString parentStr = ls.Strings.Items[0];
-            int executorID = parentStr.ExecutorID;
-            var contractID = parentStr.ContractID;
-            double heelsPercent = 10.0;
-
-            // Настройки для создания акта как в системе А0.
-            IA0ImplementActCreatorOptions options = this.Services.GetDefaultActCreateOptions(
-                EA0ActCreationMode.acmHeels,
-                executorID,
-                contractID,
-                heelsPercent);
-
-            IA0Act act = this.Services.FromLS(ls, options);
-            Assert.NotNull(act);
-            Assert.Greater(act.Strings.Count, 0, "В акте должны быть строки");
-
-            // Проверяем созданные строки в акте
+            // Проверяем строки в акте.
             IA0ActString actString = null;
-
             for (int i = 0; i < act.Strings.Count; ++i)
             {
-                if (act.Strings.Items[i].ParentStrGUID == parentStr.GUID)
+                if (act.Strings.Items[i].ParentStrGUID == this.LSString.GUID)
                 {
                     actString = act.Strings.Items[i];
                     break;
@@ -215,18 +197,93 @@ namespace A0Tests.Integrate.Implement
             }
 
             Assert.NotNull(actString, "Строка акта не создана");
-            Assert.AreEqual(actString.ExecutorID, executorID);
-            Assert.AreEqual(actString.ContractID, contractID);
-            Assert.AreEqual(actString.Volume, parentStr.TotalRemainder / heelsPercent, Math.Pow(10, -act.Title.VolumeScale));
-            Assert.AreEqual(actString.ParentTotalVolume, parentStr.AdjustedVolume);
-            Assert.AreEqual(actString.LSNumber, parentStr.LSNumber);
+            Assert.AreEqual(actString.ExecutorID, this.LSString.ExecutorID);
+            Assert.AreEqual(actString.ContractID, this.LSString.ContractID);
 
-            // После создания акт будет заблокирован на редактирование,
-            // для снятия блокровки надо использовать UnLock каталога актов.
-            this.A0.Implement.Repo.Act.UnLock(act.ID.GUID);
+            // Проверяем полученный объем строки акта на соответствие заданным процентам с учетом погрешности.
+            Assert.AreEqual(actString.TotalVolume, this.LSString.TotalRemainder * heelsPercent / 100, Math.Pow(10, -act.Title.VolumeScale));
 
-            // Удаляем акт
-            this.A0.Implement.Repo.Act.Delete(act.ID.GUID);
+            // Проверяем номер родительской ЛС.
+            Assert.AreEqual(actString.LSNumber, this.LSString.LSNumber);
+
+            this.DeleteAct(act.ID.GUID);
+        }
+
+        /// <summary>
+        /// Проверяет работоспособность исполнения строки.
+        /// </summary>
+        [Test]
+        public void Test_ParentExecutions()
+        {
+            // Создаем акт на основе ЛС.
+            double heelsPercent = 10.0;
+            IA0Act act = this.CreateActFromLS(heelsPercent);
+
+            Assert.Greater(act.Strings.Count, 0, "В первом акте должны быть строки");
+            IA0ActString actString = act.Strings.Items[0];
+            Assert.NotNull(actString, "Не могу найти первую строку акта");
+            Assert.AreEqual(this.LSString.GUID, actString.ParentStrGUID, "Не могу найти строку ЛС для строки акта");
+
+            // Создаем  второй акт на основе ЛС.
+            double heelsPercent2 = 5.0;
+            IA0Act act2 = this.CreateActFromLS(heelsPercent2);
+
+            Assert.Greater(act2.Strings.Count, 0, "Во втором акте должны быть строки");
+            IA0ActString actString2 = act.Strings.Items[0];
+            Assert.NotNull(actString2, "Не могу найти вторую строку акта");
+            Assert.AreEqual(this.LSString.GUID, actString2.ParentStrGUID, "Не могу найти строку ЛС для строки акта");
+
+            // Перечитываем ЛС из БД для получения исполнения.
+            this.LS = this.A0.Estimate.Repo.LS.Load2(this.LS.ID.GUID);
+            IA0LSString parentString = this.LS.Strings.Items[0];
+            Assert.Greater(parentString.Executions.Count, 0, "В строке ЛС должны быть исполнения");
+
+            // Перечитываем акты из БД для получения родительских исполнений.
+            act = this.A0.Implement.Repo.Act.Load(act.ID.GUID, EAccessKind.akRead);
+            actString = act.Strings.Items[0];
+            act2 = this.A0.Implement.Repo.Act.Load(act2.ID.GUID, EAccessKind.akRead);
+            actString2 = act2.Strings.Items[0];
+
+            // Исполнение по родительской строке ЛС
+            IA0Executions parentExecutions = actString.ParentExecutions;
+            Assert.NotNull(parentExecutions);
+            Assert.Greater(parentExecutions.Count, 0, "В строке акта должны быть исполнения");
+            IA0Executions parentExecutions2 = actString2.ParentExecutions;
+            Assert.NotNull(parentExecutions2);
+            Assert.Greater(parentExecutions2.Count, 0, "В строке акта должны быть исполнения");
+
+            // В первом акте должно быть исполнение, соответствующее второму акту.
+            IA0Execution parentExecution = parentExecutions.Item[0];
+            Assert.AreEqual(heelsPercent2, parentExecution.Volume, Math.Pow(10, -act.Title.VolumeScale));
+
+            // В втором акте должно быть исполнение, соответствующее первому акту.
+            IA0Execution parentExecution2 = parentExecutions2.Item[0];
+            Assert.AreEqual(heelsPercent, parentExecution2.Volume, Math.Pow(10, -act2.Title.VolumeScale));
+
+            // Проверяем исполнения ЛС соответсвующие исполненям акта.
+            for (int i = 0; i < parentString.Executions.Count; i++)
+            {
+                IA0Execution lsExecution = parentString.Executions.Item[i];
+                if (lsExecution.ActStrGUID == actString.GUID)
+                {
+                    Assert.AreEqual(lsExecution.Volume, actString.Volume, Math.Pow(10, -act.Title.VolumeScale));
+                    Assert.AreEqual(lsExecution.TotalVolume, actString.TotalVolume, Math.Pow(10, -act.Title.VolumeScale));
+                    Assert.AreEqual(lsExecution.AdjustedVolume, actString.AdjustedVolume, Math.Pow(10, -act.Title.VolumeScale));
+                }
+                else if (lsExecution.ActStrGUID == actString2.GUID)
+                {
+                    Assert.AreEqual(lsExecution.Volume, actString2.Volume, Math.Pow(10, -act2.Title.VolumeScale));
+                    Assert.AreEqual(lsExecution.TotalVolume, actString2.TotalVolume, Math.Pow(10, -act2.Title.VolumeScale));
+                    Assert.AreEqual(lsExecution.AdjustedVolume, actString2.AdjustedVolume, Math.Pow(10, -act2.Title.VolumeScale));
+                }
+                else
+                {
+                    Assert.True(false, "Не найдены соответствующие исполнения акта");
+                }
+            }
+
+            this.DeleteAct(act.ID.GUID);
+            this.DeleteAct(act2.ID.GUID);
         }
 
         /// <summary>
@@ -235,10 +292,6 @@ namespace A0Tests.Integrate.Implement
         [Test(Description = "Создание акта Татнефть")]
         public void Test_FromLS_TN()
         {
-            // На основе этой ЛС создаем акт
-            IA0LS ls = this.A0.Estimate.Repo.LS.Load2(this.LS.ID.GUID);
-            Assert.NotNull(ls);
-
             // Бизнес этап для новго акта
             int busOpID = this.GetBusOpID();
 
@@ -250,12 +303,9 @@ namespace A0Tests.Integrate.Implement
                 busOpID,
                 EKS2InternalSplitKind.ks2ikSelling);
 
-            IA0Act act = this.Services.FromLS(ls, options);
+            IA0Act act = this.Services.FromLS(this.LS, options);
             Assert.NotNull(act);
-            this.A0.Implement.Repo.Act.UnLock(act.ID.GUID);
-
-            // Удаляем акт
-            this.A0.Implement.Repo.Act.Delete(act.ID.GUID);
+            this.DeleteAct(act.ID.GUID);
         }
 
         /// <summary>
@@ -267,19 +317,7 @@ namespace A0Tests.Integrate.Implement
             // Количество создаваемых строк.
             int stringCount = 100;
 
-            // На основе этой ЛС создаем акт.
-            IA0LS ls = this.A0.Estimate.Repo.LS.Load2(this.LS.ID.GUID);
-            Assert.NotNull(ls);
-
-            // Настройки для создания акта как в системе А0
-            IA0ImplementActCreatorOptions options = this.Services.GetDefaultActCreateOptions(
-                EA0ActCreationMode.acmHeels,
-                this.ExecutorID,
-                this.ContractID,
-                10);
-
-            IA0Act act = this.Services.FromLS(ls, options);
-            Assert.NotNull(act);
+            IA0Act act = this.CreateActFromLS(10.0);
 
             // Узел для добавления строк.
             IA0TreeNode node = this.GetLastNode(act.Tree.Head);
@@ -297,14 +335,14 @@ namespace A0Tests.Integrate.Implement
             this.A0.Implement.Repo.Act.Save(act);
             this.A0.Implement.Repo.Act.UnLock(act.ID.GUID);
 
-            // Грузим акт и добавляем ещё строк
+            // Грузим акт и добавляем ещё строк.
             act = this.A0.Implement.Repo.Act.Load(act.ID.GUID, EAccessKind.akEdit);
             Assert.NotNull(act);
 
-            // Узел для добавления строк
+            // Узел для добавления строк.
             node = this.GetLastNode(act.Tree.Head);
 
-            // Создание текстовых строк
+            // Создание текстовых строк.
             for (var i = 1; i <= stringCount; i++)
             {
                 IA0ActString actString = act.CreateTxtString(EA0StringKind.skZt, i.ToString(), node.ID);
@@ -314,12 +352,45 @@ namespace A0Tests.Integrate.Implement
                 actString.MUnit = "м2";
             }
 
-            this.A0.Implement.Repo.Act.Save(act);
-            this.A0.Implement.Repo.Act.UnLock(act.ID.GUID);
-
-            // Удаляем акт
-            this.A0.Implement.Repo.Act.Delete(act.ID.GUID);
+            this.DeleteAct(act.ID.GUID);
         }
+
+        /// <summary>
+        /// Создает акт на основе ЛС.
+        /// </summary>
+        /// <param name="heelsPercent">Процент от остатка объема строки ЛС.</param>
+        /// <returns>Акт, созданный на основе ЛС.</returns>
+        private IA0Act CreateActFromLS(double heelsPercent)
+        {
+            // Настройки для создания акта как в системе А0.
+            IA0ImplementActCreatorOptions options = this.Services.GetDefaultActCreateOptions(
+                EA0ActCreationMode.acmHeels,
+                this.LSString.ExecutorID,
+                this.LSString.ContractID,
+                heelsPercent);
+
+            // Создаем акт со строками на основе ЛС.
+            IA0Act act = this.Services.FromLS(this.LS, options);
+            Assert.NotNull(act);
+            Assert.Greater(act.Strings.Count, 0, "В акте должны быть строки");
+
+            return act;
+        }
+
+        /// <summary>
+        /// Удаляет акт из БД.
+        /// </summary>
+        /// <param name="actGuid">Guid акта.</param>
+        private void DeleteAct(Guid actGuid)
+        {
+            // После создания акт будет заблокирован на редактирование,
+            // для снятия блокировки надо использовать UnLock каталога актов.
+            this.A0.Implement.Repo.Act.UnLock(actGuid);
+
+            // Удаляем акт.
+            this.A0.Implement.Repo.Act.Delete(actGuid);
+        }
+
 
         /// <summary>
         /// Получает последний узел в дереве.
