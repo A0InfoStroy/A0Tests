@@ -60,6 +60,7 @@ namespace A0Tests.Integrate.Implement
             {
                 Assert.AreEqual((uint)ex.HResult, 0x80004005);
             }
+            this.Act = null;
         }
 
         /// <summary>
