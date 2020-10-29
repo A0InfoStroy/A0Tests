@@ -1,11 +1,12 @@
-﻿// $Date: 2020-08-05 10:48:22 +0300 (Ср, 05 авг 2020) $
-// $Revision: 342 $
+﻿// $Date: 2020-10-29 15:21:03 +0300 (Чт, 29 окт 2020) $
+// $Revision: 401 $
 // $Author: agalkin $
 // Тесты каталога ИД акта смет
 
 namespace A0Tests.Integrate.Implement
 {
     using System;
+    using System.Collections.Generic;
     using A0Service;
     using NUnit.Framework;
 
@@ -194,6 +195,42 @@ namespace A0Tests.Integrate.Implement
 
                 DateTime createMoment = obj.CreateMoment();
             }
+        }
+
+        [Test(Description = "Выборка актов по бизнес этапу")]
+        public void Test_SelectActsByBussinesStage()
+        {
+            List<IA0BussinessStage> stages = new List<IA0BussinessStage>();
+            IA0BussinessStages bs = this.A0.Sys.Repo.BussinnessStages;
+            for (int i = 0; i < bs.Count; i++)
+            {
+                if (bs.Item[i].Kind == EA0ObjectKind.okAct)
+                {
+                    stages.Add(bs.Item[i]);
+                }
+            }
+
+            Assert.True(stages.Count > 0);
+            bool exist = false;
+
+            foreach (IA0BussinessStage stage in stages)
+            {
+                int busOpId = stage.ID;
+                string bsName = stage.Name;
+                ISQLWhere where = this.ImplRepo.ActID.GetWhereRequest();
+                where.Node.And3("[LSTitle].[BusOpID]", "=", busOpId.ToString());
+                IA0ObjectIterator iterator = this.ImplRepo.ActID.Read(this.Proj.ID.GUID, null, where, null);
+                Assert.NotNull(iterator);
+                while (iterator.Next())
+                {
+                    exist = true;
+                    IA0Object obj = iterator.Item;
+                    Assert.NotNull(obj);
+                    Assert.AreEqual(bsName, obj.BusinessStage());
+                } 
+            }
+
+            Assert.True(exist, "Акты по бизнес этапу не найдены");
         }
     }
 }
