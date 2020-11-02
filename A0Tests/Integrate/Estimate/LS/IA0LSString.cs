@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-05 10:41:22 +0300 (Ср, 05 авг 2020) $
-// $Revision: 341 $
+﻿// $Date: 2020-11-02 11:54:16 +0300 (Пн, 02 ноя 2020) $
+// $Revision: 406 $
 // $Author: agalkin $
 // Тесты строки локальных смет
 
@@ -522,6 +522,19 @@ namespace A0Tests.Integrate.Estimate
         public void Test_TotalRemainder()
         {
             double totalRemainder = this.LSString.TotalRemainder;
+        }
+
+        /// <summary>
+        /// Проверяет работоспособность получения коэффициента при единице измерения.
+        /// </summary>
+        [Test]
+        public void Test_UnitCoef()
+        {
+            double defaultValue = 1d;
+            double hundredSquareMetersValue = 100d;
+            Assert.AreEqual(defaultValue, this.LSString.UnitCoef);
+            this.LSString.MUnit = "100м2";
+            Assert.AreEqual(hundredSquareMetersValue, this.LSString.UnitCoef);
         }
 
         /// <summary>
