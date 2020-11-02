@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-28 13:36:08 +0300 (Вт, 28 июл 2020) $
-// $Revision: 320 $
+﻿// $Date: 2020-10-30 15:34:30 +0300 (Пт, 30 окт 2020) $
+// $Revision: 404 $
 // $Author: agalkin $
 // Тесты полей ЛС
 
@@ -58,6 +58,49 @@ namespace A0Tests.Integrate.Estimate
         public void Test_AttrExt()
         {
             dynamic attr = this.Title.Attr["LGM.TZNorm"];
+        }
+
+        /// <summary>
+        /// Проверяет работоспособность получения наименования бизнес этапа.
+        /// </summary>
+        [Test]
+        public void Test_BusOp()
+        {
+            string busOpName = this.Title.BusOp;
+            Assert.NotNull(busOpName);
+            IA0BussinessStages stages = this.A0.Sys.Repo.BussinnessStages;
+            string name = null;
+            for (int i = 0; i < stages.Count; i++)
+            {
+                if (stages.Item[i].Kind == EA0ObjectKind.okLS)
+                {
+                    name = stages.Item[i].Name;
+                    break;
+                }
+            }
+
+            Assert.AreEqual(name, busOpName);
+        }
+
+        /// <summary>
+        ///  Проверяет работоспособность получения Id бизнес этапа.
+        /// </summary>
+        [Test]
+        public void Test_BusOpId()
+        {
+            int busOpId = this.Title.BusOpID;
+            IA0BussinessStages stages = this.A0.Sys.Repo.BussinnessStages;
+            int id = -1;
+            for (int i = 0; i < stages.Count; i++)
+            {
+                if (stages.Item[i].Kind == EA0ObjectKind.okLS)
+                {
+                    id = stages.Item[i].ID;
+                    break;
+                }
+            }
+
+            Assert.AreEqual(id, busOpId);
         }
 
         /// <summary>

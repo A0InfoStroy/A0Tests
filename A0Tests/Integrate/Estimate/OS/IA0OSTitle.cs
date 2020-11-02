@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-29 16:24:16 +0300 (Ср, 29 июл 2020) $
-// $Revision: 326 $
+﻿// $Date: 2020-10-30 15:34:30 +0300 (Пт, 30 окт 2020) $
+// $Revision: 404 $
 // $Author: agalkin $
 // Тесты полей ОС
 
@@ -110,6 +110,49 @@ namespace A0Tests.Integrate.Estimate
         {
             string buildKind = this.Title.BuikdKindStr;
             Assert.NotNull(buildKind);
+        }
+
+        /// <summary>
+        /// Проверяет работоспособность получения наименования бизнес этапа.
+        /// </summary>
+        [Test]
+        public void Test_BusOp()
+        {
+            string busOpName = this.Title.BusOp;
+            Assert.NotNull(busOpName);
+            IA0BussinessStages stages = this.A0.Sys.Repo.BussinnessStages;
+            string name = null;
+            for (int i = 0; i < stages.Count; i++)
+            {
+                if (stages.Item[i].Kind == EA0ObjectKind.okOS)
+                {
+                    name = stages.Item[i].Name;
+                    break;
+                }
+            }
+
+            Assert.AreEqual(name, busOpName);
+        }
+
+        /// <summary>
+        ///  Проверяет работоспособность получения Id бизнес этапа.
+        /// </summary>
+        [Test]
+        public void Test_BusOpId()
+        {
+            int busOpId = this.Title.BusOpID;
+            IA0BussinessStages stages = this.A0.Sys.Repo.BussinnessStages;
+            int id = -1;
+            for (int i = 0; i < stages.Count; i++)
+            {
+                if (stages.Item[i].Kind == EA0ObjectKind.okOS)
+                {
+                    id = stages.Item[i].ID;
+                    break;
+                }
+            }
+
+            Assert.AreEqual(id, busOpId);
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
-﻿// $Date: 2020-09-29 13:07:05 +0300 (Вт, 29 сен 2020) $
-// $Revision: 383 $
+﻿// $Date: 2020-11-02 11:54:16 +0300 (Пн, 02 ноя 2020) $
+// $Revision: 406 $
 // $Author: agalkin $
 // Тесты строки Акта
 
@@ -655,6 +655,19 @@ namespace A0Tests.Integrate.Implement
         public void Test_ParentStrGUID()
         {
             Guid parentStrGuid = this.ActString.ParentStrGUID;
+        }
+
+        /// <summary>
+        /// Проверяет работоспособность получения коэффициента при единице измерения.
+        /// </summary>
+        [Test]
+        public void Test_UnitCoef()
+        {
+            double defaultValue = 1d;
+            double hundredSquareMetersValue = 100d;
+            Assert.AreEqual(defaultValue, this.ActString.UnitCoef);
+            this.ActString.MUnit = "100м2";
+            Assert.AreEqual(hundredSquareMetersValue, this.ActString.UnitCoef);
         }
     }
 }
