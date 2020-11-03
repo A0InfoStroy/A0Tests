@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
+﻿// $Date: 2020-11-03 12:29:48 +0300 (Вт, 03 ноя 2020) $
+// $Revision: 408 $
 // $Author: agalkin $
 // Базовые тесты IA0Log
 
@@ -20,7 +20,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Получает или устанавливает протокол А0.
         /// </summary>
-        protected IA0Log Log { get; private set; }
+        protected IA0LogDomain Log { get; private set; }
 
         /// <summary>
         /// Осуществляет операции проводимые перед тестированием.

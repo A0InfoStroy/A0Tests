@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
+﻿// $Date: 2020-11-03 12:29:48 +0300 (Вт, 03 ноя 2020) $
+// $Revision: 408 $
 // $Author: agalkin $
 // Базовые тесты IA0App
 
@@ -79,7 +79,7 @@ namespace A0Tests.Smoke
         [Test]
         public void Test_Log()
         {
-            IA0Log log = this.App.Log;
+            IA0LogDomain log = this.App.Log;
             Assert.NotNull(log);
         }
 
