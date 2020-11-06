@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-22 13:30:01 +0300 (Ср, 22 июл 2020) $
-// $Revision: 319 $
+﻿// $Date: 2020-11-06 11:38:15 +0300 (Пт, 06 ноя 2020) $
+// $Revision: 412 $
 // $Author: agalkin $
 // Тесты каталога Договоров
 
@@ -16,7 +16,7 @@ namespace A0Tests.Integrate.Estimate
         Category = "Integrate",
         Description = "Тесты проверки работоспособности IA0ContractsRepo",
         Author = "agalkin")]
-    public class Test_IA0ContractsRepo : Test_EstimateCustom
+    public class Test_IA0ContractsRepo : NewContract
     {
         /// <summary>
         /// Получает или устанавливает каталог договоров.
@@ -58,10 +58,9 @@ namespace A0Tests.Integrate.Estimate
             fields.Add("Status");
 
             // Итератор по данным Каталога поиска
-            IA0FieldsIterator iter = repoID.Read(this.GetProjGUID(), fields, null, null);
+            IA0FieldsIterator iter = repoID.Read(this.Proj.ID.GUID, fields, null, null);
             Assert.NotNull(iter);
-
-            Assert.NotZero(iter.Count, "Ожидается наличие договоров в проекте {0}", this.GetProjGUID());
+            Assert.NotZero(iter.Count, "Ожидается наличие договоров в проекте {0}", this.Proj.ID.GUID);
 
             while (iter.Next())
             {
@@ -73,33 +72,38 @@ namespace A0Tests.Integrate.Estimate
                 Guid contrGuid = Guid.Parse(field.Value["ContrGuid"]);
                 dynamic number = field.Value["Number"];
                 EContractStatus status = (EContractStatus)field.Value["Status"];
+                IA0Contract contract = this.ContractRepo.Read(contrGuid, EAccessKind.akEdit);
 
-                // Каталог договоров.
-                // При чтении договора он будет заблокирован.
-                IA0Contract contract = this.ContractRepo.Read(contrGuid, EAccessKind.akRead);
-                Assert.NotNull(contract);
-                try
-                {
-                    // Проверяем соответствие полей в каталогах
-                    Assert.AreEqual(contract.ProjID, field.Value["ProjID"]);
-                    Assert.AreEqual(contract.ContractID, field.Value["ContractID"]);
-                    Assert.AreEqual(contract.ProjGUID, projGuid);
-                    Assert.AreEqual(contract.ContrGUID, contrGuid);
-                    Assert.AreEqual(contract.Number, number);
-                    Assert.AreEqual(contract.ContractStatus, status);
-                }
-                finally
-                {
-                    // Надо разблокировать договор.
-                    this.ContractRepo.UnLock(contract.ContrGUID);
-                }
+                // Проверяем соответствие полей в каталогах
+                Assert.AreEqual(contract.ProjID, field.Value["ProjID"]);
+                Assert.AreEqual(contract.ContractID, field.Value["ContractID"]);
+                Assert.AreEqual(contract.ProjGUID, projGuid);
+                Assert.AreEqual(contract.ContrGUID, contrGuid);
+                Assert.AreEqual(contract.Number, number);
+                Assert.AreEqual(contract.ContractStatus, status);
             }
         }
 
         /// <summary>
-        /// Получает Guid проекта из БД, содержащий контракт.
+        /// Проверяет корректность удаления договоров.
         /// </summary>
-        /// <returns>Guid проекта.</returns>
-        protected virtual Guid GetProjGUID() => Guid.Parse("{4F137BDF-2C26-480D-8114-F6742D9BC33F}");
+        [Test(Description = "Удаление договоров")]
+        public void Test_Delete()
+        {
+            this.ContractRepo.UnLock(this.Contract.ContrGUID);
+            this.ContractRepo.Delete(this.Contract.ContrGUID);
+
+            // Попытка прочитать контракт после удаления.
+            try
+            {
+                IA0Contract contract = this.ContractRepo.Read(this.Contract.ContrGUID, EAccessKind.akRead);
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                Assert.AreEqual(ex.HResult, -2147418113);
+            }
+
+            this.Contract = null;
+        }
     }
 }
