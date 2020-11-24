@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-28 13:36:08 +0300 (Вт, 28 июл 2020) $
-// $Revision: 320 $
+﻿// $Date: 2020-11-24 16:54:23 +0300 (Вт, 24 ноя 2020) $
+// $Revision: 435 $
 // $Author: agalkin $
 // Тесты ресурса строки локальных смет
 
@@ -318,6 +318,48 @@ namespace A0Tests.Integrate.Estimate
         public void Test_Literal()
         {
             bool literal = this.Resource.Literal;
+        }
+
+        /// <summary>
+        /// Проверяет изменение прямых затрат строки акта при изменении цены ресурса.
+        /// </summary>
+        [Test]
+        public void Test_ChangesTotalPZ()
+        {
+            IA0LSString lsString = this.LS.Strings.Items[0];
+            double price = this.Resource.Price;
+            Assert.AreEqual(price, 0);
+            
+            decimal totalPZ = lsString.TotalPZ();
+            Assert.AreEqual(totalPZ, 0);
+
+            // Изменение цены ресурса на произвольное значение.
+            double newPrice = price + 19;
+            this.Resource.Price = newPrice;
+
+            // Проверка изменения прямых затрат.
+            Assert.AreEqual(this.Resource.Cost, newPrice * this.Resource.Volume_Fact);
+            Assert.AreEqual(this.SumResourceCosts(lsString), lsString.TotalPZ());
+
+            // Изменение цены ресурса на произвольное значение.
+            newPrice += 32;
+            this.Resource.Price = newPrice;
+
+            // Проверка изменения прямых затрат.
+            Assert.AreEqual(this.Resource.Cost, newPrice * this.Resource.Volume_Fact);
+            Assert.AreEqual(this.SumResourceCosts(lsString), lsString.TotalPZ());
+        }
+
+        private decimal SumResourceCosts(IA0LSString lsString)
+        {
+            decimal actStringTotalPZ = 0;
+            for (int i = 0; i < lsString.Resources.Count; i++)
+            {
+                IA0Resource resource = lsString.Resources.Items[i];
+                actStringTotalPZ += resource.Cost;
+            }
+
+            return actStringTotalPZ;
         }
     }
 }
