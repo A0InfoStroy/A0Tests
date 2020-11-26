@@ -1,5 +1,5 @@
-﻿// $Date: 2020-11-24 17:02:03 +0300 (Вт, 24 ноя 2020) $
-// $Revision: 436 $
+﻿// $Date: 2020-11-26 12:19:01 +0300 (Чт, 26 ноя 2020) $
+// $Revision: 438 $
 // $Author: agalkin $
 // Тесты ресурса строки акта
 
@@ -96,24 +96,29 @@ namespace A0Tests.Integrate.Implement
         [Test]
         public void Test_Accounting()
         {
+            // По умолчанию присваивается значение EA0ResAccounting.raIncluded
             EA0ResAccounting acc = this.Resource.Accounting;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, acc);
+
             this.Resource.Accounting = EA0ResAccounting.raExcluded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raExcluded);
-
-            this.Resource.Accounting = EA0ResAccounting.raIncluded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raIncluded);
-
-            this.Resource.Accounting = EA0ResAccounting.raProjRes;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raProjRes);
-
-            this.Resource.Accounting = EA0ResAccounting.raWasExcluded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raWasExcluded);
-
-            this.Resource.Accounting = EA0ResAccounting.raAdded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raAdded);
+            Assert.AreEqual(EA0ResAccounting.raExcluded, this.Resource.Accounting);
+            this.Resource.Accounting = acc;
 
             this.Resource.Accounting = EA0ResAccounting.raReturn;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raReturn);
+            Assert.AreEqual(EA0ResAccounting.raReturn, this.Resource.Accounting);
+            this.Resource.Accounting = acc;
+
+            // Значение EA0ResAccounting.raProjRes не присваивается.
+            this.Resource.Accounting = EA0ResAccounting.raProjRes;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, this.Resource.Accounting);
+
+            // Значение EA0ResAccounting.raWasExcluded не присваивается.
+            this.Resource.Accounting = EA0ResAccounting.raWasExcluded;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, this.Resource.Accounting);
+
+            // Значение EA0ResAccounting.raAdded не присваивается.
+            this.Resource.Accounting = EA0ResAccounting.raAdded;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, this.Resource.Accounting);
         }
 
         /// <summary>
@@ -123,7 +128,6 @@ namespace A0Tests.Integrate.Implement
         public void Test_Group()
         {
             string group = this.Resource.Group;
-            Assert.NotNull(group);
         }
 
         /// <summary>
@@ -142,8 +146,6 @@ namespace A0Tests.Integrate.Implement
         [Test]
         public void Test_MUnit()
         {
-            string mUnit = this.Resource.MUnit;
-            Assert.NotNull(mUnit);
             string newUnit = this.Resource.MUnit + " Изменено";
             this.Resource.MUnit = newUnit;
             Assert.AreEqual(this.Resource.MUnit, newUnit);

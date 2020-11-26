@@ -1,5 +1,5 @@
-﻿// $Date: 2020-11-24 17:02:03 +0300 (Вт, 24 ноя 2020) $
-// $Revision: 436 $
+﻿// $Date: 2020-11-26 12:19:01 +0300 (Чт, 26 ноя 2020) $
+// $Revision: 438 $
 // $Author: agalkin $
 // Тесты ресурса строки локальных смет
 
@@ -16,7 +16,7 @@ namespace A0Tests.Integrate.Estimate
         Category = "Integrate",
         Description = "Тесты проверки работоспособности IA0Resource",
         Author = "agalkin")]
-    public class Test_IA0LSResource : Test_LSStringCustom
+    public class Test_IA0LSResource : NewLSString
     {
         /// <summary>
         /// Получает или устанавливает ресурс.
@@ -29,10 +29,8 @@ namespace A0Tests.Integrate.Estimate
         public override void SetUp()
         {
             base.SetUp();
-            Assert.IsTrue(this.LS.Strings.Count > 0, "В тестовой ЛС нет строк");
-            IA0LSString lsString = this.LS.Strings.Items[0];
-            Assert.IsTrue(lsString.Resources.Count > 0, "В тестовой строке нет ресурсов");
-            this.Resource = lsString.Resources.Items[0];
+            Assert.IsTrue(this.LSString.Resources.Count > 0, "В тестовой строке нет ресурсов");
+            this.Resource = this.LSString.Resources.Items[0];
             Assert.NotNull(this.Resource);
         }
 
@@ -98,24 +96,29 @@ namespace A0Tests.Integrate.Estimate
         [Test]
         public void Test_Accounting()
         {
+            // По умолчанию присваивается значение EA0ResAccounting.raIncluded
             EA0ResAccounting acc = this.Resource.Accounting;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, acc);
+
             this.Resource.Accounting = EA0ResAccounting.raExcluded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raExcluded);
-
-            this.Resource.Accounting = EA0ResAccounting.raIncluded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raIncluded);
-
-            this.Resource.Accounting = EA0ResAccounting.raProjRes;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raProjRes);
-
-            this.Resource.Accounting = EA0ResAccounting.raWasExcluded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raWasExcluded);
-
-            this.Resource.Accounting = EA0ResAccounting.raAdded;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raAdded);
+            Assert.AreEqual(EA0ResAccounting.raExcluded, this.Resource.Accounting);
+            this.Resource.Accounting = acc;
 
             this.Resource.Accounting = EA0ResAccounting.raReturn;
-            Assert.AreEqual(this.Resource.Accounting, EA0ResAccounting.raReturn);
+            Assert.AreEqual(EA0ResAccounting.raReturn, this.Resource.Accounting);
+            this.Resource.Accounting = acc;
+
+            // Значение EA0ResAccounting.raProjRes не присваивается.
+            this.Resource.Accounting = EA0ResAccounting.raProjRes;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, this.Resource.Accounting);
+
+            // Значение EA0ResAccounting.raWasExcluded не присваивается.
+            this.Resource.Accounting = EA0ResAccounting.raWasExcluded;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, this.Resource.Accounting);
+
+            // Значение EA0ResAccounting.raAdded не присваивается.
+            this.Resource.Accounting = EA0ResAccounting.raAdded;
+            Assert.AreEqual(EA0ResAccounting.raIncluded, this.Resource.Accounting);
         }
 
         /// <summary>
@@ -125,7 +128,6 @@ namespace A0Tests.Integrate.Estimate
         public void Test_Group()
         {
             string group = this.Resource.Group;
-            Assert.NotNull(group);
         }
 
         /// <summary>
@@ -144,8 +146,6 @@ namespace A0Tests.Integrate.Estimate
         [Test]
         public void Test_MUnit()
         {
-            string mUnit = this.Resource.MUnit;
-            Assert.NotNull(mUnit);
             string newUnit = this.Resource.MUnit + " Изменено";
             this.Resource.MUnit = newUnit;
             Assert.AreEqual(this.Resource.MUnit, newUnit);
@@ -330,7 +330,7 @@ namespace A0Tests.Integrate.Estimate
             double price = this.Resource.Price;
             Assert.AreEqual(price, 0);
 
-            decimal totalPZ = lsString.TotalPZ();
+            decimal totalPZ = this.LSString.TotalPZ();
             Assert.AreEqual(totalPZ, 0);
 
             // Изменение цены ресурса на произвольное значение.
@@ -338,24 +338,24 @@ namespace A0Tests.Integrate.Estimate
             this.Resource.Price = newPrice;
 
             // Проверка изменения прямых затрат.
-            Assert.AreEqual(this.Resource.Cost, newPrice * this.Resource.Volume_Fact);
-            Assert.AreEqual(this.SumResourceCosts(lsString), lsString.TotalPZ());
+            Assert.AreEqual(this.Resource.Cost, newPrice * this.Resource.Volume);
+            Assert.AreEqual(this.SumResourceCosts(), this.LSString.TotalPZ());
 
             // Изменение цены ресурса на произвольное значение.
             newPrice += 32;
             this.Resource.Price = newPrice;
 
             // Проверка изменения прямых затрат.
-            Assert.AreEqual(this.Resource.Cost, newPrice * this.Resource.Volume_Fact);
-            Assert.AreEqual(this.SumResourceCosts(lsString), lsString.TotalPZ());
+            Assert.AreEqual(this.Resource.Cost, newPrice * this.Resource.Volume);
+            Assert.AreEqual(this.SumResourceCosts(), this.LSString.TotalPZ());
         }
 
-        private decimal SumResourceCosts(IA0LSString lsString)
+        private decimal SumResourceCosts()
         {
             decimal actStringTotalPZ = 0;
-            for (int i = 0; i < lsString.Resources.Count; i++)
+            for (int i = 0; i < this.LSString.Resources.Count; i++)
             {
-                IA0Resource resource = lsString.Resources.Items[i];
+                IA0Resource resource = this.LSString.Resources.Items[i];
                 actStringTotalPZ += resource.Cost;
             }
 

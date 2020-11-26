@@ -1,5 +1,5 @@
-﻿// $Date: 2020-09-21 13:33:22 +0300 (Пн, 21 сен 2020) $
-// $Revision: 377 $
+﻿// $Date: 2020-11-26 12:19:01 +0300 (Чт, 26 ноя 2020) $
+// $Revision: 438 $
 // $Author: agalkin $
 // Создание ЛС для тестов
 
@@ -80,7 +80,8 @@ namespace A0Tests
         public override void SetUp()
         {
             base.SetUp();
-            this.LSString = this.LS.CreateTxtString(EA0StringKind.skWork, "1234", this.LS.Tree.Head.ID);
+            this.LSString = this.LS.CreateTxtString(EA0StringKind.skMK, "1234", this.LS.Tree.Head.ID);
+            this.LSString.TotalVolume = 1;
             this.LSString.Volume = 100.0; // Устанавливаем объём для строки (необходим для создания акта)
             this.Repo.LS.Save(this.LS);
             Assert.IsNotNull(this.LSString);
