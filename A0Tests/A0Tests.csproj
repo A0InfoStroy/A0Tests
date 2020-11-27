@@ -63,6 +63,7 @@
     <Compile Include="Functional\IA0EstimateLSService.cs" />
     <Compile Include="Integrate\App\IA0LogEvent.cs" />
     <Compile Include="Integrate\App\IA0SOOperationManager.cs" />
+    <Compile Include="Integrate\ConnectToOtherDBVersions.cs" />
     <Compile Include="Integrate\Estimate\Complex\IA0ComplexID.cs" />
     <Compile Include="Integrate\Estimate\Complex\IA0ComplexIDRepo.cs" />
     <Compile Include="Integrate\Estimate\Complex\IA0ComplexTotals.cs" />
