@@ -1,5 +1,5 @@
-﻿// $Date: 2020-11-26 12:19:01 +0300 (Чт, 26 ноя 2020) $
-// $Revision: 438 $
+﻿// $Date: 2020-12-24 12:45:07 +0300 (Чт, 24 дек 2020) $
+// $Revision: 467 $
 // $Author: agalkin $
 // Тесты ресурса строки локальных смет
 
@@ -329,7 +329,7 @@ namespace A0Tests.Integrate.Estimate
             IA0LSString lsString = this.LS.Strings.Items[0];
             double price = this.Resource.Price;
             Assert.AreEqual(price, 0);
-
+            
             decimal totalPZ = this.LSString.TotalPZ();
             Assert.AreEqual(totalPZ, 0);
 
@@ -348,6 +348,19 @@ namespace A0Tests.Integrate.Estimate
             // Проверка изменения прямых затрат.
             Assert.AreEqual(this.Resource.Cost, newPrice * this.Resource.Volume);
             Assert.AreEqual(this.SumResourceCosts(), this.LSString.TotalPZ());
+        }
+
+        /// <summary>
+        /// Проверяет работоспособность получения коэффициента при единице измерения.
+        /// </summary>
+        [Test]
+        public void Test_UnitCoef()
+        {
+            double defaultValue = 1d;
+            double hundredSquareMetersValue = 100d;
+            Assert.AreEqual(defaultValue, this.Resource.UnitCoef);
+            this.Resource.MUnit = "100м2";
+            Assert.AreEqual(hundredSquareMetersValue, this.Resource.UnitCoef);
         }
 
         private decimal SumResourceCosts()

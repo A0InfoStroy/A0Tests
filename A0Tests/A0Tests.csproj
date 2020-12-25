@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="A0Tests.cs" />
+    <Compile Include="Functional\Calculations\Resources\ActStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\LSStrResource.cs" />
     <Compile Include="Functional\IA0EstimateLSService.cs" />
     <Compile Include="Integrate\App\IA0LogEvent.cs" />
     <Compile Include="Integrate\App\IA0SOOperationManager.cs" />
