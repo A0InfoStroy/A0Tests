@@ -1,5 +1,5 @@
-﻿// $Date: 2020-10-30 15:34:30 +0300 (Пт, 30 окт 2020) $
-// $Revision: 404 $
+﻿// $Date: 2021-02-17 11:56:30 +0300 (Ср, 17 фев 2021) $
+// $Revision: 523 $
 // $Author: agalkin $
 // Тесты полей акта
 
@@ -62,6 +62,66 @@ namespace A0Tests.Integrate.Implement
         }
 
         /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Утверждаю" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Approval()
+        {
+            IA0TitleSign approval = this.ActTitle.Approval;
+            Assert.NotNull(approval);
+
+            // Должность
+            string job = "Job";
+            approval.Job = job;
+            Assert.AreEqual(job, approval.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            approval.Name = name;
+            Assert.AreEqual(name, approval.Name);
+        }
+
+        /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Проверил" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Auditor()
+        {
+            IA0TitleSign audihor = this.ActTitle.Auditor;
+            Assert.NotNull(audihor);
+
+            // Должность
+            string job = "Job";
+            audihor.Job = job;
+            Assert.AreEqual(job, audihor.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            audihor.Name = name;
+            Assert.AreEqual(name, audihor.Name);
+        }
+
+        /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Составил" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Author()
+        {
+            IA0TitleSign author = this.ActTitle.Author;
+            Assert.NotNull(author);
+
+            // Должность
+            string job = "Job";
+            author.Job = job;
+            Assert.AreEqual(job, author.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            author.Name = name;
+            Assert.AreEqual(name, author.Name);
+        }
+
+        /// <summary>
         /// Проверяет работоспособность получения наименования бизнес этапа.
         /// </summary>
         [Test]
@@ -102,6 +162,26 @@ namespace A0Tests.Integrate.Implement
             }
 
             Assert.AreEqual(id, busOpId);
+        }
+
+        /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Согласовано" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Conform()
+        {
+            IA0TitleSign conform = this.ActTitle.Conform;
+            Assert.NotNull(conform);
+
+            // Должность
+            string job = "Job";
+            conform.Job = job;
+            Assert.AreEqual(job, conform.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            conform.Name = name;
+            Assert.AreEqual(name, conform.Name);
         }
 
         /// <summary>
@@ -174,6 +254,54 @@ namespace A0Tests.Integrate.Implement
         public void Test_VolumeScale()
         {
             int volumeScale = this.ActTitle.VolumeScale;
+        }
+
+        /// <summary>
+        /// Проверяет корректность сохранения в БД изменений в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_LoadTitleChanges()
+        {
+            string titleName = "name";
+            string mark = "mark";
+            DateTime periodBegin = this.ActTitle.PeriodBegin.AddDays(1.0);
+            DateTime periodEnd = this.ActTitle.PeriodEnd.AddDays(2.0);
+
+            this.ActTitle.Name = titleName;
+            this.ActTitle.Mark = mark;
+            this.ActTitle.PeriodBegin = periodBegin;
+            this.ActTitle.PeriodEnd = periodEnd;
+
+            this.ActTitle.Approval.Job = "apJob";
+            this.ActTitle.Auditor.Job = "audJob";
+            this.ActTitle.Author.Job = "autJob";
+            this.ActTitle.Conform.Job = "conJob";
+
+            this.ActTitle.Approval.Name = "apName";
+            this.ActTitle.Auditor.Name = "audName";
+            this.ActTitle.Author.Name = "autName";
+            this.ActTitle.Conform.Name = "conName";
+
+
+            this.ImplRepo.Act.Save(this.Act);
+
+            this.ImplRepo.Act.UnLock(this.Act.ID.GUID);
+            IA0Act act = this.ImplRepo.Act.Load(this.Act.ID.GUID, EAccessKind.akRead);
+
+            Assert.AreEqual(titleName, act.Title.Name);
+            Assert.AreEqual(mark, act.Title.Mark);
+            Assert.AreEqual(periodBegin, act.Title.PeriodBegin);
+            Assert.AreEqual(periodEnd, act.Title.PeriodEnd);
+
+            Assert.AreEqual("apJob", act.Title.Approval.Job);
+            Assert.AreEqual("audJob", act.Title.Auditor.Job);
+            Assert.AreEqual("autJob", act.Title.Author.Job);
+            Assert.AreEqual("conJob", act.Title.Conform.Job);
+
+            Assert.AreEqual("apName", act.Title.Approval.Name);
+            Assert.AreEqual("audName", act.Title.Auditor.Name);
+            Assert.AreEqual("autName", act.Title.Author.Name);
+            Assert.AreEqual("conName", act.Title.Conform.Name);
         }
     }
 }

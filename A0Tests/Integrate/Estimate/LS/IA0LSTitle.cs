@@ -1,5 +1,5 @@
-﻿// $Date: 2020-10-30 15:34:30 +0300 (Пт, 30 окт 2020) $
-// $Revision: 404 $
+﻿// $Date: 2021-02-17 11:02:24 +0300 (Ср, 17 фев 2021) $
+// $Revision: 521 $
 // $Author: agalkin $
 // Тесты полей ЛС
 
@@ -61,6 +61,66 @@ namespace A0Tests.Integrate.Estimate
         }
 
         /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Утверждаю" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Approval()
+        {
+            IA0TitleSign approval = this.Title.Approval;
+            Assert.NotNull(approval);
+
+            // Должность
+            string job = "Job";
+            approval.Job = job;
+            Assert.AreEqual(job, approval.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            approval.Name = name;
+            Assert.AreEqual(name, approval.Name);
+        }
+
+        /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Проверил" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Auditor()
+        {
+            IA0TitleSign audihor = this.Title.Auditor;
+            Assert.NotNull(audihor);
+
+            // Должность
+            string job = "Job";
+            audihor.Job = job;
+            Assert.AreEqual(job, audihor.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            audihor.Name = name;
+            Assert.AreEqual(name, audihor.Name);
+        }
+
+        /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Составил" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Author()
+        {
+            IA0TitleSign author = this.Title.Author;
+            Assert.NotNull(author);
+
+            // Должность
+            string job = "Job";
+            author.Job = job;
+            Assert.AreEqual(job, author.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            author.Name = name;
+            Assert.AreEqual(name, author.Name);
+        }
+
+        /// <summary>
         /// Проверяет работоспособность получения наименования бизнес этапа.
         /// </summary>
         [Test]
@@ -104,6 +164,26 @@ namespace A0Tests.Integrate.Estimate
         }
 
         /// <summary>
+        /// Проверяет отсутствие ошибок при обращении к подписям "Согласовано" в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_Conform()
+        {
+            IA0TitleSign conform = this.Title.Conform;
+            Assert.NotNull(conform);
+
+            // Должность
+            string job = "Job";
+            conform.Job = job;
+            Assert.AreEqual(job, conform.Job);
+
+            // Ф.И.О
+            string name = "Name";
+            conform.Name = name;
+            Assert.AreEqual(name, conform.Name);
+        }
+
+        /// <summary>
         /// Проверяет работоспособность чтения и записи шифра.
         /// </summary>
         [Test]
@@ -134,6 +214,47 @@ namespace A0Tests.Integrate.Estimate
         public void Test_VolumeScale()
         {
             decimal volumeScale = this.Title.VolumeScale;
+        }
+
+        /// <summary>
+        /// Проверяет корректность сохранения в БД изменений в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_LoadTitleChanges()
+        {
+            string titleName = "name";
+            string mark = "mark";
+
+            this.Title.Name = titleName;
+            this.Title.Mark = mark;
+
+            this.Title.Approval.Job = "apJob";
+            this.Title.Auditor.Job = "audJob";
+            this.Title.Author.Job = "autJob";          
+            this.Title.Conform.Job = "conJob";
+
+            this.Title.Approval.Name = "apName";
+            this.Title.Auditor.Name = "audName";
+            this.Title.Author.Name = "autName";
+            this.Title.Conform.Name = "conName";
+
+
+            this.Repo.LS.Save(this.LS);
+
+            IA0LS ls = this.Repo.LS.Load(this.LS.ID);
+
+            Assert.AreEqual(titleName, ls.Title.Name);
+            Assert.AreEqual(mark, ls.Title.Mark);
+
+            Assert.AreEqual("apJob", ls.Title.Approval.Job);
+            Assert.AreEqual("audJob", ls.Title.Auditor.Job);
+            Assert.AreEqual("autJob", ls.Title.Author.Job);
+            Assert.AreEqual("conJob", ls.Title.Conform.Job);
+
+            Assert.AreEqual("apName", ls.Title.Approval.Name);
+            Assert.AreEqual("audName", ls.Title.Auditor.Name);
+            Assert.AreEqual("autName", ls.Title.Author.Name);
+            Assert.AreEqual("conName", ls.Title.Conform.Name);
         }
     }
 }

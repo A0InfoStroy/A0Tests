@@ -1,5 +1,5 @@
-﻿// $Date: 2020-10-30 15:34:30 +0300 (Пт, 30 окт 2020) $
-// $Revision: 404 $
+﻿// $Date: 2021-02-17 11:02:24 +0300 (Ср, 17 фев 2021) $
+// $Revision: 521 $
 // $Author: agalkin $
 // Тесты полей ОС
 
@@ -80,10 +80,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(approval);
 
             // Должность
-            string job = approval.Job;
+            string job = "Job";
+            approval.Job = job;
+            Assert.AreEqual(job, approval.Job);
 
             // Ф.И.О
-            string name = approval.Name;
+            string name = "Name";
+            approval.Name = name;
+            Assert.AreEqual(name, approval.Name);
         }
 
         /// <summary>
@@ -96,20 +100,23 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(author);
 
             // Должность
-            string job = author.Job;
+            string job = "Job";
+            author.Job = job;
+            Assert.AreEqual(job, author.Job);
 
             // Ф.И.О
-            string name = author.Name;
+            string name = "Name";
+            author.Name = name;
+            Assert.AreEqual(name, author.Name);
         }
 
         /// <summary>
-        /// Проверяет работоспособность чтения вида строительства.
+        /// Проверяет отсутствие ошибок при обращении к виду строительства.
         /// </summary>
         [Test]
         public void Test_BuildKindStr()
         {
             string buildKind = this.Title.BuikdKindStr;
-            Assert.NotNull(buildKind);
         }
 
         /// <summary>
@@ -165,10 +172,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(chiefEngineer);
 
             // Должность
-            string job = chiefEngineer.Job;
+            string job = "Job";
+            chiefEngineer.Job = job;
+            Assert.AreEqual(job, chiefEngineer.Job);
 
             // Ф.И.О
-            string name = chiefEngineer.Name;
+            string name = "Name";
+            chiefEngineer.Name = name;
+            Assert.AreEqual(name, chiefEngineer.Name);
         }
 
         /// <summary>
@@ -193,10 +204,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(conform);
 
             // Должность
-            string job = conform.Job;
+            string job = "Job";
+            conform.Job = job;
+            Assert.AreEqual(job, conform.Job);
 
             // Ф.И.О
-            string name = conform.Name;
+            string name = "Name";
+            conform.Name = name;
+            Assert.AreEqual(name, conform.Name);
         }
 
         /// <summary>
@@ -228,10 +243,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(headOfDep);
 
             // Должность
-            string job = headOfDep.Job;
+            string job = "Job";
+            headOfDep.Job = job;
+            Assert.AreEqual(job, headOfDep.Job);
 
             // Ф.И.О
-            string name = headOfDep.Name;
+            string name = "Name";
+            headOfDep.Name = name;
+            Assert.AreEqual(name, headOfDep.Name);
         }
 
         /// <summary>
@@ -248,13 +267,12 @@ namespace A0Tests.Integrate.Estimate
         }
 
         /// <summary>
-        ///  Проверяет работоспособность чтения графы "Составлена в ценах".
+        ///  Проверяет отсутствие ошибок при обращении к графе "Составлена в ценах".
         /// </summary>
         [Test]
         public void Test_InPrice()
         {
             string inPrice = this.Title.InPrice;
-            Assert.NotNull(inPrice);
         }
 
         /// <summary>
@@ -267,10 +285,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(inspector);
 
             // Должность
-            string job = inspector.Job;
+            string job = "Job";
+            inspector.Job = job;
+            Assert.AreEqual(job, inspector.Job);
 
             // Ф.И.О
-            string name = inspector.Name;
+            string name = "Name";
+            inspector.Name = name;
+            Assert.AreEqual(name, inspector.Name);
         }
 
         /// <summary>
@@ -313,6 +335,57 @@ namespace A0Tests.Integrate.Estimate
         public void Test_UpdateMoment()
         {
             DateTime updateMoment = this.Title.UpdateMoment;
+        }
+
+        /// <summary>
+        /// Проверяет корректность сохранения в БД изменений в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_LoadTitleChanges()
+        {
+            string titleName = "name";
+            string mark = "mark";
+            string comment = "comment";
+
+            this.Title.Name = titleName;
+            this.Title.Mark = mark;
+            this.Title.Comment = comment;
+
+            this.Title.Approval.Job = "apJob";
+            this.Title.Author.Job = "autJob";
+            this.Title.ChiefEngineer.Job = "chfJob";
+            this.Title.Conform.Job = "conJob";                   
+            this.Title.HeadOfDep.Job = "hodJob";
+            this.Title.Inspector.Job = "insJob";
+
+            this.Title.Approval.Name = "apName";
+            this.Title.Author.Name = "autName";
+            this.Title.ChiefEngineer.Name = "chfName";
+            this.Title.Conform.Name = "conName";
+            this.Title.HeadOfDep.Name = "hodName";
+            this.Title.Inspector.Name = "insName";
+
+            this.Repo.OS.Save(this.OS);
+
+            IA0OS os = this.Repo.OS.Load(this.OS.ID.GUID, false);
+
+            Assert.AreEqual(titleName, os.Title.Name);
+            Assert.AreEqual(mark, os.Title.Mark);
+            Assert.AreEqual(comment, os.Title.Comment);
+
+            Assert.AreEqual("apJob", os.Title.Approval.Job);
+            Assert.AreEqual("autJob", os.Title.Author.Job);
+            Assert.AreEqual("chfJob", os.Title.ChiefEngineer.Job);
+            Assert.AreEqual("conJob", os.Title.Conform.Job);
+            Assert.AreEqual("hodJob", os.Title.HeadOfDep.Job);
+            Assert.AreEqual("insJob", os.Title.Inspector.Job);
+
+            Assert.AreEqual("apName", os.Title.Approval.Name);
+            Assert.AreEqual("autName", os.Title.Author.Name);
+            Assert.AreEqual("chfName", os.Title.ChiefEngineer.Name);
+            Assert.AreEqual("conName", os.Title.Conform.Name);           
+            Assert.AreEqual("hodName", os.Title.HeadOfDep.Name);
+            Assert.AreEqual("insName", os.Title.Inspector.Name);
         }
     }
 }

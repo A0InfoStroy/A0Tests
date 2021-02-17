@@ -1,5 +1,5 @@
-﻿// $Date: 2020-10-30 15:34:30 +0300 (Пт, 30 окт 2020) $
-// $Revision: 404 $
+﻿// $Date: 2021-02-17 11:02:24 +0300 (Ср, 17 фев 2021) $
+// $Revision: 521 $
 // $Author: agalkin $
 
 namespace A0Tests.Integrate.Estimate
@@ -70,10 +70,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(approval);
 
             // Должность
-            string job = approval.Job;
+            string job = "Job";
+            approval.Job = job;
+            Assert.AreEqual(job, approval.Job);
 
             // Ф.И.О
-            string name = approval.Name;
+            string name = "Name";
+            approval.Name = name;
+            Assert.AreEqual(name, approval.Name);
         }
 
         /// <summary>
@@ -171,10 +175,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(conform);
 
             // Должность
-            string job = conform.Job;
+            string job = "Job";
+            conform.Job = job;
+            Assert.AreEqual(job, conform.Job);
 
             // Ф.И.О
-            string name = conform.Name;
+            string name = "Name";
+            conform.Name = name;
+            Assert.AreEqual(name, conform.Name);
         }
 
         /// <summary>
@@ -196,10 +204,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(customer);
 
             // Должность
-            string job = customer.Job;
+            string job = "Job";
+            customer.Job = job;
+            Assert.AreEqual(job, customer.Job);
 
             // Ф.И.О
-            string name = customer.Name;
+            string name = "Name";
+            customer.Name = name;
+            Assert.AreEqual(name, customer.Name);
         }
 
         /// <summary>
@@ -212,10 +224,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(departmHead);
 
             // Должность
-            string job = departmHead.Job;
+            string job = "Job";
+            departmHead.Job = job;
+            Assert.AreEqual(job, departmHead.Job);
 
             // Ф.И.О
-            string name = departmHead.Name;
+            string name = "Name";
+            departmHead.Name = name;
+            Assert.AreEqual(name, departmHead.Name);
         }
 
         /// <summary>
@@ -301,10 +317,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(projectEng);
 
             // Должность
-            string job = projectEng.Job;
+            string job = "Job";
+            projectEng.Job = job;
+            Assert.AreEqual(job, projectEng.Job);
 
             // Ф.И.О
-            string name = projectEng.Name;
+            string name = "Name";
+            projectEng.Name = name;
+            Assert.AreEqual(name, projectEng.Name);
         }
 
         /// <summary>
@@ -317,10 +337,14 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(projectHead);
 
             // Должность
-            string job = projectHead.Job;
+            string job = "Job";
+            projectHead.Job = job;
+            Assert.AreEqual(job, projectHead.Job);
 
             // Ф.И.О
-            string name = projectHead.Name;
+            string name = "Name";
+            projectHead.Name = name;
+            Assert.AreEqual(name, projectHead.Name);
         }
 
         /// <summary>
@@ -369,10 +393,73 @@ namespace A0Tests.Integrate.Estimate
             Assert.NotNull(veryRichSponsor);
 
             // Должность
-            string job = veryRichSponsor.Job;
+            string job = "Job";
+            veryRichSponsor.Job = job;
+            Assert.AreEqual(job, veryRichSponsor.Job);
 
             // Ф.И.О
-            string name = veryRichSponsor.Name;
+            string name = "Name";
+            veryRichSponsor.Name = name;
+            Assert.AreEqual(name, veryRichSponsor.Name);
+        }
+
+        /// <summary>
+        /// Проверяет корректность сохранения в БД изменений в заголовке.
+        /// </summary>
+        [Test]
+        public void Test_LoadTitleChanges()
+        {
+            string titleName = "name";
+            string mark = "mark";
+            string comment = "comment";
+            DateTime beginDate = this.Title.BeginDate.AddDays(1.0);
+            DateTime endDate = this.Title.EndDate.AddDays(2.0);
+
+            this.Title.Name = titleName;
+            this.Title.Mark = mark;
+            this.Title.Comment = comment;
+
+            this.Title.Approval.Job = "apJob";
+            this.Title.Conform.Job = "conJob";
+            this.Title.Customer.Job = "custJob";
+            this.Title.DepartmHead.Job = "depJob";
+            this.Title.ProjectHead.Job = "prJob";
+            this.Title.VeryRichSponsor.Job = "vrsJob";
+
+            this.Title.Approval.Name = "apName";
+            this.Title.Conform.Name = "conName";
+            this.Title.Customer.Name = "custName";
+            this.Title.DepartmHead.Name = "depName";
+            this.Title.ProjectHead.Name = "prName";
+            this.Title.VeryRichSponsor.Name = "vrsName";
+
+            this.Title.BeginDate = beginDate;
+            this.Title.EndDate = endDate;
+           
+            this.Repo.Complex.Save(this.Complex);
+
+            IA0Complex complex = this.Repo.Complex.Load(this.Complex.ID.GUID, EAccessKind.akRead);
+
+            Assert.AreEqual(titleName, complex.Title.Name);
+            Assert.AreEqual(mark, complex.Title.Mark);
+            Assert.AreEqual(comment, complex.Title.Comment);
+
+            Assert.AreEqual("apJob", complex.Title.Approval.Job);
+            Assert.AreEqual("conJob", complex.Title.Conform.Job);
+            Assert.AreEqual("custJob", complex.Title.Customer.Job);
+            Assert.AreEqual("depJob", complex.Title.DepartmHead.Job);
+            Assert.AreEqual("prJob", complex.Title.ProjectHead.Job);
+            Assert.AreEqual("vrsJob", complex.Title.VeryRichSponsor.Job);
+
+            Assert.AreEqual("apName", complex.Title.Approval.Name);
+            Assert.AreEqual("conName", complex.Title.Conform.Name);
+            Assert.AreEqual("custName", complex.Title.Customer.Name);
+            Assert.AreEqual("depName", complex.Title.DepartmHead.Name);
+            Assert.AreEqual("prName", complex.Title.ProjectHead.Name);
+            Assert.AreEqual("vrsName", complex.Title.VeryRichSponsor.Name);
+
+            Assert.AreEqual(beginDate, complex.Title.BeginDate);
+            Assert.AreEqual(endDate, complex.Title.EndDate);
         }
     }
 }
