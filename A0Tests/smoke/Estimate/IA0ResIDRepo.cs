@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-17 15:31:37 +0300 (Пн, 17 авг 2020) $
-// $Revision: 373 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Базовые тесты IA0ResIDRepo
 
@@ -75,7 +75,7 @@ namespace A0Tests.Smoke.Estimate
         [Test]
         public void Test_Read()
         {
-            Assert.NotNull(this.Repo.Read(this.HeadComplexGuid, null, null, null));
+            Assert.NotNull(this.Repo.Read(this.A0.Estimate.Repo.ComplexID.HeadComplexGUID, null, null, null));
         }
 
         /// <summary>
@@ -84,7 +84,11 @@ namespace A0Tests.Smoke.Estimate
         [Test]
         public void Test_Read2()
         {
-            Assert.NotNull(this.Repo.Read(this.HeadComplexGuid, this.Repo.GetFieldRequest(), this.Repo.GetWhereRequest(), this.Repo.GetOrderRequest()));
+            Assert.NotNull(this.Repo.Read(
+                this.A0.Estimate.Repo.ComplexID.HeadComplexGUID, 
+                this.Repo.GetFieldRequest(), 
+                this.Repo.GetWhereRequest(), 
+                this.Repo.GetOrderRequest()));
         }
     }
 }

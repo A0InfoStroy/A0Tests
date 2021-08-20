@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-20 09:37:12 +0300 (Пн, 20 июл 2020) $
-// $Revision: 307 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты экспорта и импорта ЛС
 
@@ -11,7 +11,7 @@ namespace A0Tests.Functional
     using System.Runtime.InteropServices.ComTypes;
     using A0Service;
     using NUnit.Framework;
-    using static FileStreamHelper;
+    using static Config.FileStreamHelper;
 
     /// <summary>
     /// Содержит тест проверки импорта/экспорта ЛС в формате А0.

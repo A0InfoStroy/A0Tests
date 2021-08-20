@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-31 11:32:53 +0300 (Пт, 31 июл 2020) $
-// $Revision: 334 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Создание комплекса для тестов
 
@@ -29,7 +29,7 @@ namespace A0Tests
             Assert.NotNull(this.Repo.ComplexID);
 
             // Создание комплекса для тестов.
-            this.Complex = this.Repo.Complex.New2(this.HeadComplexGuid, this.HeadNodeID);
+            this.Complex = this.Repo.Complex.New(); 
             Assert.NotNull(this.Complex);
 
             this.Complex.Title.Name = "Интеграционные тесты " + DateTime.Now.ToString();

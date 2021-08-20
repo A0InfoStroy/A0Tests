@@ -1,27 +1,32 @@
-﻿// $Date: 2020-08-17 15:31:37 +0300 (Пн, 17 авг 2020) $
-// $Revision: 373 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты проверки соединений с A0Service
 
 namespace A0Tests.Smoke
 {
-    using System;
-    using System.Linq;
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
     using A0Service;
+    using Config;
     using NUnit.Framework;
+    using static Config.UserConfigParser;
 
     /// <summary>
     /// Содержит тесты проверки установки соединения.
     /// </summary>
     [TestFixture(
-        Category = "smoke",
+        Category = "Smoke",
         Description = "Проверка установки соединения",
         Author = "agalkin")]
     public class Test_Connect : A0Base
     {
+        /// <summary>
+        /// Признак установки соединения с БД А0.
+        /// </summary>
+        private bool connectionSuccess;
+
         /// <summary>
         /// Получает или устанавливает время ожидания установки соединения.
         /// </summary>
@@ -34,10 +39,23 @@ namespace A0Tests.Smoke
         {
             base.SetUp();
 
-            // Получение значения из файла пользовательских настроек.
-            string timeOut = this.Configuration?.Descendants("testConnectTimeOutMS")?.SingleOrDefault()?.Value;
-            Assert.True(int.TryParse(timeOut, out int result));
-            this.TimeOutMS = result;
+            IA0ConnectionConfig config = null;
+            string error = null;
+            try
+            {
+                config = GetA0ConnectionConfig(this.XmlText);
+            }
+            catch (System.Runtime.Serialization.SerializationException ex)
+            {
+                error = "Ошибка наименования элементов в xml-файле пользовательских настроек" + ex.Message;
+            }
+            catch (System.Exception ex)
+            {
+                error = "Ошибка чтения xml-файла пользовательских настроек" + ex.Message;
+            }
+
+            Assert.NotNull(config, error);
+            this.TimeOutMS = config.ConnectTimeoutMS;
         }
 
         /// <summary>
@@ -45,10 +63,13 @@ namespace A0Tests.Smoke
         /// </summary>
         public override void TearDown()
         {
-            // Интерейс A0 после теста должен остаться.
+            // Интерфейс A0 после теста должен остаться.
             Assert.NotNull(this.A0, "Ожидается A0 после теста");
 
-            this.A0.Disconnect();
+            if (connectionSuccess)
+            {
+                this.A0.Disconnect();
+            }
 
             base.TearDown();
         }
@@ -60,11 +81,9 @@ namespace A0Tests.Smoke
         public void Connect3()
         {
             // Установка соединения с БД А0.
-            EConnectReturnCode result = this.A0.Connect3(this.ConnStr, this.UserName, this.Password);
-            if (result != EConnectReturnCode.crcSuccess)
-            {
-                throw new Exception(string.Format("Не могу установить соединение с БД А0. Код возврата {0}", result));
-            }
+            EConnectReturnCode result = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, this.Config.Password);
+            Assert.AreEqual(EConnectReturnCode.crcSuccess, result, $"Не могу установить соединение с БД А0. Код возврата {result}");
+            this.connectionSuccess = true;
 
             // Пауза для ожидания установки соединения.
             Thread.Sleep(this.TimeOutMS);
@@ -77,7 +96,9 @@ namespace A0Tests.Smoke
         public void Connect4()
         {
             // Установка соединения с БД А0.
-            this.A0.Connect4(this.UserName, this.Password);
+            this.A0.Connect4(this.Config.UserName, this.Config.Password);
+
+            this.connectionSuccess = true;
 
             // Пауза для ожидания установки соединения.
             Thread.Sleep(this.TimeOutMS);
@@ -91,7 +112,7 @@ namespace A0Tests.Smoke
         Category = "smoke",
         Description = "Проверка установки соединений",
         Author = "agalkin")]
-    public class Test_MultiConnect : A0Config
+    public class Test_MultiConnect : BaseConfig
     {
         /// <summary>
         /// Получает или устанавливает количество одновременно устанавливаемых соединений.
@@ -110,13 +131,24 @@ namespace A0Tests.Smoke
         {
             base.SetUp();
 
-            // Получение значений из файла пользовательских настроек.
-            string count = this.Configuration?.Descendants("testMultiConnectCount")?.SingleOrDefault()?.Value;
-            Assert.True(int.TryParse(count, out int result));
-            this.Count = result;
-            string timeOut = this.Configuration?.Descendants("testMultiConnectTimeOutMS")?.SingleOrDefault()?.Value;
-            Assert.True(int.TryParse(timeOut, out result));
-            this.TimeOutMS = result;
+            IA0MultiConnectionConfig config = null;
+            string error = null;
+            try
+            {
+                config = GetA0MultiConnectionConfig(this.XmlText);
+            }
+            catch (System.Runtime.Serialization.SerializationException ex)
+            {
+                error = "Ошибка наименования элементов в xml-файле пользовательских настроек" + ex.Message;
+            }
+            catch (System.Exception ex)
+            {
+                error = "Ошибка чтения xml-файла пользовательских настроек" + ex.Message;
+            }
+
+            Assert.NotNull(config, error);
+            this.Count = config.MultiConnectCount;
+            this.TimeOutMS = config.MultiConnectTimeoutMS;
         }
 
         /// <summary>
@@ -132,12 +164,8 @@ namespace A0Tests.Smoke
                 try
                 {
                     // Установка соединения с БД А0.
-                    EConnectReturnCode result = a0.Connect3(this.ConnStr, this.UserName, this.Password);
-
-                    if (result != EConnectReturnCode.crcSuccess)
-                    {
-                        throw new Exception(string.Format("Не могу установить соединение с БД А0. Код возврата {0}", result));
-                    }
+                    EConnectReturnCode result = a0.Connect3(this.Config.ConnectionString, this.Config.UserName, this.Config.Password);
+                    Assert.AreEqual(EConnectReturnCode.crcSuccess, result, $"Не могу установить соединение с БД А0. Код возврата {result}");
 
                     // Пауза для ожидания установки соединения.
                     Thread.Sleep(this.TimeOutMS);
@@ -166,7 +194,7 @@ namespace A0Tests.Smoke
                 try
                 {
                     // Установка соединения с БД А0
-                    a0.Connect4(this.UserName, this.Password);
+                    a0.Connect4(this.Config.UserName, this.Config.Password);
 
                     // Пауза для ожидания установки соединения.
                     Thread.Sleep(this.TimeOutMS);

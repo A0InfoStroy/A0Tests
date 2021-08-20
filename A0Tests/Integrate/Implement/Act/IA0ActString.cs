@@ -1,5 +1,5 @@
-﻿// $Date: 2020-11-02 11:54:16 +0300 (Пн, 02 ноя 2020) $
-// $Revision: 406 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты строки Акта
 
@@ -35,6 +35,7 @@ namespace A0Tests.Integrate.Implement
         public void Test_AttrExt()
         {
             // Описатель атрибутов по имению объекта
+            var r = typeof(IA0ActString).Name;
             IAppAttrObj attr = this.A0.App.Attributes.Repo.Get(typeof(IA0ActString).Name);
 
             // Должно быть A0ActString, без первой буквы I
@@ -52,6 +53,37 @@ namespace A0Tests.Integrate.Implement
             }
 
             Assert.Greater(extAttrs.Count, 0);
+
+            var actGuid = Guid.Parse("{C28B698E-801B-46F2-8CE6-C61197507C40}");
+            var act = this.ImplRepo.Act.Load(actGuid, EAccessKind.akEdit);
+            var strGuid = Guid.Parse("{5D04B6F9-08E3-47B6-A93B-001BA3E6DF10}");
+            var actString = act.Strings.ByGUID(strGuid);
+            var attrExt = actString.Attr["LGM.TZNorm"];
+            var attrDep = actString.Attr["LGM.DeptID"];
+            actString.Attr["LGM.TZNorm"] = "5";
+            var newGuid = Guid.NewGuid().ToString();
+            actString.Attr["LGM.DeptID"] = newGuid;
+            actString.Attr["LGM.TZPlan"] = "6";
+            actString.Attr["LGM.TZPlanPm"] = "7";
+            actString.Attr["LGM.TZFact"] = "8";
+            actString.Attr["LGM.TZResName"] = "name";
+            actString.Attr["LGM.ResType"] = "1";
+            actString.Attr["LGM.PaperCount"] = "2";
+            actString.Attr["LGM.TZDataType"] = "3";
+            actString.Attr["LGM.TZDataByHand"] = "2";
+            this.ImplRepo.Act.Save(act);
+            act = this.ImplRepo.Act.Load(actGuid, EAccessKind.akEdit);
+            actString = act.Strings.ByGUID(strGuid);
+            attrExt = actString.Attr["LGM.TZNorm"];
+            attrDep = actString.Attr["LGM.DeptID"];
+            var plan = actString.Attr["LGM.TZPlan"];
+            var planPm = actString.Attr["LGM.TZPlanPm"];
+            var fact = actString.Attr["LGM.TZFact"];
+            var resName = actString.Attr["LGM.TZResName"];
+            var type = actString.Attr["LGM.ResType"];
+            var paper = actString.Attr["LGM.PaperCount"];
+            var data = actString.Attr["LGM.TZDataType"];
+            var hand = actString.Attr["LGM.TZDataByHand"];
 
             // Изменяем значение расширенного атрибута
             foreach (var extAttr in extAttrs)

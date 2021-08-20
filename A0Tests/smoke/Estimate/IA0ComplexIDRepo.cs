@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-17 15:31:37 +0300 (Пн, 17 авг 2020) $
-// $Revision: 373 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Базовые тесты IA0ComplexIDRepo
 
@@ -84,7 +84,7 @@ namespace A0Tests.Smoke.Estimate
         [Test]
         public void Test_Read2()
         {
-            Assert.NotNull(this.Repo.Read2(this.HeadComplexGuid, this.Repo.GetFiledRequest()));
+            Assert.NotNull(this.Repo.Read2(this.Repo.HeadComplexGUID, this.Repo.GetFiledRequest()));
         }
 
         /// <summary>

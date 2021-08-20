@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-31 11:32:53 +0300 (Пт, 31 июл 2020) $
-// $Revision: 334 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты каталога проектов
 
@@ -33,7 +33,7 @@ namespace A0Tests.Integrate.Estimate
         [Test(Description = "Тестирование метода Read с двумя параметрами")]
         public void Test_Read2()
         {
-            IA0ObjectIterator iterator = this.Repo.ProjID.Read2(this.HeadComplexGuid, null);
+            IA0ObjectIterator iterator = this.Repo.ProjID.Read2(this.A0.Estimate.Repo.ComplexID.HeadComplexGUID, null);
             this.ReadEstimateObject(iterator, EA0ObjectKind.okProject);
         }
 

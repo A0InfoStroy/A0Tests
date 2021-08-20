@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-28 13:36:08 +0300 (Вт, 28 июл 2020) $
-// $Revision: 320 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты пересчетов строки локальных смет
 
@@ -11,7 +11,7 @@ namespace A0Tests.Integrate.Estimate
     /// <summary>
     ///  Базовый класс пересчетов строки ЛС.
     /// </summary>
-    public class Test_CustomLSStrRecalcs : Test_LSStringCustom
+    public class Test_CustomLSStrRecalcs : Test_LSCustom
     {
         /// <summary>
         /// Получает или устанавливает пересчет строки ЛС.

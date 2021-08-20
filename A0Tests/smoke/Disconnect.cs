@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-17 15:31:37 +0300 (Пн, 17 авг 2020) $
-// $Revision: 373 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты разъединения
 
@@ -26,7 +26,7 @@ namespace A0Tests.Smoke
             base.SetUp();
 
             // Установка соединения с БД А0.
-            EConnectReturnCode returnCode = this.A0.Connect3(this.ConnStr, this.UserName, this.Password);
+            EConnectReturnCode returnCode = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, this.Config.Password);
             if (returnCode != EConnectReturnCode.crcSuccess)
             {
                 throw new Exception(string.Format("Не могу установить соединение с БД А0. Код возврата {0}", returnCode));

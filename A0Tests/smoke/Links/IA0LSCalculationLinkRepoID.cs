@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-17 15:31:37 +0300 (Пн, 17 авг 2020) $
-// $Revision: 373 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Базовые тесты IA0LSCalculationLinkRepoID
 
@@ -78,7 +78,7 @@ namespace A0Tests.Smoke.Links
         [Test]
         public void Test_Read()
         {
-            IA0FieldsIterator iter = this.Repo.Read(this.HeadComplexGuid, null, null, null);
+            IA0FieldsIterator iter = this.Repo.Read(this.A0.Estimate.Repo.ComplexID.HeadComplexGUID, null, null, null);
             Assert.NotNull(iter);
 
             ISQLAsString sql = iter as ISQLAsString;
@@ -93,7 +93,7 @@ namespace A0Tests.Smoke.Links
         public void Test_Read2()
         {
             IA0FieldsIterator iter = this.Repo.Read(
-                this.HeadComplexGuid,
+                this.A0.Estimate.Repo.ComplexID.HeadComplexGUID,
                 this.Repo.GetFieldRequest(),
                 this.Repo.GetWhereRequest(),
                 this.Repo.GetOrderRequest());

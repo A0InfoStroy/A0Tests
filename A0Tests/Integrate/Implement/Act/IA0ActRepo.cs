@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:48:22 +0300 (Ср, 05 авг 2020) $
-// $Revision: 342 $
-// $Author: agalkin $
+﻿// $Date: 2020-10-02 14:33:07 +0300 (Пт, 02 окт 2020) $
+// $Revision: 385 $
+// $Author: ppeysakhovski $
 // Тесты каталога Актов
 
 namespace A0Tests.Integrate.Implement

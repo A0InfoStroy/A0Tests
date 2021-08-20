@@ -102,7 +102,6 @@
     <Compile Include="Integrate\Implement\Act\NewAct.cs" />
     <Compile Include="Integrate\Print\IA0Print.cs" />
     <Compile Include="Integrate\System\IA0SysTreeLevelList.cs" />
-    <Compile Include="settings\UserConfig.cs" />
     <Compile Include="smoke\App\IA0Admin.cs" />
     <Compile Include="smoke\App\IA0Log.cs" />
     <Compile Include="smoke\App\IConnection.cs" />
@@ -189,7 +188,6 @@
     <Compile Include="smoke\System\IA0SysOrganizationsDomain.cs" />
     <Compile Include="smoke\System\IA0SystemRepo.cs" />
     <Compile Include="smoke\System\INSI.cs" />
-    <Compile Include="util\FileStreamHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
@@ -204,9 +202,6 @@
     <Folder Include="Integrate\Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="settings\userConfig.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="A0Service">
       <Guid>{D244FFDD-2540-4CC4-825B-2AC22EA079C5}</Guid>
       <VersionMajor>2</VersionMajor>
@@ -216,6 +211,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\A0Tests.Config\A0Tests.Config.csproj">
+      <Project>{68705222-65d3-43ea-8d99-7f494941c091}</Project>
+      <Name>A0Tests.Config</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

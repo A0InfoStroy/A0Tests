@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-31 11:32:53 +0300 (Пт, 31 июл 2020) $
-// $Revision: 334 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Базовые классы
 
@@ -18,6 +18,11 @@ namespace A0Tests
         /// Получает или устанавливает каталог обобщенных сметных объектов.
         /// </summary>
         protected IA0EstimateRepo Repo { get; private set; }
+
+        /// <summary>
+        /// Получает значение Guid головного комплекса.
+        /// </summary>
+        protected Guid HeadComplexGuid => this.A0.Estimate.Repo.ComplexID.HeadComplexGUID;
 
         /// <summary>
         /// Получает id головного узла комплекса.

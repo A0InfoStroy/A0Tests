@@ -1,5 +1,5 @@
-﻿// $Date: 2020-08-07 11:23:49 +0300 (Пт, 07 авг 2020) $
-// $Revision: 354 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты оповещения об ошибке обновления сессии
 
@@ -36,7 +36,7 @@ namespace A0Tests.Integrate
         {
             this.A0.Disconnect();
             this.A0.ACExitNotify = new ExitNotify();
-            EConnectReturnCode result = this.A0.Connect3(this.ConnStr, this.UserName, "wrongPassword");
+            EConnectReturnCode result = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, "wrongPassword");
             if (result != EConnectReturnCode.crcSuccess)
             {
                 this.A0.ACExitNotify.OnNotify(EACExitEnum.ConnectionError, "неверный пароль");

@@ -1,5 +1,5 @@
-﻿// $Date: 2020-11-27 17:08:44 +0300 (Пт, 27 ноя 2020) $
-// $Revision: 439 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты проверки соединений с A0Service
 
@@ -32,7 +32,7 @@ namespace A0Tests.Integrate
             base.SetUp();
 
             // Соединение с БД для получения данных в обход A0Service.
-            using (OleDbConnection connection = new OleDbConnection(this.ConnStr))
+            using (OleDbConnection connection = new OleDbConnection(this.Config.ConnectionString))
             {
                 connection.Open();
 
@@ -72,7 +72,7 @@ namespace A0Tests.Integrate
         public void Connect3()
         {
             this.UpdateDBVersionToInitial();
-            EConnectReturnCode result = this.A0.Connect3(this.ConnStr, this.UserName, this.Password);
+            EConnectReturnCode result = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, this.Config.Password);
             Assert.AreEqual(EConnectReturnCode.crcCheckDBError, result);
         }
 
@@ -85,7 +85,7 @@ namespace A0Tests.Integrate
             this.UpdateDBVersionToInitial();
             try
             {
-                this.A0.Connect4(this.ConnStr, this.UserName);
+                this.A0.Connect4(this.Config.ConnectionString, this.Config.UserName);
             }
             catch (COMException ex)
             {
@@ -99,7 +99,7 @@ namespace A0Tests.Integrate
         private void UpdateDBVersionToInitial()
         {
             // Соединение с БД для получения данных в обход A0Service.
-            using (OleDbConnection connection = new OleDbConnection(this.ConnStr))
+            using (OleDbConnection connection = new OleDbConnection(this.Config.ConnectionString))
             {
                 connection.Open();
 
@@ -118,7 +118,7 @@ namespace A0Tests.Integrate
         private void UpdateDBVersionToCurrent()
         {
             // Соединение с БД для получения данных в обход A0Service.
-            using (OleDbConnection connection = new OleDbConnection(this.ConnStr))
+            using (OleDbConnection connection = new OleDbConnection(this.Config.ConnectionString))
             {
                 connection.Open();
 

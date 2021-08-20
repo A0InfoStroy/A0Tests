@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-22 10:03:16 +0300 (Ср, 22 июл 2020) $
-// $Revision: 315 $
+﻿// $Date: 2021-01-29 13:30:36 +0300 (Пт, 29 янв 2021) $
+// $Revision: 514 $
 // $Author: agalkin $
 // Тесты каталога Комплексов
 
@@ -25,6 +25,22 @@ namespace A0Tests.Integrate.Estimate
         public void Test_New()
         {
             IA0Complex complex = this.Repo.Complex.New();
+            Assert.NotNull(complex);
+            complex.Title.Name = "Интеграционные тесты " + DateTime.Now.ToString();
+            this.Repo.Complex.Save(complex);
+            Assert.AreEqual(this.Complex.ID.ParentNodeID, complex.ID.ParentNodeID);
+            IA0ObjectIterator iterator = this.Repo.ComplexID.Read2(this.HeadComplexGuid, null);
+            this.CheckChildInParent(iterator, complex.ID.GUID);
+            this.Repo.Complex.Delete(complex.ID.GUID);
+        }
+
+        /// <summary>
+        /// Проверяет корректность создания комплекса в комплексе с указанным Guid.
+        /// </summary>
+        [Test(Description = "Создание/Удаление")]
+        public void Test_New2()
+        {
+            IA0Complex complex = this.Repo.Complex.New2(this.HeadComplexGuid, this.HeadNodeID);
             Assert.NotNull(complex);
             complex.Title.Name = "Интеграционные тесты " + DateTime.Now.ToString();
             this.Repo.Complex.Save(complex);
