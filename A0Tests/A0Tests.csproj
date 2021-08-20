@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79A8BD9E-73FE-4833-AC6B-1BBB79ED568B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>A0Tests</RootNamespace>
+    <AssemblyName>A0Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.Engine.3.8.0\lib\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.engine, Version=3.8.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.Engine.3.8.0\lib\nunit.engine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="A0Tests.cs" />
+    <Compile Include="Functional\Calculations\Resources\ActStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\LSStrResource.cs" />
+    <Compile Include="Functional\IA0EstimateLSService.cs" />
+    <Compile Include="Integrate\App\IA0LogEvent.cs" />
+    <Compile Include="Integrate\App\IA0SOOperationManager.cs" />
+    <Compile Include="Integrate\ConnectToOtherDBVersions.cs" />
+    <Compile Include="Integrate\Estimate\Complex\IA0ComplexID.cs" />
+    <Compile Include="Integrate\Estimate\Complex\IA0ComplexIDRepo.cs" />
+    <Compile Include="Integrate\Estimate\Complex\IA0ComplexTotals.cs" />
+    <Compile Include="Integrate\Estimate\Complex\IA0ComplexTree.cs" />
+    <Compile Include="Integrate\Estimate\Complex\NewComplex.cs" />
+    <Compile Include="Integrate\Estimate\Contracts\IA0ContractsIDRepo.cs" />
+    <Compile Include="Integrate\Estimate\Contracts\IA0ContractsRepo.cs" />
+    <Compile Include="Integrate\Estimate\Contracts\NewContract.cs" />
+    <Compile Include="Integrate\Estimate\IA0EstimateImport.cs" />
+    <Compile Include="Integrate\Estimate\IA0SearchResult.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSID.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSStrings.cs" />
+    <Compile Include="Integrate\Estimate\LS\NewLS.cs" />
+    <Compile Include="Integrate\Estimate\OS\IA0OSID.cs" />
+    <Compile Include="Integrate\Estimate\OS\IA0OSTitle.cs" />
+    <Compile Include="Integrate\Estimate\OS\IA0OSTotals.cs" />
+    <Compile Include="Integrate\Estimate\OS\IA0OSTree.cs" />
+    <Compile Include="Integrate\Estimate\OS\NewOS.cs" />
+    <Compile Include="Integrate\Estimate\Proj\IA0ProjID.cs" />
+    <Compile Include="Integrate\Estimate\Proj\IA0ProjIDRepo.cs" />
+    <Compile Include="Integrate\Estimate\Proj\IA0ProjIDs.cs" />
+    <Compile Include="Integrate\Estimate\Proj\IA0ProjTitle.cs" />
+    <Compile Include="Integrate\Estimate\Proj\IA0ProjTotals.cs" />
+    <Compile Include="Integrate\Estimate\Proj\IA0ProjTree.cs" />
+    <Compile Include="Integrate\Estimate\Proj\NewProj.cs" />
+    <Compile Include="Integrate\Estimate\Res\IA0ResIDRepo.cs" />
+    <Compile Include="Integrate\IA0DocEntrys.cs" />
+    <Compile Include="Integrate\IACExitNotify.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActID.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActIDRepo.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActResources.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0Act.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0TreeNode.cs" />
+    <Compile Include="Integrate\Implement\Act\NewAct.cs" />
+    <Compile Include="Integrate\Implement\Services\IA0ImplementActServices.cs" />
+    <Compile Include="Integrate\Print\IA0Print.cs" />
+    <Compile Include="Integrate\System\IA0SysTreeLevelList.cs" />
+    <Compile Include="smoke\App\IA0Admin.cs" />
+    <Compile Include="smoke\App\IA0Log.cs" />
+    <Compile Include="smoke\App\IConnection.cs" />
+    <Compile Include="smoke\App\IVersion.cs" />
+    <Compile Include="smoke\Connect.cs" />
+    <Compile Include="Integrate\App\IAppAttrExtensionRepo.cs" />
+    <Compile Include="Integrate\App\IAppAttrObjRepo.cs" />
+    <Compile Include="Integrate\App\ICurrentUser.cs" />
+    <Compile Include="Integrate\Estimate\Complex\IA0ComplexRepo.cs" />
+    <Compile Include="Integrate\Estimate\Complex\IA0ComplexTitle.cs" />
+    <Compile Include="Integrate\Estimate\Estimate.cs" />
+    <Compile Include="Integrate\Estimate\IA0EstimateServices.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LS.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSIDRepo.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSStrBasing.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSString.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSStrRecalc.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSStrRecalcs.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSStrTotal.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSTitle.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSTotal.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSTree.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSResource.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0LSTotals.cs" />
+    <Compile Include="Integrate\Estimate\LS\CustomLS.cs" />
+    <Compile Include="Integrate\Estimate\OS\IA0OSRepo.cs" />
+    <Compile Include="Integrate\Estimate\OS\IA0OSIDRepo.cs" />
+    <Compile Include="Integrate\Estimate\Proj\IA0ProjRepo.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActRepo.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActTitle.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActString.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActStrRecalc.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActStrRecalcs.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActTotal.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActTotals.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActStrBasing.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActTree.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActStrTotal.cs" />
+    <Compile Include="Integrate\Implement\Act\IA0ActResource.cs" />
+    <Compile Include="Integrate\Implement\Services\IA0ImplementServices.cs" />
+    <Compile Include="Integrate\Integrate.cs" />
+    <Compile Include="Integrate\System\FactorTable\FactorTable.cs" />
+    <Compile Include="Integrate\System\Organizations\Organizations.cs" />
+    <Compile Include="smoke\Disconnect.cs" />
+    <Compile Include="smoke\Estimate\IA0ComplexIDRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0ContractsIDRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0ContractsRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0LSIDRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0LSStrIDRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0OSIDRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0ProjIDRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0ResIDRepo.cs" />
+    <Compile Include="smoke\Estimate\IA0Searcher.cs" />
+    <Compile Include="smoke\IA0Links.cs" />
+    <Compile Include="smoke\ICurrentUser.cs" />
+    <Compile Include="smoke\Implement\IA0ActIDRepo.cs" />
+    <Compile Include="smoke\Links\IA0LSCalculationLinkRepoID.cs" />
+    <Compile Include="smoke\Links\IA0ProjExecutionLinkRepoID.cs" />
+    <Compile Include="smoke\Links\IA0OSExecutionLinkRepoID.cs" />
+    <Compile Include="smoke\Links\IA0LSExecutionLinkRepoID.cs" />
+    <Compile Include="smoke\Links\IA0ProjLinksRepos.cs" />
+    <Compile Include="smoke\Links\IA0OSLinksRepos.cs" />
+    <Compile Include="smoke\Links\IA0LSMutationLinkRepoID.cs" />
+    <Compile Include="smoke\Links\IA0LSLinksRepos.cs" />
+    <Compile Include="smoke\Registration.cs" />
+    <Compile Include="smoke\Implement\IA0ImplementRepo.cs" />
+    <Compile Include="smoke\System\IA0SysFactorTableDomain.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Integrate\Estimate\LS\IA0LSRepo.cs" />
+    <Compile Include="core.cs" />
+    <Compile Include="smoke\IA0App.cs" />
+    <Compile Include="smoke\IA0System.cs" />
+    <Compile Include="smoke\App\IAppAttrExtensionDomain.cs" />
+    <Compile Include="smoke\App\IAppAttributesDomain.cs" />
+    <Compile Include="smoke\IA0Estimate.cs" />
+    <Compile Include="smoke\Estimate\IA0EstimateRepo.cs" />
+    <Compile Include="smoke\IA0Implement.cs" />
+    <Compile Include="smoke\IAPI.cs" />
+    <Compile Include="smoke\System\IA0SysOrganizationsDomain.cs" />
+    <Compile Include="smoke\System\IA0SystemRepo.cs" />
+    <Compile Include="smoke\System\INSI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Integrate\Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\A0Tets.Config\A0Tets.Config.csproj">
+      <Project>{1d6173f2-1c51-4007-aa15-24a205e1b24c}</Project>
+      <Name>A0Tets.Config</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="A0Service">
+      <Guid>{D244FFDD-2540-4CC4-825B-2AC22EA079C5}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+  </Target>
+</Project>
