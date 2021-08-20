@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-06 17:56:03 +0300 (Чт, 06 авг 2020) $
-// $Revision: 353 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты таблиц коэффициентов
 
 namespace A0Tests.Integrate.Sys
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения таблицы из каталога по Id.
         /// </summary>
-        [Test(Description = "Загрузка таблицы")]
+        [Test(Description = "Загрузка таблицы"), Timeout(10000)]
         public void Test_Read()
         {
             IA0SysFactorTable factorTable = this.Repo.Read(this.GetID());
@@ -99,7 +99,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к полям таблицы.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Title()
         {
             IA0SysFactorTableTitle title = this.FactorTable.Title;
@@ -122,7 +122,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения полей столбцов таблицы.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Columns()
         {
             IA0SysFactorTableColumns columns = this.FactorTable.Columns;
@@ -139,7 +139,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения полей строчек таблицы.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Rows()
         {
             IA0SysFactorTableRows rows = this.FactorTable.Rows;

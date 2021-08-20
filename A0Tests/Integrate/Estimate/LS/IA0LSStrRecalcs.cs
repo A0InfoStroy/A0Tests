@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты пересчетов строки локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -53,7 +53,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет наличие пересчетов.
         /// </summary>
-        [Test(Description = "Тест количества пересчетов")]
+        [Test(Description = "Тест количества пересчетов"), Timeout(10000)]
         public void Test_Count()
         {
             Assert.IsTrue(this.StrRecalcs.Count > 0);
@@ -62,7 +62,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к пересчету и его полям.
         /// </summary>
-        [Test(Description = "Тест пересчетов")]
+        [Test(Description = "Тест пересчетов"), Timeout(10000)]
         public void Test_Recalcs()
         {
             for (var i = 0; i < this.StrRecalcs.Count; ++i)

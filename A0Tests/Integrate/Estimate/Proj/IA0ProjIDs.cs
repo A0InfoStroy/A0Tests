@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-30 15:27:47 +0300 (Чт, 30 июл 2020) $
-// $Revision: 329 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты поиска проектов
 
 namespace A0Tests.Integrate.Estimate
@@ -41,7 +41,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность операций со списком проектов.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_AddDelete()
         {
             string id = "0";

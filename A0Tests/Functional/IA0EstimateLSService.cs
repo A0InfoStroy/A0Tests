@@ -1,6 +1,6 @@
-﻿// $Date: 2020-09-29 12:41:31 +0300 (Вт, 29 сен 2020) $
-// $Revision: 382 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты экспорта и импорта ЛС
 
 namespace A0Tests.Functional
@@ -11,7 +11,7 @@ namespace A0Tests.Functional
     using System.Runtime.InteropServices.ComTypes;
     using A0Service;
     using NUnit.Framework;
-    using static FileStreamHelper;
+    using static Config.FileStreamHelper;
 
     /// <summary>
     /// Содержит тест проверки импорта/экспорта ЛС в формате А0.
@@ -51,12 +51,12 @@ namespace A0Tests.Functional
         /// <summary>
         /// Проверяет корректность импорта и экспорта ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(9000)]
         public void Test_ExportImport()
         {
             // Создаем в ЛС текстовые строки.
             this.LS.CreateTxtString(EA0StringKind.skWork, "1234", this.LS.Tree.Head.ID);
-            this.LS.CreateTxtString(EA0StringKind.skMK, "1234", this.LS.Tree.Head.ID);
+            this.LS.CreateTxtString(EA0StringKind.skTZ, "1234", this.LS.Tree.Head.ID);
             this.Repo.LS.Save(this.LS);
 
             // Экспортируем ЛС в поток.
@@ -114,7 +114,7 @@ namespace A0Tests.Functional
 
                 // Проверяем типы строк ЛС.
                 Assert.True(ls.Strings.Items[0].StringKind == EA0StringKind.skWork);
-                Assert.True(ls.Strings.Items[1].StringKind == EA0StringKind.skMK);
+                Assert.True(ls.Strings.Items[1].StringKind == EA0StringKind.skTZ);
             }
             finally
             {

@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты итогов акта
 
 namespace A0Tests.Integrate.Implement
@@ -49,7 +49,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(20000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.ActTotal.Attr["ProjID"];
@@ -58,7 +58,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(20000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.ActTotal.Attr["LGM.TZNorm"];
@@ -67,7 +67,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Строительные".
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Construction()
         {
             decimal construction = this.ActTotal.Construction;
@@ -76,7 +76,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Оборудование".
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Equipment()
         {
             decimal equipment = this.ActTotal.Equipment;
@@ -85,7 +85,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Монтажные".
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Mounting()
         {
             decimal mounting = this.ActTotal.Mounting;
@@ -94,7 +94,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения наименования итогов ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Name()
         {
             string name = this.ActTotal.Name;
@@ -104,7 +104,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Прочие".
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Other()
         {
             decimal name = this.ActTotal.Other;
@@ -113,7 +113,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Всего".
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Total()
         {
             decimal name = this.ActTotal.Total;

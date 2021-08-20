@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты
 
 namespace A0Tests.Smoke
@@ -20,7 +20,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к оповещению об ошибке обновления сессии.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_ACExitNotify()
         {
             IACExitNotify acExitNotify = this.A0.ACExitNotify;
@@ -30,7 +30,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения списка реквизитом сметного объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_GetA0DocEntrys()
         {
             IA0DocEntrys docEntrys = this.A0.GetA0DocEntrys();
@@ -40,7 +40,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения списка реквизитов системных данных.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_GetA0SysDocEntrys()
         {
             IA0SysDocEntrys sysDocEntrys = this.A0.GetA0SysDocEntrys();
@@ -50,7 +50,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену приложения А0.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_App()
         {
             IA0App app = this.A0.App;
@@ -70,7 +70,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену сметных данных.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Estimate()
         {
             IA0EstimateDomain estimate = this.A0.Estimate;
@@ -80,7 +80,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену сметных данных выполнения.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Implement()
         {
             IA0ImplementDomain implement = this.A0.Implement;
@@ -90,7 +90,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену системных данных.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_System()
         {
             IA0System system = this.A0.Sys;
@@ -100,7 +100,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к пользователю системы разделения доступа.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_CurrentUser()
         {
             ICurrentUser currentUser = this.A0.CurrentUser;
@@ -110,7 +110,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену связей между сметными данными.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Links()
         {
             IA0LinksDomain links = this.A0.Links;
@@ -120,7 +120,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения системы печати для актов.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_PrintAct()
         {
             IA0Print print = this.A0.GetPrint(EA0PrintKind.pkAct, string.Empty);
@@ -130,7 +130,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения системы печати для ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_PrintLS()
         {
             IA0Print print = this.A0.GetPrint(EA0PrintKind.pkLS, string.Empty);
@@ -140,7 +140,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода генерации исключения для тестирования протокла.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Exception()
         {
             try

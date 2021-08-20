@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты ИД акта
 
 namespace A0Tests.Integrate.Implement
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Guid акта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GUID()
         {
             Guid guid = this.ActID.GUID;
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id акта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ID()
         {
             int id = this.ActID.ID;
@@ -64,7 +64,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет присвоенный тип сметного объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Kind()
         {
             EA0ObjectKind kind = this.ActID.Kind;
@@ -74,7 +74,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет Guid родительской локальной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_LSGUID()
         {
             Guid lsGuid = this.ActID.LSGUID;
@@ -84,7 +84,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет Id родительской локальной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_LSID()
         {
             int lsId = this.ActID.LSID;
@@ -95,7 +95,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет Guid родительской объектной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_OSGUID()
         {
             Guid osGuid = this.ActID.OSGUID;
@@ -105,7 +105,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет Id родительской объектной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_OSID()
         {
             int osId = this.ActID.OSID;
@@ -116,7 +116,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет Guid родительского проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ProjGUID()
         {
             Guid projGuid = this.ActID.ProjGUID;
@@ -126,7 +126,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет Id родительского проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ProjID()
         {
             int projId = this.ActID.ProjID;
@@ -137,7 +137,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет родительский объект ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Parent()
         {
             IA0ObjectID parent = this.ActID.Parent;

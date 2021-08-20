@@ -1,6 +1,6 @@
-﻿// $Date: 2020-09-29 12:25:56 +0300 (Вт, 29 сен 2020) $
-// $Revision: 381 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0ImplementServices
 
 namespace A0Tests.Integrate.Implement
@@ -167,7 +167,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода создания акта.
         /// </summary>
-        [Test(Description = "Создание акта")]
+        [Test(Description = "Создание акта"), Timeout(20000)]
         public void Test_Create()
         {
             IA0Act act = this.Services.CreateAct(this.LS.Strings, this.ExecutorID, this.ContractID);
@@ -178,7 +178,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода создания акта по ЛС с учётом опций.
         /// </summary>
-        [Test(Description = "Создание акта")]
+        [Test(Description = "Создание акта"), Timeout(20000)]
         public void Test_FromLS()
         {
             // Создаем акт на основе ЛС.
@@ -212,7 +212,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность исполнения строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ParentExecutions()
         {
             // Создаем акт на основе ЛС.
@@ -289,7 +289,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода создания акта по ЛС с учётом опций.
         /// </summary>
-        [Test(Description = "Создание акта Татнефть")]
+        [Test(Description = "Создание акта Татнефть"), Timeout(20000)]
         public void Test_FromLS_TN()
         {
             // Бизнес этап для новго акта
@@ -311,7 +311,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность создания текстовых строк акта.
         /// </summary>
-        [Test(Description = "Создание текстовых строк")]
+        [Test(Description = "Создание текстовых строк"), Timeout(20000)]
         public void Test_CreateTxtStr()
         {
             // Количество создаваемых строк.

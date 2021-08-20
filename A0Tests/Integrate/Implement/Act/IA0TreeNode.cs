@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты дерева акта
 
 namespace A0Tests.Integrate.Implement
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутсвие ошибок при вызове метода добавления узла.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Add()
         {
             this.ActTreeHead.Add("node");
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет наличие дочерних узлов в головном узле дерева и обращение к ним по индексу.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Count()
         {
             int count = this.ActTreeHead.Count;
@@ -69,7 +69,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутсвие ошибок при обращении к Id головного узла дерева.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ID()
         {
             int id = this.ActTreeHead.ID;
@@ -78,7 +78,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутсвие ошибок при обращении к уровню головного узла дерева.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Level()
         {
             int level = this.ActTreeHead.Level;
@@ -87,7 +87,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутсвие ошибок при обращении к наименованию головного узла дерева.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Name()
         {
             Assert.NotNull(this.ActTreeHead.Name);
@@ -96,7 +96,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения концевика головного узла дерева.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Prog()
         {
             Assert.NotNull(this.ActTreeHead.Prog);
@@ -105,7 +105,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутсвие ошибок при обращении к полям концевика головного узла дерева.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ProgCount()
         {
             int count = this.ActTreeHead.Prog.Count();
@@ -128,7 +128,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода удаления дочерних узлов по индексу.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Delete()
         {
             int count = this.ActTreeHead.Count;

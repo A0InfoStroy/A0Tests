@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты итогов акта
 
 namespace A0Tests.Integrate.Implement
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения количества итогов.
         /// </summary>
-        [Test(Description = "Тест итогов акта")]
+        [Test(Description = "Тест итогов акта"), Timeout(20000)]
         public void Test_Count()
         {
             Assert.IsTrue(this.Totals.Count > 0);
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения итогов и их полей по индексу.
         /// </summary>
-        [Test(Description = "Тест итогов акта")]
+        [Test(Description = "Тест итогов акта"), Timeout(20000)]
         public void Test_Totals()
         {
             for (var i = 0; i < this.Totals.Count; ++i)
@@ -71,7 +71,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения итогов и их полей по имени.
         /// </summary>
-        [Test(Description = "Тест итогов Акта по имени")]
+        [Test(Description = "Тест итогов Акта по имени"), Timeout(20000)]
         public void Test_ByName()
         {
             string[] totalNames = new[]
@@ -102,7 +102,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверка работоспособности метода получения итогов по индексу.
         /// </summary>
-        [Test(Description = "Тест итогов Акта")]
+        [Test(Description = "Тест итогов Акта"), Timeout(20000)]
         public void Test_GetItem()
         {
             for (int i = 0; i < this.Totals.Count; i++)

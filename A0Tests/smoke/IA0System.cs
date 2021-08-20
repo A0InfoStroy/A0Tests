@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0System
 
 namespace A0Tests.Smoke
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогам системных данных.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Repo()
         {
             IA0SystemRepo repo = this.Sys.Repo;
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену таблицы коэффициентов.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_FactorTable()
         {
             IA0SysFactorTableDomain factorTable = this.Sys.FactorTable;
@@ -65,7 +65,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к НСИ.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_NSI()
         {
             INSI nsi = this.Sys.NSI;
@@ -75,7 +75,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену организаций.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Organizations()
         {
             IA0SysOrganizationsDomain organizations = this.Sys.Organizations;

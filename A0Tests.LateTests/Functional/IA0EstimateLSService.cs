@@ -1,0 +1,125 @@
+﻿// $Date: 2021-01-14 15:27:29 +0300 (Чт, 14 янв 2021) $
+// $Revision: 495 $
+// $Author: agalkin $
+// Тесты экспорта и импорта ЛС
+
+namespace A0Tests.LateTests.Functional
+{
+    using System;
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using System.Runtime.InteropServices.ComTypes;
+    using NUnit.Framework;
+    using static A0Tests.Config.FileStreamHelper;
+
+    /// <summary>
+    /// Содержит тест проверки импорта/экспорта ЛС в формате А0.
+    /// </summary>
+    [TestFixture(Category = "Functional",
+        Description = "Тесты проверки работоспособности IA0EstimateLSService",
+        Author = "agalkin")]
+    public class Test_IA0EstimateLSService : Test_NewLS
+    {
+        private const int BufferSize = 8192;
+
+        /// <summary>
+        /// Получает или устанавливает значение службы для импорта и экспорта ЛС.
+        /// </summary>
+        public dynamic LSService { get; private set; }
+
+        /// <summary>
+        /// Осуществляет подготовку к тестированию.
+        /// </summary>
+        public override void SetUp()
+        {
+            base.SetUp();
+            this.LSService = this.A0.Estimate.LS.Services;
+            Assert.NotNull(this.LSService);
+        }
+
+        /// <summary>
+        /// Осуществляет операции проводимые по завершению тестирования.
+        /// </summary>
+        public override void TearDown()
+        {
+            Assert.NotNull(this.LSService);
+            this.LSService = null;
+            base.TearDown();
+        }
+
+        /// <summary>
+        /// Проверяет корректность импорта и экспорта ЛС.
+        /// </summary>
+        [Test]
+        public void Test_ExportImport()
+        {
+            // Создаем в ЛС текстовые строки.
+            this.LS.CreateTxtString(0, "1234", this.LS.Tree.Head.ID); // 0 - EA0StringKind.skWork.
+            this.LS.CreateTxtString(3, "1234", this.LS.Tree.Head.ID); // 3 - EA0StringKind.skMK.
+            this.Repo.LS.Save(this.LS);
+
+            // Экспортируем ЛС в поток.
+            IStream stream = this.LSService.Export.ToA0(this.LS.ID.GUID) as IStream;
+
+            // Временный файл для данных.
+            string outFileName = Path.GetTempFileName();
+
+            try
+            {
+                // Сохраняем данные.
+                using (FileStream fs = new FileStream(outFileName, FileMode.Create))
+                {
+                    int read = 0;
+                    IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(read));
+                    try
+                    {
+                        Marshal.WriteInt32(ptr, read);
+                        byte[] buffer = new byte[BufferSize];
+                        do
+                        {
+                            stream.Read(buffer, buffer.Length, ptr);
+                            read = Marshal.ReadInt32(ptr);
+                            if (read > 0)
+                            {
+                                fs.Write(buffer, 0, read);
+                            }
+                        }
+                        while (read > 0);
+                    }
+                    finally
+                    {
+                        Marshal.FreeHGlobal(ptr);
+                    }
+                }
+
+                // Открываем временный файл и загружаем ЛС.
+                uint result = SHCreateStreamOnFileEx(outFileName, STGM_READ | STGM_SHARE_DENY_NONE, 0, false, null, out stream);
+                Assert.NotNull(stream);
+                Assert.AreEqual(result, 0, "Не могу открыть файл");
+
+                // Импортируем ЛС из потока.
+                dynamic lsid = this.LSService.Import.FromA0(this.OS.ID.GUID, 0, stream);
+                Assert.NotNull(lsid);
+
+                // Сравниваем данные исходной ЛС и полученной после экспорта/импорта.
+                Assert.AreEqual(this.LS.ID.OSGUID, lsid.OSGUID);
+
+                // Загружаем импортированную ЛС.
+                dynamic ls = this.Repo.LS.Load2(lsid.GUID);
+                Assert.NotNull(ls);
+
+                // Проверяем наличие 2-х строк, созданных в исходной ЛС.
+                Assert.True(ls.Strings.Count == 2);
+
+                // Проверяем типы строк ЛС.
+                Assert.True(ls.Strings.Items[0].StringKind == 0); // 0 - EA0StringKind.skWork.
+                Assert.True(ls.Strings.Items[1].StringKind == 3); // 3 - EA0StringKind.skMK.
+            }
+            finally
+            {
+                // Удаляем временный файл
+                File.Delete(outFileName);
+            }
+        }
+    }
+}

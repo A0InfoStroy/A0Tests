@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-02 11:54:16 +0300 (Пн, 02 ноя 2020) $
-// $Revision: 406 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты строки локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к объему акта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ActVolume()
         {
             double actVolume = this.LSString.ActVolume;
@@ -30,7 +30,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к приведенному объему.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_AdjustedVolume()
         {
             double adjVolume = this.LSString.AdjustedVolume;
@@ -39,7 +39,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.LSString.Attr["LSStrTitleID"];
@@ -48,7 +48,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.LSString.Attr["LGM.TZNorm"];
@@ -57,7 +57,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовой сметной стоимости.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseEstimate()
         {
             decimal baseEstimate = this.LSString.BaseEstimate;
@@ -66,7 +66,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому "База начисления НР".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseNRBase()
         {
             ENRBase baseNRBase = this.LSString.BaseNRBase;
@@ -75,7 +75,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому проценту начисления НР.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseNRProc()
         {
             double baseNRProc = this.LSString.BaseNRProc;
@@ -84,7 +84,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому "База начисления СП".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseSPBase()
         {
             ESPBase baseSPBase = this.LSString.BaseSPBase;
@@ -93,7 +93,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому проценту начисления СП.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseSPProc()
         {
             double baseSPProc = this.LSString.BaseSPProc;
@@ -102,7 +102,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения обоснования.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Basing()
         {
             string basing = this.LSString.Basing;
@@ -112,7 +112,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к режиму калькуляции.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_CalcMode()
         {
             ECalcMode calcMode = this.LSString.CalcMode;
@@ -121,7 +121,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи комментария к обоснованию.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Comment()
         {
             string comment = this.LSString.Comment;
@@ -133,7 +133,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения набора комментариев к строке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Comments()
         {
             IA0Comments comments = this.LSString.Comments;
@@ -148,7 +148,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения договора.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Contract()
         {
             string contract = this.LSString.Contract;
@@ -158,7 +158,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id договора.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ContractID()
         {
             int contractID = this.LSString.ContractID;
@@ -167,7 +167,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи номера строки сметы заказчика.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_CustomerNumber()
         {
             this.LSString.CustomerNumber = "1";
@@ -177,7 +177,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к текущей сметной стоимости.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Estimate()
         {
             decimal estimate = this.LSString.Estimate;
@@ -186,7 +186,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения выполнения по строке и его полей.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Executions()
         {
             Assert.NotNull(this.LSString.Executions);
@@ -197,7 +197,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения исполнителя.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Executor()
         {
             string executor = this.LSString.Executor;
@@ -207,7 +207,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id исполнителя.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ExecutorID()
         {
             int executorID = this.LSString.ExecutorID;
@@ -216,7 +216,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи вида затрат.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ExpenseKind()
         {
             EExpenseKind expenseKind = this.LSString.ExpenseKind;
@@ -237,7 +237,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи дополнительного номера строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ExtNumber()
         {
             this.LSString.ExtNumber = "1";
@@ -247,7 +247,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи дополнительного номера строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ExtraNumber()
         {
             this.LSString.ExtraNumber = "1";
@@ -257,7 +257,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи формулы расчета объема.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Formula()
         {
             this.LSString.Formula = "formula";
@@ -267,7 +267,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения шифра группы сборников.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Group()
         {
             string group = this.LSString.Group;
@@ -277,7 +277,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Guid строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_GUID()
         {
             Guid guid = this.LSString.GUID;
@@ -286,7 +286,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ID()
         {
             int id = this.LSString.ID;
@@ -295,7 +295,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи режима включения в итоги.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_IncludeKind()
         {
             this.LSString.IncludeKind = EIncludeKind.ikAdd;
@@ -311,7 +311,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода получения вида сметного объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Kind()
         {
             EA0ObjectKind kind = this.LSString.Kind();
@@ -320,7 +320,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку текстовой строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Literal()
         {
             bool literal = this.LSString.Literal;
@@ -329,7 +329,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи номера строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_LSNumber()
         {
             int num = 1;
@@ -340,7 +340,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи единицы измерения.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MUnit()
         {
             this.LSString.MUnit = "mUnit";
@@ -350,7 +350,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи наименования строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Name()
         {
             string newName = this.LSString.Name + "Изменено";
@@ -361,7 +361,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к виду базы начисления НР.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_NRBase()
         {
             ENRBase nrBase = this.LSString.NRBase;
@@ -370,7 +370,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к проценту НР.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_NRProc()
         {
             double nrProc = this.LSString.NRProc;
@@ -379,7 +379,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи наименования базы НСИ.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_NSIBase()
         {
             this.LSString.NSIBase = "nsiBase";
@@ -389,7 +389,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к родительскому объекту строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ParentID()
         {
             int parentID = this.LSString.ParentID;
@@ -398,7 +398,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность источника цен.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_PriceSource()
         {
             EPriceSource priceSource = this.LSString.PriceSource;
@@ -415,7 +415,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ПЗ.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_PZ()
         {
             decimal pz = this.LSString.PZ();
@@ -424,7 +424,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения пересчетов строки.
         /// </summary>
-        [Test(Description = "Тест пересчетов")]
+        [Test(Description = "Тест пересчетов"), Timeout(10000)]
         public void Test_Recalcs()
         {
             Assert.NotNull(this.LSString.Recalcs);
@@ -433,7 +433,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения ресурсов строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Resources()
         {
             IA0Resources resources = this.LSString.Resources;
@@ -443,7 +443,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к виду базы начисления СП.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_SPBase()
         {
             ESPBase spBase = this.LSString.SPBase;
@@ -452,7 +452,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к проценту СП.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_SPProc()
         {
             double spProc = this.LSString.SPProc;
@@ -461,7 +461,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения копии расценки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_StrBasing()
         {
             IA0LSStrBasing strBasing = this.LSString.StrBasing;
@@ -471,7 +471,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к типу строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_StringKind()
         {
             EA0StringKind stringKind = this.LSString.StringKind;
@@ -480,7 +480,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения итогов строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Total()
         {
             IA0LSStrTotal total = this.LSString.Total;
@@ -490,7 +490,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения итогового объема строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TotalForVolume()
         {
             IA0LSStrTotal total = this.LSString.TotalForVolume;
@@ -500,7 +500,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к сметной стоимости оборудования.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TotalOb()
         {
             decimal totalOb = this.LSString.TotalOb();
@@ -509,7 +509,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к прямым затратам.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TotalPZ()
         {
             decimal totalPz = this.LSString.TotalPZ();
@@ -518,7 +518,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к остатку объема.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TotalRemainder()
         {
             double totalRemainder = this.LSString.TotalRemainder;
@@ -527,7 +527,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения коэффициента при единице измерения.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_UnitCoef()
         {
             double defaultValue = 1d;
@@ -540,7 +540,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи итогового объема.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TotalVolume()
         {
             double volume = 1d;
@@ -551,7 +551,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи объема.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Volume()
         {
             double volume = 1d;
@@ -562,7 +562,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения вида работ для НР и СП.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_WorkKindNRSP()
         {
             string workKindNRSP = this.LSString.WorkKindNRSP;
@@ -610,7 +610,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет количество выполнений.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Count()
         {
             int count = this.Executions.Count;
@@ -620,7 +620,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к полям выполнения.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Execution()
         {
             IA0Execution execution = this.Executions.Item[0];

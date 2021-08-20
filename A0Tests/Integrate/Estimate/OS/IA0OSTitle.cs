@@ -1,6 +1,6 @@
-﻿// $Date: 2021-02-17 11:02:24 +0300 (Ср, 17 фев 2021) $
-// $Revision: 521 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты полей ОС
 
 namespace A0Tests.Integrate.Estimate
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.Title.Attr["ProjID"];
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.Title.Attr["LGM.MainMetric"];
@@ -64,7 +64,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к распределенной сметной стоимости.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_AllocatedEstimate()
         {
             decimal allocated = this.Title.AllocatedEstimate;
@@ -73,7 +73,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Утверждаю" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Approval()
         {
             IA0TitleSign approval = this.Title.Approval;
@@ -93,7 +93,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Составил" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Author()
         {
             IA0TitleSign author = this.Title.Author;
@@ -113,7 +113,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к виду строительства.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BuildKindStr()
         {
             string buildKind = this.Title.BuikdKindStr;
@@ -122,7 +122,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения наименования бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BusOp()
         {
             string busOpName = this.Title.BusOp;
@@ -144,7 +144,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         ///  Проверяет работоспособность получения Id бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BusOpId()
         {
             int busOpId = this.Title.BusOpID;
@@ -165,7 +165,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Гл. инж." в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ChiefEngineer()
         {
             IA0TitleSign chiefEngineer = this.Title.ChiefEngineer;
@@ -185,7 +185,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи комментария к ОС.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Comment()
         {
             this.Title.Comment = "comment";
@@ -197,7 +197,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Согласовано" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Conform()
         {
             IA0TitleSign conform = this.Title.Conform;
@@ -217,7 +217,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к дате создания.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_CreateMoment()
         {
             DateTime createMoment = this.Title.CreateMoment;
@@ -226,7 +226,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения исполнителя.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ExecutorStr()
         {
             string executorStr = this.Title.ExecutorStr;
@@ -236,7 +236,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Нач. отдела" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_HeadOfDep()
         {
             IA0TitleSign headOfDep = this.Title.HeadOfDep;
@@ -256,7 +256,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи статуса "Включать в итоги".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_IncludeInTotals()
         {
             bool include = this.Title.IncludeInTotals;
@@ -269,7 +269,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         ///  Проверяет отсутствие ошибок при обращении к графе "Составлена в ценах".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_InPrice()
         {
             string inPrice = this.Title.InPrice;
@@ -278,7 +278,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Проверил" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Inspector()
         {
             IA0TitleSign inspector = this.Title.Inspector;
@@ -298,7 +298,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи шифра.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Mark()
         {
             string mark = this.Title.Mark;
@@ -310,7 +310,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи наименования.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Name()
         {
             string name = this.Title.Name;
@@ -322,7 +322,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к нераспределенной сметной стоимости.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_NotAllocatedEstimate()
         {
             decimal projectEng = this.Title.NotAllocatedEstimate;
@@ -331,7 +331,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к дате модификации.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_UpdateMoment()
         {
             DateTime updateMoment = this.Title.UpdateMoment;
@@ -340,7 +340,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность сохранения в БД изменений в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_LoadTitleChanges()
         {
             string titleName = "name";

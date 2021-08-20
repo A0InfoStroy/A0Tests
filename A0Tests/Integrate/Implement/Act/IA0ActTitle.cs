@@ -1,6 +1,6 @@
-﻿// $Date: 2021-02-17 11:56:30 +0300 (Ср, 17 фев 2021) $
-// $Revision: 523 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты полей акта
 
 namespace A0Tests.Integrate.Implement
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(20000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.ActTitle.Attr["ProjID"];
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(20000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.ActTitle.Attr["LGM.TZNorm"];
@@ -64,7 +64,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Утверждаю" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Approval()
         {
             IA0TitleSign approval = this.ActTitle.Approval;
@@ -84,7 +84,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Проверил" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Auditor()
         {
             IA0TitleSign audihor = this.ActTitle.Auditor;
@@ -104,7 +104,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Составил" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Author()
         {
             IA0TitleSign author = this.ActTitle.Author;
@@ -124,7 +124,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность получения наименования бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_BusOp()
         {
             string busOpName = this.ActTitle.BusOp;
@@ -146,7 +146,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         ///  Проверяет работоспособность получения Id бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_BusOpId()
         {
             int busOpId = this.ActTitle.BusOpID;
@@ -167,7 +167,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Согласовано" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Conform()
         {
             IA0TitleSign conform = this.ActTitle.Conform;
@@ -187,7 +187,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения и записи графы "За период с".
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_PeriodBegin()
         {
             DateTime date = this.ActTitle.PeriodBegin;
@@ -200,7 +200,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения и записи графы "За период по".
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_PeriodEnd()
         {
             DateTime date = this.ActTitle.PeriodEnd;
@@ -213,7 +213,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения и записи даты акта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ActDate()
         {
             DateTime date = this.ActTitle.ActDate;
@@ -226,7 +226,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения и записи шифра.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Mark()
         {
             string mark = this.ActTitle.Mark;
@@ -238,7 +238,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения и записи наименования.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Name()
         {
             string name = this.ActTitle.Name;
@@ -250,7 +250,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к точности объема строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_VolumeScale()
         {
             int volumeScale = this.ActTitle.VolumeScale;
@@ -259,7 +259,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет корректность сохранения в БД изменений в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_LoadTitleChanges()
         {
             string titleName = "name";

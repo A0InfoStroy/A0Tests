@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-27 17:13:30 +0300 (Пт, 27 ноя 2020) $
-// $Revision: 440 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты проверки соединений с A0Service
 
 namespace A0Tests.Integrate
@@ -32,7 +32,7 @@ namespace A0Tests.Integrate
             base.SetUp();
 
             // Соединение с БД для получения данных в обход A0Service.
-            using (OleDbConnection connection = new OleDbConnection(this.ConnStr))
+            using (OleDbConnection connection = new OleDbConnection(this.Config.ConnectionString))
             {
                 connection.Open();
 
@@ -68,24 +68,24 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет результат подключения при попытке подключиться к версии БД отличной от рабочей.
         /// </summary>
-        [Test(Description = "Проверка установки соединения 3")]
+        [Test(Description = "Проверка установки соединения 3"), Timeout(2000)]
         public void Connect3()
         {
             this.UpdateDBVersionToInitial();
-            EConnectReturnCode result = this.A0.Connect3(this.ConnStr, this.UserName, this.Password);
+            EConnectReturnCode result = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, this.Config.Password);
             Assert.AreEqual(EConnectReturnCode.crcCheckDBError, result);
         }
 
         /// <summary>
         /// Проверяет обработку исключения при попытке подключиться к версии БД отличной от рабочей.
         /// </summary>
-        [Test(Description = "Проверка установки соединения 4")]
+        [Test(Description = "Проверка установки соединения 4"), Timeout(2000)]
         public void Connect4()
         {
             this.UpdateDBVersionToInitial();
             try
             {
-                this.A0.Connect4(this.ConnStr, this.UserName);
+                this.A0.Connect4(this.Config.ConnectionString, this.Config.UserName);
             }
             catch (COMException ex)
             {
@@ -99,7 +99,7 @@ namespace A0Tests.Integrate
         private void UpdateDBVersionToInitial()
         {
             // Соединение с БД для получения данных в обход A0Service.
-            using (OleDbConnection connection = new OleDbConnection(this.ConnStr))
+            using (OleDbConnection connection = new OleDbConnection(this.Config.ConnectionString))
             {
                 connection.Open();
 
@@ -118,7 +118,7 @@ namespace A0Tests.Integrate
         private void UpdateDBVersionToCurrent()
         {
             // Соединение с БД для получения данных в обход A0Service.
-            using (OleDbConnection connection = new OleDbConnection(this.ConnStr))
+            using (OleDbConnection connection = new OleDbConnection(this.Config.ConnectionString))
             {
                 connection.Open();
 

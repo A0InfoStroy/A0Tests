@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-20 12:39:55 +0300 (Пн, 20 июл 2020) $
-// $Revision: 310 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога объектов с атрибутами
 
 namespace A0Tests.Integrate.App
@@ -77,7 +77,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует наличие аттрибутов в каталоге.
         /// </summary>
-        [Test(Description = "Получение объектов с атрибутами")]
+        [Test(Description = "Получение объектов с атрибутами"), Timeout(10000)]
         public void Test_Read()
         {
             var it = this.Repo.Read();
@@ -105,7 +105,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует получение объектов с аттрибутами из каталога.
         /// </summary>
-        [Test(Description = "Получение объектов с атрибутами")]
+        [Test(Description = "Получение объектов с атрибутами"), Timeout(10000)]
         public void Test_Get()
         {
             int errorsCount = 0;

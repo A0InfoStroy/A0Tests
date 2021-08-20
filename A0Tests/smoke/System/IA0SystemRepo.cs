@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0SystemRepo
 
 namespace A0Tests.Smoke.Sys
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к бизнес-этапам в системе.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_BussinnessStages()
         {
             Assert.NotNull(this.Repo.BussinnessStages);
@@ -54,7 +54,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения списка уровней группировки.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GetSysTreeLevelList()
         {
             Assert.NotNull(this.Repo.GetSysTreeLevelList());
@@ -63,7 +63,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения группированного дерева концевиков.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GetProgSysTree()
         {
             IA0SysTreeLevelList levelList = this.Repo.GetSysTreeLevelList();

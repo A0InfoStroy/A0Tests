@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-30 16:47:41 +0300 (Чт, 30 июл 2020) $
-// $Revision: 331 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты дерева комплекса
 
 namespace A0Tests.Integrate.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому аттрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(20000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.ComplexTree.Attr["ProjID"];
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расширенному аттрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(20000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.ComplexTree.Attr["LGM.TZNorm"];
@@ -63,7 +63,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность головного элемента дерева.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Head()
         {
             IA0TreeNode head = this.ComplexTree.Head;

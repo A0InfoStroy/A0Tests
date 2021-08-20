@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0ContractsRepo
 
 namespace A0Tests.Smoke.Estimate
@@ -46,7 +46,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода загрузки договора по Guid.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Read()
         {
             Assert.NotNull(this.Repo.Read(Guid.Empty, EAccessKind.akRead));
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода разблокировки договора.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Unlock()
         {
             this.Repo.UnLock(Guid.Empty);

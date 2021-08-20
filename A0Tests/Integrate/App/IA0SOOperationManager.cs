@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-20 12:39:55 +0300 (Пн, 20 июл 2020) $
-// $Revision: 310 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты IA0SOOperationManager
 
 namespace A0Tests.Integrate.App
@@ -47,7 +47,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует операцию предоставления доступа к проекту.
         /// </summary>
-        [Test(Description = "Предоставление доступа к проекту")]
+        [Test(Description = "Предоставление доступа к проекту"), Timeout(10000)]
         public void Test_AllowAccessProject()
         {
             this.Test(this.Proj.ID.GUID, EA0ObjectKind.okProject, this.Proj.ID.ID);
@@ -56,7 +56,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует операцию предоставления доступа к объектной смете.
         /// </summary>
-        [Test(Description = "Предоставление доступа к ОС")]
+        [Test(Description = "Предоставление доступа к ОС"), Timeout(10000)]
         public void Test_AllowAccessOS()
         {
             this.Test(this.OS.ID.GUID, EA0ObjectKind.okOS, this.OS.ID.ID);
@@ -65,7 +65,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует операцию предоставления доступа к локальной смете.
         /// </summary>
-        [Test(Description = "Предоставление доступа к ЛС")]
+        [Test(Description = "Предоставление доступа к ЛС"), Timeout(10000)]
         public void Test_AllowAccessLS()
         {
             this.Test(this.LS.ID.GUID, EA0ObjectKind.okLS, this.LS.ID.ID);
@@ -74,7 +74,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует операцию предоставления доступа к акту.
         /// </summary>
-        [Test(Description = "Предоставление доступа к акту")]
+        [Test(Description = "Предоставление доступа к акту"), Timeout(10000)]
         public void Test_AllowAccessAct()
         {
             this.Test(this.Act.ID.GUID, EA0ObjectKind.okAct, this.Act.ID.ID);

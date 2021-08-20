@@ -1,6 +1,6 @@
-﻿// $Date: 2021-02-17 11:02:24 +0300 (Ср, 17 фев 2021) $
-// $Revision: 521 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты полей ЛС
 
 namespace A0Tests.Integrate.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.Title.Attr["ProjID"];
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.Title.Attr["LGM.TZNorm"];
@@ -63,7 +63,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Утверждаю" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Approval()
         {
             IA0TitleSign approval = this.Title.Approval;
@@ -83,7 +83,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Проверил" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Auditor()
         {
             IA0TitleSign audihor = this.Title.Auditor;
@@ -103,7 +103,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Составил" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Author()
         {
             IA0TitleSign author = this.Title.Author;
@@ -123,7 +123,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения наименования бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BusOp()
         {
             string busOpName = this.Title.BusOp;
@@ -145,7 +145,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         ///  Проверяет работоспособность получения Id бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BusOpId()
         {
             int busOpId = this.Title.BusOpID;
@@ -166,7 +166,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Согласовано" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Conform()
         {
             IA0TitleSign conform = this.Title.Conform;
@@ -186,7 +186,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи шифра.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Mark()
         {
             string mark = this.Title.Mark;
@@ -198,7 +198,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи наименования.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Name()
         {
             string name = this.Title.Name;
@@ -210,7 +210,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к точности объема строки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VolumeScale()
         {
             decimal volumeScale = this.Title.VolumeScale;
@@ -219,7 +219,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность сохранения в БД изменений в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_LoadTitleChanges()
         {
             string titleName = "name";

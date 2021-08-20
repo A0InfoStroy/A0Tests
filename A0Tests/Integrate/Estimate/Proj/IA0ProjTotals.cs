@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-30 15:27:47 +0300 (Чт, 30 июл 2020) $
-// $Revision: 329 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты итогов проекта
 
 namespace A0Tests.Integrate.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет наличие элементов итогов проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Count()
         {
             int count = this.ProjTotals.Count;
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к полям элементов итогов.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Total()
         {
             for (int i = 0; i < this.ProjTotals.Count; i++)
@@ -76,7 +76,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода возвращающего элемент итогов по индексу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_GetItem()
         {
             for (int i = 0; i < this.ProjTotals.Count; i++)
@@ -90,7 +90,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода возвращающего элемент итогов по имени.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ByName()
         {
             for (int i = 0; i < this.ProjTotals.Count; i++)

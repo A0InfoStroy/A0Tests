@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0SysOrganizationsDomain
 
 namespace A0Tests.Smoke.Sys
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к сервисам домена организаций.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Services()
         {
             Assert.NotNull(this.Domain.Services);
@@ -54,7 +54,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу организаций.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Repo()
         {
             Assert.NotNull(this.Domain.Repo);
@@ -98,7 +98,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу сотрудников.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_EmployeeID()
         {
             Assert.NotNull(this.Repo.EmployeeID);
@@ -107,7 +107,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу исполнителей.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ExecutorID()
         {
             Assert.NotNull(this.Repo.ExecutorID);
@@ -116,7 +116,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу Id структур организаций.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_TreeID()
         {
             Assert.NotNull(this.Repo.TreeID);
@@ -125,7 +125,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу Id узлов структур организаций.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_TreeNodeID()
         {
             Assert.NotNull(this.Repo.TreeNodeID);
@@ -134,7 +134,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу структур организаций.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Tree()
         {
             Assert.NotNull(this.Repo.Tree);

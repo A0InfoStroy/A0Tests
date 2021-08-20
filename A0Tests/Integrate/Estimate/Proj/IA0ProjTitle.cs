@@ -1,6 +1,6 @@
-﻿// $Date: 2021-02-17 11:02:24 +0300 (Ср, 17 фев 2021) $
-// $Revision: 521 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты полей заголовка проекта
 
 namespace A0Tests.Integrate.Estimate
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.Title.Attr["ProjID"];
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.Title.Attr["LGM.MainMetric"];
@@ -64,7 +64,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подписям "Утверждаю" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Approval()
         {
             IA0TitleSign approval = this.Title.Approval;
@@ -84,7 +84,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения и редактирования даты начала проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BeginDate()
         {
             DateTime beginDate = this.Title.BeginDate;
@@ -96,7 +96,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к виду строительства проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BuildKindStr()
         {
             string buildKind = this.Title.BuildKindStr;
@@ -106,7 +106,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения наименования бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BusOp()
         {
             string busOpName = this.Title.BusOp;
@@ -128,7 +128,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         ///  Проверяет работоспособность получения Id бизнес этапа.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BusOpId()
         {
             int busOpId = this.Title.BusOpID;
@@ -149,7 +149,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к площадке комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_City()
         {
             string city = this.Title.City;
@@ -158,7 +158,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при чтении и изменении комментария заголовка проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Comment()
         {
             this.Title.Comment = "comment";
@@ -169,7 +169,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значениям подписей "Согласовано" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Conform()
         {
             IA0TitleSign conform = this.Title.Conform;
@@ -189,7 +189,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к дате создания проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_CreateMoment()
         {
             DateTime createMoment = this.Title.CreateMoment;
@@ -198,7 +198,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значениям подписей "Заказчик" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Customer()
         {
             IA0TitleSign customer = this.Title.Customer;
@@ -218,7 +218,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значению третьей строки подписей "Проектант" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_DepartmHead()
         {
             IA0TitleSign departmHead = this.Title.DepartmHead;
@@ -238,7 +238,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения и редактирования даты конца проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EndDate()
         {
             DateTime endDate = this.Title.EndDate;
@@ -250,7 +250,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения значения графы "Финансир." заголовка.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Finance()
         {
             string finance = this.Title.Finance;
@@ -260,7 +260,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к статусу "Включить в итоги/Исключить из итогов".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_IncludeInTotals()
         {
             bool include = this.Title.IncludeInTotals;
@@ -269,7 +269,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значению "Составлен в ценах по состоянию на" заголовка.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_InPrice()
         {
             int inPrice = this.Title.InPrice;
@@ -278,7 +278,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значению "Зона КСЦ" заголовка.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_KSCZone()
         {
             int kscZone = this.Title.KSCZone;
@@ -287,7 +287,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения и редактирования шифра проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Mark()
         {
             string mark = this.Title.Mark;
@@ -299,7 +299,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения и редактирования наименования проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Name()
         {
             string name = this.Title.Name;
@@ -311,7 +311,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значению второй строки подписей "Проектант" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ProjectEng()
         {
             IA0TitleSign projectEng = this.Title.ProjectEng;
@@ -331,7 +331,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значению первой строки подписей "Проектант" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ProjectHead()
         {
             IA0TitleSign projectHead = this.Title.ProjectHead;
@@ -351,7 +351,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подразделению в заголовке проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Subdivision()
         {
             string subDivision = this.Title.Subdivision;
@@ -360,7 +360,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к подрайону в заголовке проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_SubRegStr()
         {
             string subRegStr = this.Title.SubRegStr;
@@ -369,7 +369,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к району в заголовке проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TerrRegStr()
         {
             string terrRegStr = this.Title.TerrRegStr;
@@ -378,7 +378,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к дате модификации комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_UpdateMoment()
         {
             DateTime updateMoment = this.Title.UpdateMoment;
@@ -387,7 +387,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к значениям подписей "Инвестор" в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VeryRichSponsor()
         {
             IA0TitleSign veryRichSponsor = this.Title.VeryRichSponsor;
@@ -407,7 +407,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность сохранения в БД изменений в заголовке.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_LoadTitleChanges()
         {
             string titleName = "name";

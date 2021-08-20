@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты пересчетов строки Акта
 
 namespace A0Tests.Integrate.Implement
@@ -47,7 +47,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет наличие пересчетов.
         /// </summary>
-        [Test(Description = "Тест количества пересчетов")]
+        [Test(Description = "Тест количества пересчетов"), Timeout(20000)]
         public void Test_Count()
         {
             Assert.IsTrue(this.StrRecalcs.Count > 0);
@@ -56,7 +56,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к пересчету и его полям.
         /// </summary>
-        [Test(Description = "Тест пересчетов")]
+        [Test(Description = "Тест пересчетов"), Timeout(20000)]
         public void Test_Recalcs()
         {
             for (var i = 0; i < this.StrRecalcs.Count; ++i)

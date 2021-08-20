@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0EstimateRepo
 
 namespace A0Tests.Smoke.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к проектам.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Proj()
         {
             Assert.NotNull(this.EstimateRepo.Proj);
@@ -54,7 +54,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к объектным сметам.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_OS()
         {
             Assert.NotNull(this.EstimateRepo.OS);
@@ -63,7 +63,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к комплексам.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Complex()
         {
             Assert.NotNull(this.EstimateRepo.Complex);
@@ -72,7 +72,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к локальным сметам.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_LS()
         {
             Assert.NotNull(this.EstimateRepo.LS);
@@ -81,7 +81,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к поисковику строк.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Searcher()
         {
             Assert.NotNull(this.EstimateRepo.Searcher);
@@ -90,7 +90,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к импорту сметных данных.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Import()
         {
             Assert.NotNull(this.EstimateRepo.Import);
@@ -99,7 +99,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска ОС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_OSID()
         {
             Assert.NotNull(this.EstimateRepo.OSID);
@@ -108,7 +108,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_LSID()
         {
             Assert.NotNull(this.EstimateRepo.LSID);
@@ -117,7 +117,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска ресурсов.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ResID()
         {
             Assert.NotNull(this.EstimateRepo.ResID);
@@ -126,7 +126,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска проектов.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ProjID()
         {
             Assert.NotNull(this.EstimateRepo.ProjID);
@@ -135,7 +135,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска комплексов.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ComplexID()
         {
             Assert.NotNull(this.EstimateRepo.ComplexID);
@@ -144,7 +144,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска строк ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_LSStrID()
         {
             Assert.NotNull(this.EstimateRepo.LSStrID);
@@ -153,7 +153,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска договоров.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ContractsID()
         {
             Assert.NotNull(this.EstimateRepo.ContractsID);
@@ -162,7 +162,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к договорам.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Contracts()
         {
             Assert.NotNull(this.EstimateRepo.Contracts);

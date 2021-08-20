@@ -1,6 +1,6 @@
-﻿// $Date: 2021-02-17 12:07:05 +0300 (Ср, 17 фев 2021) $
-// $Revision: 524 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Интеграционные тесты IA0ImplementActServices
 
 namespace A0Tests.Integrate.Implement
@@ -38,7 +38,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность групповых операций над актами.
         /// </summary>
-        [Test]
+        [Test, Timeout(27000)]
         public void Test_GrOpers()
         {
             string author = "Author";

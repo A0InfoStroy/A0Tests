@@ -1,6 +1,6 @@
-﻿// $Date: 2020-12-24 12:45:07 +0300 (Чт, 24 дек 2020) $
-// $Revision: 467 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты ресурса строки локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -47,7 +47,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращение к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(20000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.Resource.Attr["LSStrTitleID"];
@@ -56,7 +56,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращение к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(20000)]
         public void Test_AttrExt()
         {
             // Будет исключение такого поля нет в расширении
@@ -66,7 +66,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращение к виду ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Kind()
         {
             EResourceKind kind = this.Resource.Kind;
@@ -75,7 +75,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращение к Id ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ID()
         {
             int id = this.Resource.ID;
@@ -84,7 +84,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Guid ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GUID()
         {
             Guid guid = this.Resource.GUID;
@@ -93,7 +93,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи типа учета ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Accounting()
         {
             // По умолчанию присваивается значение EA0ResAccounting.raIncluded
@@ -124,7 +124,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения группы сборников ресурса из обоснования.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Group()
         {
             string group = this.Resource.Group;
@@ -133,7 +133,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения обоснования ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Basing()
         {
             string basing = this.Resource.Basing;
@@ -143,7 +143,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи единицы измерения ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_MUnit()
         {
             string newUnit = this.Resource.MUnit + " Изменено";
@@ -154,7 +154,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к норме расхода на единицу.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Norm()
         {
             double norm = this.Resource.Norm;
@@ -163,7 +163,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи нормы расхода с поправкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Norm_Corr()
         {
             double normCorr = this.Resource.Norm_Corr;
@@ -184,7 +184,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расходу на объем.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Volume()
         {
             double volume = this.Resource.Volume;
@@ -193,7 +193,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи фактического расхода.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Volume_Fact()
         {
             double volumeFact = this.Resource.Volume_Fact;
@@ -205,7 +205,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи базовой или текущей цены (в зависимости от уровня цен строки).
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Price()
         {
             double price = this.Resource.Price;
@@ -217,7 +217,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовой или текущей стоимости (в зависимости от уровня цен строки).
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Cost()
         {
             decimal cost = this.Resource.Cost;
@@ -226,7 +226,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к идентификатору справочника цен.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_PriceRefMark()
         {
             int priceRefMark = this.Resource.PriceRefMark;
@@ -235,7 +235,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к к базовой или текущей ЗПМ (в зависимости от уровня цен строки).
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ZPM()
         {
             decimal zpm = this.Resource.ZPM;
@@ -244,7 +244,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расчетной ТЗМ.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_TZM()
         {
             decimal tzm = this.Resource.TZM;
@@ -253,7 +253,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи массы ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Mass()
         {
             double mass = this.Resource.Mass;
@@ -265,7 +265,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи наименования ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Name()
         {
             string name = this.Resource.Name;
@@ -277,7 +277,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи класса груза ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_CargoClass()
         {
             int cargoClass = this.Resource.CargoClass;
@@ -289,7 +289,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку стороннего ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Outside()
         {
             bool outside = this.Resource.Outside;
@@ -298,7 +298,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения и записи статуса "Включить в расчет массы" ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_IncToMassCalc()
         {
             bool inc = this.Resource.IncToMassCalc;
@@ -314,7 +314,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку текстового ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Literal()
         {
             bool literal = this.Resource.Literal;
@@ -323,13 +323,13 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет изменение прямых затрат строки акта при изменении цены ресурса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ChangesTotalPZ()
         {
             IA0LSString lsString = this.LS.Strings.Items[0];
             double price = this.Resource.Price;
             Assert.AreEqual(price, 0);
-            
+
             decimal totalPZ = this.LSString.TotalPZ();
             Assert.AreEqual(totalPZ, 0);
 
@@ -353,7 +353,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность получения коэффициента при единице измерения.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_UnitCoef()
         {
             double defaultValue = 1d;

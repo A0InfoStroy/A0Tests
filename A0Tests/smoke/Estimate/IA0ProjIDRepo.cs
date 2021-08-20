@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0ProjIDRepo
 
 namespace A0Tests.Smoke.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения запроса к дополнительным полям.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GetFiledsRequest()
         {
             Assert.NotNull(this.Repo.GetFieldRequest());
@@ -54,7 +54,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id головного узла.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_HeadNodeID()
         {
             int headNodeID = this.Repo.HeadNodeID;
@@ -63,7 +63,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Guid головного комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_HeadComplexGUID()
         {
             System.Guid headComplexGUID = this.Repo.HeadComplexGUID;
@@ -72,7 +72,7 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения итератора по каталогу комплексов в системе.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Read()
         {
             Assert.NotNull(this.Repo.Read(this.Repo.GetFieldRequest()));
@@ -81,16 +81,16 @@ namespace A0Tests.Smoke.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения итератора по каталогу комплексов для комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Read2()
         {
-            Assert.NotNull(this.Repo.Read2(this.HeadComplexGuid, this.Repo.GetFieldRequest()));
+            Assert.NotNull(this.Repo.Read2(this.Repo.HeadComplexGUID, this.Repo.GetFieldRequest()));
         }
 
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения итератора по каталогу комплексов для узла комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Read3()
         {
             Assert.NotNull(this.Repo.Read3(this.Repo.HeadComplexGUID, this.Repo.HeadNodeID, this.Repo.GetFieldRequest()));

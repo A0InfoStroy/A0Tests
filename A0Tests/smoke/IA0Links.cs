@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0LinksDomain
 
 namespace A0Tests.Smoke
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену связей между проектов.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Proj()
         {
             IA0ProjLinksDomain proj = this.Links.Proj;
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену связей между ОС.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_OS()
         {
             IA0OSLinksDomain os = this.Links.OS;
@@ -65,7 +65,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену связей между ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_LS()
         {
             IA0LSLinksDomain ls = this.Links.LS;
@@ -110,7 +110,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталоку связей между проектами.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Repos()
         {
             IA0ProjLinksRepos repos = this.ProjLinks.Repos;
@@ -155,7 +155,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталоку связей между проектами.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Repos()
         {
             IA0OSLinksRepos repos = this.OSLinks.Repos;
@@ -200,7 +200,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталоку связей между проектами.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Repos()
         {
             IA0LSLinksRepos repos = this.LSLinks.Repos;

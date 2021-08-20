@@ -1,50 +1,41 @@
-﻿// $Date: 2020-07-31 11:37:52 +0300 (Пт, 31 июл 2020) $
-// $Revision: 337 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты импорта
 
 namespace A0Tests.Integrate.Estimate
 {
     using System;
-    using System.Linq;
+    using System.IO;
+    using System.Runtime.InteropServices;
     using System.Runtime.InteropServices.ComTypes;
-    using System.Xml.Linq;
     using A0Service;
     using NUnit.Framework;
-    using static FileStreamHelper;
+    using static Config.FileStreamHelper;
 
     /// <summary>
-    ///  Содержит тесты проверки работоспособности импорта ЛС.
+    /// Содержит тест проверки импорта/экспорта ЛС в формате А0.
     /// </summary>
-    [TestFixture(
-        Category = "Integrate",
-        Description = "Тесты проверки работоспособности IA0EstimateImport",
+    [TestFixture(Category = "Functional",
+        Description = "Тесты проверки работоспособности IA0EstimateLSService",
         Author = "agalkin")]
-    public class Test_IA0EstimateImport : NewOS
+    public class Test_IA0EstimateLSService : NewLS
     {
-        /// <summary>
-        /// Получает или устанавливает сущность предоставляющую операции импорта ЛС.
-        /// </summary>
-        protected IA0EstimateImport Import { get; private set; }
+        private const int BufferSize = 8192;
 
         /// <summary>
-        /// Получает или устанавливает документ с пользовательскими настройками.
+        /// Получает или устанавливает значение службы для импорта и экспорта ЛС.
         /// </summary>
-        protected XDocument Config { get; private set; }
+        public IA0EstimateLSService LSService { get; private set; }
 
         /// <summary>
-        /// Осуществляет операции проводимые перед тестированием.
+        /// Осуществляет подготовку к тестированию.
         /// </summary>
         public override void SetUp()
         {
             base.SetUp();
-            this.Import = this.A0.Estimate.Repo.Import;
-            Assert.NotNull(this.Import);
-
-            // Получение пути к xml-файлу пользовательских настроек размещенному в выходной директории.
-            string xmlFilePath = AppDomain.CurrentDomain.BaseDirectory + @"settings\userConfig.xml";
-
-            this.Config = XDocument.Load(xmlFilePath);
+            this.LSService = this.A0.Estimate.LS.Services;
+            Assert.NotNull(this.LSService);
         }
 
         /// <summary>
@@ -52,62 +43,84 @@ namespace A0Tests.Integrate.Estimate
         /// </summary>
         public override void TearDown()
         {
-            Assert.NotNull(this.Import);
-            this.Import = null;
+            Assert.NotNull(this.LSService);
+            this.LSService = null;
             base.TearDown();
         }
 
         /// <summary>
-        /// Проверяет наличие импортированной ЛС в формате А0 в целевой ОС.
+        /// Проверяет корректность импорта и экспорта ЛС.
         /// </summary>
-        [Test]
-        public void Test_From()
+        [Test, Timeout(20000)]
+        public void Test_ExportImport()
         {
-            IStream stream = this.GetStream("importFrom");
-            IA0LSID lsid = this.Import.From(this.OS.ID.GUID, this.OS.ID.ID, stream);
-            Assert.NotNull(lsid);
-            Assert.AreEqual(EA0ObjectKind.okLS, lsid.Kind);
-            Assert.AreEqual(this.OS.ID.GUID, lsid.OSGUID);
-        }
+            // Создаем в ЛС текстовые строки.
+            this.LS.CreateTxtString(EA0StringKind.skWork, "1234", this.LS.Tree.Head.ID);
+            this.LS.CreateTxtString(EA0StringKind.skTZ, "1234", this.LS.Tree.Head.ID);
+            this.Repo.LS.Save(this.LS);
 
-        /// <summary>
-        /// Проверяет наличие импортированной ЛС в формате АРПС 1 в целевой ОС.
-        /// </summary>
-        [Test]
-        public void Test_FromARPS()
-        {
-            IStream stream = this.GetStream("impormFromARPS");
-            this.Import.FromARPS(this.OS.ID.GUID, this.OS.ID.ID, stream);
-            IA0ObjectIterator lsIter = this.Repo.LSID.Read(this.Proj.ID.GUID, null, null, null);
-            this.ReadEstimateObject(lsIter, EA0ObjectKind.okLS);
-        }
+            // Экспортируем ЛС в поток.
+            IStream stream = this.LSService.Export.ToA0(this.LS.ID.GUID) as IStream;
 
-        /// <summary>
-        /// Проверяет наличие импортированной ЛС в формате XMLGrand в целевой ОС.
-        /// </summary>
-        [Test]
-        public void Test_FromXMLGrand()
-        {
-            IStream stream = this.GetStream("importFromXMLGrand");
-            this.Import.FromXMLGrand(this.OS.ID.GUID, this.OS.ID.ID, stream);
-            IA0ObjectIterator lsIter = this.Repo.LSID.Read(this.Proj.ID.GUID, null, null, null);
-            this.ReadEstimateObject(lsIter, EA0ObjectKind.okLS);
-        }
+            // Временный файл для данных.
+            string outFileName = Path.GetTempFileName();
 
-        /// <summary>
-        /// Осуществляет чтение файла импортируемой ЛС.
-        /// </summary>
-        /// <param name="fileType">Формат ЛС.</param>
-        /// <returns>Поток из файла импортируемой ЛС.</returns>
-        private IStream GetStream(string fileType)
-        {
-            string importPath = this.Config.Descendants(fileType).SingleOrDefault()?.Value;
-            Assert.NotNull(importPath);
-            uint result = SHCreateStreamOnFileEx(importPath, STGM_READ | STGM_SHARE_DENY_NONE, 0, false, null, out IStream stream);
-            Assert.NotNull(stream);
-            Assert.AreEqual(result, 0, "Не могу открыть файл");
+            try
+            {
+                // Сохраняем данные.
+                using (FileStream fs = new FileStream(outFileName, FileMode.Create))
+                {
+                    int read = 0;
+                    IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(read));
+                    try
+                    {
+                        Marshal.WriteInt32(ptr, read);
+                        byte[] buffer = new byte[BufferSize];
+                        do
+                        {
+                            stream.Read(buffer, buffer.Length, ptr);
+                            read = Marshal.ReadInt32(ptr);
+                            if (read > 0)
+                            {
+                                fs.Write(buffer, 0, read);
+                            }
+                        }
+                        while (read > 0);
+                    }
+                    finally
+                    {
+                        Marshal.FreeHGlobal(ptr);
+                    }
+                }
 
-            return stream;
+                // Открываем временный файл и загружаем ЛС.
+                uint result = SHCreateStreamOnFileEx(outFileName, STGM_READ | STGM_SHARE_DENY_NONE, 0, false, null, out stream);
+                Assert.NotNull(stream);
+                Assert.AreEqual(result, 0, "Не могу открыть файл");
+
+                // Импортируем ЛС из потока.
+                IA0LSID lsid = this.LSService.Import.FromA0(this.OS.ID.GUID, 0, stream);
+                Assert.NotNull(lsid);
+
+                // Сравниваем данные исходной ЛС и полученной после экспорта/импорта.
+                Assert.AreEqual(this.LS.ID.OSGUID, lsid.OSGUID);
+
+                // Загружаем импортированную ЛС.
+                IA0LS ls = this.Repo.LS.Load2(lsid.GUID);
+                Assert.NotNull(ls);
+
+                // Проверяем наличие 2-х строк, созданных в исходной ЛС.
+                Assert.True(ls.Strings.Count == 2);
+
+                // Проверяем типы строк ЛС.
+                Assert.True(ls.Strings.Items[0].StringKind == EA0StringKind.skWork);
+                Assert.True(ls.Strings.Items[1].StringKind == EA0StringKind.skTZ);
+            }
+            finally
+            {
+                // Удаляем временный файл
+                File.Delete(outFileName);
+            }
         }
     }
 }

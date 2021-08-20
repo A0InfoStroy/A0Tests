@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-31 11:37:52 +0300 (Пт, 31 июл 2020) $
-// $Revision: 337 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты Сервисов сметного домена
 
 namespace A0Tests.Integrate.Estimate
@@ -48,7 +48,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода назначения бизнес-стадии.
         /// </summary>
-        [Test(Description = "Назначение бизнес стадии")]
+        [Test(Description = "Назначение бизнес стадии"), Timeout(20000)]
         public void Test_SetBusinessStage()
         {
             Assert.Greater(this.A0.Sys.Repo.BussinnessStages.Count, 0);
@@ -122,7 +122,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода получения Id договора по его номеру в случае отсутствия договора в БД.
         /// </summary>
-        [Test(Description = "ИД отсутствующего договора по номеру")]
+        [Test(Description = "ИД отсутствующего договора по номеру"), Timeout(20000)]
         public void Test_ContractIDByNumberNone()
         {
             int id = this.Services.ContractIDByNumber("Этого договора нет в БД " + Guid.NewGuid().ToString(), Guid.Empty);
@@ -132,7 +132,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода получения Id договора по его номеру.
         /// </summary>
-        [Test(Description = "ИД договора по номеру")]
+        [Test(Description = "ИД договора по номеру"), Timeout(20000)]
         public void Test_ContractIDByNumber()
         {
             // Получаем из таблицы БД ИД договора, GUID проекта и номер.

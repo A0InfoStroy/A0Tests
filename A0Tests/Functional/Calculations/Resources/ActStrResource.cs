@@ -1,6 +1,6 @@
-﻿// $Date: 2020-12-24 14:16:08 +0300 (Чт, 24 дек 2020) $
-// $Revision: 469 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты расчета параметров ресурса строки акта.
 
 namespace A0Tests.Functional.Calculations.Resources
@@ -31,7 +31,7 @@ namespace A0Tests.Functional.Calculations.Resources
             base.TearDown();
         }
 
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ResVolume()
         {
             // Погрешность округления при расчете объема ресурса.
@@ -73,7 +73,7 @@ namespace A0Tests.Functional.Calculations.Resources
             Assert.AreEqual(volume, this.Resource.Volume, delta);
         }
 
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ResCost()
         {
             // Меняем цену ресурса на произвольную величину.

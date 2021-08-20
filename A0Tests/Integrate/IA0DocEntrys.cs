@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-07 11:25:11 +0300 (Пт, 07 авг 2020) $
-// $Revision: 355 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты реквизитов
 
 namespace A0Tests.Integrate
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет работоспособность чтения и записи реквизитов проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(9000)]
         public void Test_IA0DocEntrysProj()
         {
             this.CheckA0DocEntrys(this.Proj.ID.GUID, EA0EntityKind.ekProject, EA0DocEntry.edProj);
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет работоспособность чтения и записи реквизитов объектной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(9000)]
         public void Test_IA0DocEntrysOS()
         {
             this.CheckA0DocEntrys(this.OS.ID.GUID, EA0EntityKind.ekOS, EA0DocEntry.edOS);
@@ -64,7 +64,7 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет работоспособность чтения и записи реквизитов локальной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(9000)]
         public void Test_IA0DocEntrysLS()
         {
             this.CheckA0DocEntrys(this.LS.ID.GUID, EA0EntityKind.ekLS, EA0DocEntry.edLS);
@@ -73,7 +73,7 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет работоспособность чтения и записи реквизитов акта.
         /// </summary>
-        [Test]
+        [Test, Timeout(9000)]
         public void Test_IA0DocEntrysAct()
         {
             this.CheckA0DocEntrys(this.Act.ID.GUID, EA0EntityKind.ekAct, EA0DocEntry.edAct);

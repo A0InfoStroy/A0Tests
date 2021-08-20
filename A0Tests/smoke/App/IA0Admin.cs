@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0Admin
 
 namespace A0Tests.Smoke.App
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к группам в системе.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Groups()
         {
             Assert.NotNull(this.Admin.Groups);
@@ -54,7 +54,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к менеджеру операций (видимость/собственность) с объектами A0 для РД.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_OperationManager()
         {
             Assert.NotNull(this.Admin.OperationManager);
@@ -63,7 +63,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет тестовое исключение при подтверждении сессии.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_ConfirmSession()
         {
             this.Admin.TestConfirmSession();
@@ -72,7 +72,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода освобождающего сессию.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_ReleaseSession()
         {
             this.Admin.ReleaseSession(this.A0.CurrentUser.SessionID);
@@ -116,7 +116,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет наличие групп в списке.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Count()
         {
             Assert.Greater(this.Groups.Count, 0);
@@ -125,7 +125,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к полям группы пользователей.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Items()
         {
             int count = this.Groups.Count;

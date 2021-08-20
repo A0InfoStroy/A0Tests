@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-06 11:38:15 +0300 (Пт, 06 ноя 2020) $
-// $Revision: 412 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога Договоров
 
 namespace A0Tests.Integrate.Estimate
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность чтения данных договоров.
         /// </summary>
-        [Test(Description = "Чтение договоров")]
+        [Test(Description = "Чтение договоров"), Timeout(20000)]
         public void Test_Read()
         {
             // Каталог поиска для получения всех договоров
@@ -87,7 +87,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность удаления договоров.
         /// </summary>
-        [Test(Description = "Удаление договоров")]
+        [Test(Description = "Удаление договоров"), Timeout(20000)]
         public void Test_Delete()
         {
             this.ContractRepo.UnLock(this.Contract.ContrGUID);

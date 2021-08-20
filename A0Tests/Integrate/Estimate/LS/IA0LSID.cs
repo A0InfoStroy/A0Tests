@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты ИД ЛС
 
 namespace A0Tests.Integrate.Estimate
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет остутствие ошибок при обращении к Guid ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GUID()
         {
             Guid guid = this.LSID.GUID;
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет остутствие ошибок при обращении к Id ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ID()
         {
             int guid = this.LSID.ID;
@@ -64,7 +64,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет присвоенный тип сметного объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Kind()
         {
             EA0ObjectKind kind = this.LSID.Kind;
@@ -74,7 +74,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Guid родительской объектной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_OSGUID()
         {
             Guid osGuid = this.LSID.OSGUID;
@@ -84,7 +84,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Id родительской объектной сметы.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_OSID()
         {
             int osId = this.LSID.OSID;
@@ -94,7 +94,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительский объект ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Parent()
         {
             IA0ObjectID parent = this.LSID.Parent;
@@ -111,7 +111,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Id родительского узла ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ParentNodeID()
         {
             int parentNode = this.LSID.ParentNodeID;
@@ -124,7 +124,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Guid родительского проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ProjGUID()
         {
             Guid projGuid = this.LSID.ProjGUID;
@@ -134,7 +134,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Id родительского проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ProjID()
         {
             int projID = this.LSID.ProjID;

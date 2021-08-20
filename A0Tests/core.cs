@@ -1,5 +1,5 @@
-﻿// $Date: 2020-07-20 08:57:31 +0300 (Пн, 20 июл 2020) $
-// $Revision: 306 $
+﻿// $Date: 2021-01-29 13:51:24 +0300 (Пт, 29 янв 2021) $
+// $Revision: 515 $
 // $Author: agalkin $
 // Базовые классы
 
@@ -7,24 +7,29 @@ namespace A0Tests
 {
     using System;
     using System.IO;
-    using System.Linq;
     using System.Runtime.InteropServices;
-    using System.Xml.Linq;
     using A0Service;
+    using Config;
     using NUnit.Framework;
+    using static Config.UserConfigParser;
 
     /// <summary>
-    /// Осуществляет чтение данных из файла пользовательских настроек.
+    /// Осуществляет получение основных настроек соединения с БД А0.
     /// </summary>
-    public abstract class Config
+    public abstract class BaseConfig
     {
         /// <summary>
-        /// Получает или устанавливает значение ссылки на xml-файл пользовательских настроек.
+        /// Получает или устанавливает xml-текст файла пользовательских настроек.
         /// </summary>
-        protected XDocument Configuration { get; private set; }
+        protected string XmlText { get; private set; }
 
         /// <summary>
-        ///  Осуществляет подготовку к тестированию.
+        /// Получает и устанавливает основные настройки соединения с БД А0.
+        /// </summary>
+        protected IA0BaseConfig Config { get; private set; }
+
+        /// <summary>
+        /// Осуществляет операции проводимые перед тестированием.
         /// </summary>
         [SetUp]
         public virtual void SetUp()
@@ -32,50 +37,32 @@ namespace A0Tests
             // Получение пути файла пользовательских настроек.
             string xmlFilePath = AppDomain.CurrentDomain.BaseDirectory + @"userConfig.xml";
 
-            Assert.True(File.Exists(xmlFilePath), "Файл пользовательских настроек не найден.");
+            Assert.True(File.Exists(xmlFilePath), "Не удалось найти файл пользовательских настроек");
+            this.XmlText = File.ReadAllText(xmlFilePath);
+            Assert.NotNull(this.XmlText, "Не удалось прочитать файл пользовательских настроек");
+            Assert.IsNotEmpty(this.XmlText, "Ошибка чтения файла");
+            string error = null;
+            try
+            {
+                this.Config = GetA0BaseConfig(this.XmlText);
+            }
+            catch (System.Runtime.Serialization.SerializationException ex)
+            {
+                error = "Ошибка наименования элементов в xml-файле пользовательских настроек" + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                error = "Ошибка чтения xml-файла пользовательских настроек" + ex.Message;
+            }
 
-            // Загрузка файла.
-            this.Configuration = XDocument.Load(xmlFilePath);
-            Assert.NotNull(this.Configuration, "Ошибка загрузки файла пользовательских настроек");
-        }
-    }
-
-    /// <summary>
-    /// Предоставляет настройки соединения A0Service.
-    /// </summary>
-    public abstract class A0Config : Config
-    {
-        /// <summary>
-        /// Получает или устанавливает строку соединения OLEDB.
-        /// </summary>
-        protected string ConnStr { get; private set; }
-
-        /// <summary>
-        /// Получает или устанавливает имя пользователя в системе А0.
-        /// </summary>
-        protected string UserName { get; private set; }
-
-        /// <summary>
-        /// Получает или устанавливает пароль пользователя в системе А0.
-        /// </summary>
-        protected string Password { get; private set; }
-
-        /// <summary>
-        /// Осуществляет подготовку к тестированию.
-        /// </summary>
-        public override void SetUp()
-        {
-            base.SetUp();
-            this.ConnStr = this.Configuration.Descendants("connectionString").SingleOrDefault()?.Value;
-            this.UserName = this.Configuration.Descendants("userName").SingleOrDefault()?.Value;
-            this.Password = this.Configuration.Descendants("passwword").SingleOrDefault()?.Value;
+            Assert.NotNull(this.Config, error);
         }
     }
 
     /// <summary>
     /// Осуществляет создание IAPI.
     /// </summary>
-    public abstract class A0Base : A0Config
+    public abstract class A0Base : BaseConfig
     {
         /// <summary>
         /// Получает или устанавливает значение IAPI.
@@ -83,8 +70,8 @@ namespace A0Tests
         protected IAPI A0 { get; private set; }
 
         /// <summary>
-        /// Осуществляет подготовку к тестированию.
-        /// </summary>
+        /// Осуществляет операции проводимые перед тестированием.
+        /// </summary>      
         public override void SetUp()
         {
             base.SetUp();
@@ -113,9 +100,9 @@ namespace A0Tests
     public abstract class Test_Base : A0Base
     {
         /// <summary>
-        /// Получает значение Guid головного комплекса.
+        /// Признак установки соединения с БД А0.
         /// </summary>
-        public Guid HeadComplexGuid => this.A0.Estimate.Repo.ComplexID.HeadComplexGUID;
+        private bool connectionSuccess;
 
         /// <summary>
         /// Осуществляет подготовку к тестированию.
@@ -125,11 +112,10 @@ namespace A0Tests
             base.SetUp();
 
             // Установка соединения с БД А0
-            EConnectReturnCode result = this.A0.Connect3(this.ConnStr, this.UserName, this.Password);
-            if (result != EConnectReturnCode.crcSuccess)
-            {
-                throw new Exception(string.Format("Не могу установить соединение с БД А0. Код возврата {0}", result));
-            }
+            EConnectReturnCode result = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, this.Config.Password);
+
+            Assert.AreEqual(EConnectReturnCode.crcSuccess, result, $"Не могу установить соединение с БД А0. Код возврата {result}");
+            this.connectionSuccess = true;
         }
 
         /// <summary>
@@ -140,7 +126,11 @@ namespace A0Tests
             // Интерейс A0 после теста должен остаться
             Assert.NotNull(this.A0, "Ожидается A0 после теста");
 
-            this.A0.Disconnect();
+            if (this.connectionSuccess)
+            {
+                this.A0.Disconnect();
+            }
+
             base.TearDown();
         }
     }

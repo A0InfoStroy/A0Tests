@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-06 13:43:35 +0300 (Чт, 06 авг 2020) $
-// $Revision: 345 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты дерева локальной смет
 
 namespace A0Tests.Integrate.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.LSTree.Attr["ProjID"];
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.LSTree.Attr["LGM.TZNorm"];
@@ -102,7 +102,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет расположение строк ЛС на терминальных узлах.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_StringsInsideNodes()
         {
             // Создание раздела.

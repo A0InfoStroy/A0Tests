@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тестирование ЛС
 
 namespace A0Tests.Integrate.Estimate
@@ -20,7 +20,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность создания текстовой строки ЛС.
         /// </summary>
-        [Test(Description = "Создание текстовой строки")]
+        [Test(Description = "Создание текстовой строки"), Timeout(20000)]
         public void Test_CreateTxtString()
         {
             int stringsCount = this.LS.Strings.Count;
@@ -34,7 +34,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность удаления текстовой строки ЛС.
         /// </summary>
-        [Test(Description = "Удаление текстовой строки")]
+        [Test(Description = "Удаление текстовой строки"), Timeout(20000)]
         public void Test_DeleteTxtString()
         {
             IA0LSString lsString = this.LS.CreateTxtString(EA0StringKind.skWork, "1", 0);
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет остутствие ошибок при вызове операции пересчета.
         /// </summary>
-        [Test(Description = "Пересчет")]
+        [Test(Description = "Пересчет"), Timeout(20000)]
         public void Test_Recalc()
         {
             this.LS.Recalc();

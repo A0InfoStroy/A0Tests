@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-06 15:36:54 +0300 (Чт, 06 авг 2020) $
-// $Revision: 351 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 
 namespace A0Tests
 {
@@ -199,9 +199,9 @@ namespace A0Tests
     {
         using System;
         using System.IO;
-        using System.Linq;
         using A0Service;
         using NUnit.Framework;
+        using static Config.UserConfigParser;
 
         /// <summary>
         /// Содержит тесты проверки работоспособности вывода документа ЛС.
@@ -240,7 +240,7 @@ namespace A0Tests
             /// <summary>
             /// Проверяет отсутствие ошибок при вызове метода подготовки вывода документа.
             /// </summary>
-            [Test]
+            [Test, Timeout(40000)]
             public void Test_PrepareLib()
             {
                 IA0Print print = this.A0.GetPrint(EA0PrintKind.pkLS, string.Empty);
@@ -265,7 +265,7 @@ namespace A0Tests
             /// <summary>
             /// Получает путь к шаблонам печати из файла настроек.
             /// </summary>
-            private string TemplatePath => this.Configuration.Descendants("printTemplates").SingleOrDefault()?.Value;
+            protected string TemplatePath { get; private set; }
 
             /// <summary>
             /// Осуществляет операции проводимые перед тестированием.
@@ -273,6 +273,22 @@ namespace A0Tests
             public override void SetUp()
             {
                 base.SetUp();
+
+                string error = null;
+                try
+                {
+                    this.TemplatePath = GetA0PrintConfig(this.XmlText).PrintTemplatePath;
+                }
+                catch (System.Runtime.Serialization.SerializationException ex)
+                {
+                    error = "Ошибка наименования элементов настроек печати в xml-файле пользовательских настроек" + ex.Message;
+                }
+                catch (Exception ex)
+                {
+                    error = "Ошибка чтения xml-файла пользовательских настроек" + ex.Message;
+                }
+
+                Assert.NotNull(this.TemplatePath, error);
 
                 this.context = new EstimateActConxetCreator(this.A0);
                 this.context.Create();
@@ -290,7 +306,7 @@ namespace A0Tests
             /// <summary>
             /// Проверяет отсутствие ошибок при вызове метода подготовки вывода документа.
             /// </summary>
-            [Test]
+            [Test, Timeout(40000)]
             public void Test_PrepareLib()
             {
                 IA0Print print = this.A0.GetPrint(EA0PrintKind.pkAct, string.Empty);
@@ -300,7 +316,7 @@ namespace A0Tests
             /// <summary>
             /// Проверяет работоспособность экспорта акта в формат .pdf.
             /// </summary>
-            [Test]
+            [Test, Timeout(40000)]
             public void Test_ExportPDF()
             {
                 IA0Print print = this.A0.GetPrint(EA0PrintKind.pkAct, this.TemplatePath);
@@ -325,7 +341,7 @@ namespace A0Tests
             /// <summary>
             /// Проверяет работоспособность изменения подписей в отчете.
             /// </summary>
-            [Test]
+            [Test, Timeout(40000)]
             public void Test_Signature()
             {
                 // Проверка изменения подписей в отчете.
@@ -421,7 +437,7 @@ namespace A0Tests
             /// <summary>
             /// Проверяет работоспособность экспорта акта в формат .rtf.
             /// </summary>
-            [Test]
+            [Test, Timeout(40000)]
             public void Test_ExportRTF()
             {
                 IA0Print print = this.A0.GetPrint(EA0PrintKind.pkAct, this.TemplatePath);
@@ -446,7 +462,7 @@ namespace A0Tests
             /// <summary>
             /// Проверяет работоспособность экспорта акта в формат .xls.
             /// </summary>
-            [Test]
+            [Test, Timeout(40000)]
             public void Test_ExportXLS()
             {
                 IA0Print print = this.A0.GetPrint(EA0PrintKind.pkAct, this.TemplatePath);

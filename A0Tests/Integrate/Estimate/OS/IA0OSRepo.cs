@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-29 16:25:27 +0300 (Ср, 29 июл 2020) $
-// $Revision: 327 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога объектных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность удаления ОС.
         /// </summary>
-        [Test(Description = "Создание/Удаление")]
+        [Test(Description = "Создание/Удаление"), Timeout(10000)]
         public void Test_Delete()
         {
             Guid osGuid = this.OS.ID.GUID;
@@ -44,7 +44,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность редактирования данных ОС.
         /// </summary>
-        [Test(Description = "Изменение/Загрузка")]
+        [Test(Description = "Изменение/Загрузка"), Timeout(10000)]
         public void Test_UpdateRead()
         {
             // Изменение
@@ -60,7 +60,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительский проект ОС.
         /// </summary>
-        [Test(Description = "Проверка создания ОС в проекте")]
+        [Test(Description = "Проверка создания ОС в проекте"), Timeout(10000)]
         public void Test_OSParent()
         {
             IA0ObjectIterator iterator = this.Repo.OSID.Read(this.Proj.ID.GUID, null, null, null);
@@ -70,7 +70,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительский проект ОС после создания.
         /// </summary>
-        [Test(Description = "Проверка родительского узла ОС после создания")]
+        [Test(Description = "Проверка родительского узла ОС после создания"), Timeout(10000)]
         public void Test_OSIDParentAfterNew()
         {
             Assert.AreEqual(this.Proj.ID.GUID, this.OS.ID.Parent.GUID);
@@ -79,7 +79,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительский проект ОС после загрузки.
         /// </summary>
-        [Test(Description = "Проверка родительского узла ОС после загрузки")]
+        [Test(Description = "Проверка родительского узла ОС после загрузки"), Timeout(10000)]
         public void Test_OSIDParentAfterLoad()
         {
             this.OS = this.Repo.OS.Load(this.OS.ID.GUID, false);

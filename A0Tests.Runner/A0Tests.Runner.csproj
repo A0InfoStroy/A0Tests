@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.Engine.3.11.1\build\net20\nunit.engine.props" Condition="Exists('..\packages\NUnit.Engine.3.11.1\build\net20\nunit.engine.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F25E729-3DEE-432C-A521-2823E2963F30}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>A0Tests.Runner</RootNamespace>
+    <AssemblyName>A0Tests.Runner</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommandLine, Version=2.8.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.8.0\lib\net461\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.10\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.engine, Version=3.11.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.Engine.3.11.1\lib\net20\nunit.engine.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.engine.api, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.Engine.3.11.1\lib\net20\nunit.engine.api.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.engine.core, Version=3.11.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.Engine.3.11.1\lib\net20\nunit.engine.core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\AppBase.cs" />
+    <Compile Include="App\AppHelp.cs" />
+    <Compile Include="App\AppRun.cs" />
+    <Compile Include="App\IApp.cs" />
+    <Compile Include="App\Out\IOut.cs" />
+    <Compile Include="App\Out\ITestsResult.cs" />
+    <Compile Include="App\Out\Out.cs" />
+    <Compile Include="App\Out\ResultInfo.cs" />
+    <Compile Include="ConfigParser\ConfigParser.cs" />
+    <Compile Include="ConfigParser\ConfigParserFaker.cs" />
+    <Compile Include="ConfigParser\IConfigParser.cs" />
+    <Compile Include="ConfigParser\Properties.cs" />
+    <Compile Include="Log\ILog.cs" />
+    <Compile Include="Log\LogFaker.cs" />
+    <Compile Include="Log\NLogLogger.cs" />
+    <Compile Include="Output\ISave.cs" />
+    <Compile Include="Output\SaveBase.cs" />
+    <Compile Include="Output\SaveOption.cs" />
+    <Compile Include="Output\SaveToConsole.cs" />
+    <Compile Include="Output\SaveToTxt.cs" />
+    <Compile Include="Output\SaveToXml.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="A0Tests.Runner.config" />
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\A0Tests.LateTests\A0Tests.LateTests.csproj">
+      <Project>{ff0526ce-5d64-4020-895f-6899fcdfc79f}</Project>
+      <Name>A0Tests.LateTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\A0Tests\A0Tests.csproj">
+      <Project>{79a8bd9e-73fe-4833-ac6b-1bbb79ed568b}</Project>
+      <Name>A0Tests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="A0Service">
+      <Guid>{D244FFDD-2540-4CC4-825B-2AC22EA079C5}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.Engine.3.11.1\build\net20\nunit.engine.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.Engine.3.11.1\build\net20\nunit.engine.props'))" />
+  </Target>
+</Project>

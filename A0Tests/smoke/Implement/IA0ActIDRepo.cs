@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0ActIDRepo
 
 namespace A0Tests.Smoke.Implement
@@ -46,7 +46,7 @@ namespace A0Tests.Smoke.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения запроса к дополнительным полям.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GetFiledsRequest()
         {
             Assert.NotNull(this.Repo.GetFiledsRequest());
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения запроса с сортировкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GetOrderRequest()
         {
             Assert.NotNull(this.Repo.GetOrderRequest());
@@ -64,7 +64,7 @@ namespace A0Tests.Smoke.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения запроса с фильтрацией.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_GetWhereRequest()
         {
             Assert.NotNull(this.Repo.GetWhereRequest());
@@ -73,7 +73,7 @@ namespace A0Tests.Smoke.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id головного узла.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_HeadNodeID()
         {
             int headNodeID = this.Repo.HeadNodeID;
@@ -82,19 +82,23 @@ namespace A0Tests.Smoke.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения итератора по каталогу актов в проекте или комплексе.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Read()
         {
-            Assert.NotNull(this.Repo.Read(this.HeadComplexGuid, null, null, null));
+            Assert.NotNull(this.Repo.Read(this.A0.Estimate.Repo.ComplexID.HeadComplexGUID, null, null, null));
         }
 
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения итератора по каталогу актов в проекте или комплексе с учетом запросов.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Read2()
         {
-            Assert.NotNull(this.Repo.Read(this.HeadComplexGuid, this.Repo.GetFiledsRequest(), this.Repo.GetWhereRequest(), this.Repo.GetOrderRequest()));
+            Assert.NotNull(this.Repo.Read(
+                this.A0.Estimate.Repo.ComplexID.HeadComplexGUID, 
+                this.Repo.GetFiledsRequest(), 
+                this.Repo.GetWhereRequest(), 
+                this.Repo.GetOrderRequest()));
         }
     }
 }

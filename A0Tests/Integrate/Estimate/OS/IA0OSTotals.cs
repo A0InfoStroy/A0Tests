@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-29 16:25:27 +0300 (Ср, 29 июл 2020) $
-// $Revision: 327 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты итогов ОС
 
 namespace A0Tests.Integrate.Estimate
@@ -41,7 +41,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения количества элементов итогов.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Count()
         {
             int count = this.OSTotals.Count;
@@ -51,7 +51,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к полям элемента итогов.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Total()
         {
             for (int i = 0; i < this.OSTotals.Count; i++)
@@ -72,7 +72,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода получения элемента итогов по индексу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_GetItem()
         {
             for (int i = 0; i < this.OSTotals.Count; i++)
@@ -86,7 +86,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода получения элемента итогов по имени.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ByName()
         {
             for (int i = 0; i < this.OSTotals.Count; i++)

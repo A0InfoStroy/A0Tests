@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-20 12:39:55 +0300 (Пн, 20 июл 2020) $
-// $Revision: 310 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты CurrentUser.
 // Планируется, что ICurrentUser переедет в IApp
 
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует права доступа для создания комплекса.
         /// </summary>
-        [Test(Description = "Проверка прав доступа Create")]
+        [Test(Description = "Проверка прав доступа Create"), Timeout(10000)]
         public void Test_CanDoItComplexCreate()
         {
             IA0ObjectIterator it = this.A0.Estimate.Repo.ComplexID.Read(null);
@@ -60,7 +60,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует права доступа для удаления комплекса.
         /// </summary>
-        [Test(Description = "Проверка прав доступа Delete")]
+        [Test(Description = "Проверка прав доступа Delete"), Timeout(10000)]
         public void Test_CanDoItComplexDelete()
         {
             IA0ObjectIterator it = this.A0.Estimate.Repo.ComplexID.Read(null);
@@ -74,7 +74,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует права доступа для редактирования комплекса.
         /// </summary>
-        [Test(Description = "Проверка прав доступа Edit")]
+        [Test(Description = "Проверка прав доступа Edit"), Timeout(10000)]
         public void Test_CanDoItComplexEdit()
         {
             IA0ObjectIterator it = this.A0.Estimate.Repo.ComplexID.Read(null);
@@ -88,7 +88,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует права доступа View комплекса.
         /// </summary>
-        [Test(Description = "Проверка прав доступа View")]
+        [Test(Description = "Проверка прав доступа View"), Timeout(10000)]
         public void Test_CanDoItComplexView()
         {
             IA0ObjectIterator it = this.A0.Estimate.Repo.ComplexID.Read(null);
@@ -102,7 +102,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует блокировку/разблокировку редактирования.
         /// </summary>
-        [Test(Description = "Проверка Блокировки/Разблокировки сущности Edit")]
+        [Test(Description = "Проверка Блокировки/Разблокировки сущности Edit"), Timeout(10000)]
         public void Test_LockUnLockEdit()
         {
             IA0ObjectIterator it = this.A0.Estimate.Repo.ComplexID.Read(null);
@@ -118,7 +118,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует блокировку/разблокировку чтения.
         /// </summary>
-        [Test(Description = "Проверка Блокировки/Разблокировки сущности Read")]
+        [Test(Description = "Проверка Блокировки/Разблокировки сущности Read"), Timeout(13000)]
         public void Test_LockUnLockRead()
         {
             IA0ObjectIterator it = this.A0.Estimate.Repo.ComplexID.Read(null);
@@ -134,7 +134,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует блокировку/разблокировку удаления.
         /// </summary>
-        [Test(Description = "Проверка Блокировки/Разблокировки сущности Delete")]
+        [Test(Description = "Проверка Блокировки/Разблокировки сущности Delete"), Timeout(10000)]
         public void Test_LockUnLockDelete()
         {
             IA0ObjectIterator it = this.A0.Estimate.Repo.ComplexID.Read(null);
@@ -150,7 +150,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует блокировку/разблокировку акта.
         /// </summary>
-        [Test(Description = "Проверка Блокировки/Разблокировки акта")]
+        [Test(Description = "Проверка Блокировки/Разблокировки акта"), Timeout(10000)]
         public void Test_CanDoItAct()
         {
             bool result = this.CurrentUser.CanDoIt(EA0OperKind.opView, Guid.Parse("{4D83FCDF-E9A4-45C9-B9A8-ADA0A0553CA8}"), EA0EntityKind.ekAct);

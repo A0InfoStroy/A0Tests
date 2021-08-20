@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-06 17:56:03 +0300 (Чт, 06 авг 2020) $
-// $Revision: 353 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты Организаций
 
 namespace A0Tests.Integrate.Sys
@@ -48,7 +48,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения данных структур организаций.
         /// </summary>
-        [Test(Description = "Структуры организаций")]
+        [Test(Description = "Структуры организаций"), Timeout(10000)]
         public void Test_TreeID()
         {
             // Поля для запроса.
@@ -84,7 +84,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения данных узлов структур организаций.
         /// </summary>
-        [Test(Description = "Узлы структур организаций")]
+        [Test(Description = "Узлы структур организаций"), Timeout(10000)]
         public void Test_TreeNodeID()
         {
             // Поля для запроса
@@ -141,7 +141,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения данных исполнителей.
         /// </summary>
-        [Test(Description = "Исполнители")]
+        [Test(Description = "Исполнители"), Timeout(10000)]
         public void Test_ExecutorID()
         {
             // Поля для запроса.
@@ -220,7 +220,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения данных сотрудников.
         /// </summary>
-        [Test(Description = "Сотрудники")]
+        [Test(Description = "Сотрудники"), Timeout(10000)]
         public void Test_EmployeeID()
         {
             // Поля для запроса.
@@ -260,7 +260,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность чтения данных дерева структуры организаций.
         /// </summary>
-        [Test(Description = "Структуры организаций")]
+        [Test(Description = "Структуры организаций"), Timeout(10000)]
         public void Test_Tree()
         {
             // Поля для запроса
@@ -372,7 +372,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность метода получения отсутствующего исполнителя по краткому наименованию.
         /// </summary>
-        [Test(Description = "ИД отсутствующего исполнителя по краткому наименованию")]
+        [Test(Description = "ИД отсутствующего исполнителя по краткому наименованию"), Timeout(10000)]
         public void Test_ExecutorIDByShortNameNone()
         {
             int id = this.Services.ExecutorIDByShortName("Такого исполнителя нет в БД " + Guid.NewGuid().ToString());
@@ -382,7 +382,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность метода получения исполнителя по краткому наименованию.
         /// </summary>
-        [Test(Description = "ИД исполнителя по краткому наименованию")]
+        [Test(Description = "ИД исполнителя по краткому наименованию"), Timeout(10000)]
         public void Test_ExecutorIDByShortName()
         {
             // Получаем из таблицы БД ИД исполнителя и краткое наименование.

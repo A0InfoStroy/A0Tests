@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-20 12:39:55 +0300 (Пн, 20 июл 2020) $
-// $Revision: 310 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 
 namespace A0Tests.Integrate.App
 {
@@ -43,7 +43,7 @@ namespace A0Tests.Integrate.App
         /// <summary>
         /// Тестирует каталог расширений аттрибутов.
         /// </summary>
-        [Test(Description = "Получение расширений атрибутов")]
+        [Test(Description = "Получение расширений атрибутов"), Timeout(1000)]
         public void Test_Read()
         {
             IAppAttrExtensionIterator it = this.Repo.Read();

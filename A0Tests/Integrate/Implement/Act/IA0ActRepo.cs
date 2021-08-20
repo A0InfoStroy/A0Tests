@@ -1,6 +1,6 @@
-﻿// $Date: 2020-10-02 14:55:16 +0300 (Пт, 02 окт 2020) $
-// $Revision: 386 $
-// $Author: ppeysakhovski $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога Актов
 
 namespace A0Tests.Integrate.Implement
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода удаления акта.
         /// </summary>
-        [Test(Description = "Удаление")]
+        [Test(Description = "Удаление"), Timeout(20000)]
         public void Test_Delete()
         {
             this.ActRepo.Delete(this.Act.ID.GUID);
@@ -66,7 +66,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет корректность редактирования данных акта.
         /// </summary>
-        [Test(Description = "Изменение/Загрузка")]
+        [Test(Description = "Изменение/Загрузка"), Timeout(20000)]
         public void Test_UpdateRead()
         {
             // Изменение.
@@ -82,7 +82,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность концевика акта.
         /// </summary>
-        [Test(Description = "Загрузка акта с концевиком")]
+        [Test(Description = "Загрузка акта с концевиком"), Timeout(20000)]
         public void Test_Load()
         {
             Guid actGUID = Guid.Parse("{D88F7747-B361-494D-83B2-247E85F3903A}");
@@ -121,7 +121,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода копирования акта.
         /// </summary>
-        [Test(Description = "Копирование")]
+        [Test(Description = "Копирование"), Timeout(20000)]
         public void Test_Copy()
         {
             IA0Act copyAct = this.ActRepo.Copy(this.Act.ID.GUID, this.LS.ID.GUID);

@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-07 11:25:11 +0300 (Пт, 07 авг 2020) $
-// $Revision: 355 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты оповещения об ошибке обновления сессии
 
 namespace A0Tests.Integrate
@@ -31,12 +31,12 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет работоспособность метода оповещения.
         /// </summary>
-        [Test]
+        [Test, Timeout(2000)]
         public void Test_OnNotify()
         {
             this.A0.Disconnect();
             this.A0.ACExitNotify = new ExitNotify();
-            EConnectReturnCode result = this.A0.Connect3(this.ConnStr, this.UserName, "wrongPassword");
+            EConnectReturnCode result = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, "wrongPassword");
             if (result != EConnectReturnCode.crcSuccess)
             {
                 this.A0.ACExitNotify.OnNotify(EACExitEnum.ConnectionError, "неверный пароль");

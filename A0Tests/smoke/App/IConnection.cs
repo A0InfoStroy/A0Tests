@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IConnection
 
 namespace A0Tests.Smoke.App
@@ -46,7 +46,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет установлено ли соединение с БД.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Connected()
         {
             Assert.IsTrue(this.Connection.Connected);
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при обращение к основному соединению с БД.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_DBVersion()
         {
             Assert.NotNull(this.Connection.MainConnection);

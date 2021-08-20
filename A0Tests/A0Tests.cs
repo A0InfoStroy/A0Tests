@@ -1,6 +1,6 @@
-﻿// $Date: 2019-10-15 14:18:33 +0300 (Вт, 15 окт 2019) $
-// $Revision: 7 $
-// $Author: vbutov $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 
 // Библиотека тестов A0service API A0
 
@@ -33,13 +33,14 @@ namespace A0Tests
 	[TestFixture]
     public class A0Tests
     {
-		[Test(Description = "Тест для проверки ошибки")]
+		[Test(Description = "Тест для проверки ошибки"), Timeout(1000)]
+
 		public void Test_Error()
 		{
 			Assert.IsFalse(true);
 		}
 
-		[Test(Description = "Тест для проверки отсутствия ошибки")]
+		[Test(Description = "Тест для проверки отсутствия ошибки"), Timeout(1000)]
 		public void Test_Successed()
 		{
 			Assert.IsFalse(false);

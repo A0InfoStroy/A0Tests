@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-29 16:25:27 +0300 (Ср, 29 июл 2020) $
-// $Revision: 327 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты ИД ОС
 
 namespace A0Tests.Integrate.Estimate
@@ -42,7 +42,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет остутствие ошибок при обращении к Guid ОС.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_GUID()
         {
             Guid guid = this.OSID.GUID;
@@ -51,7 +51,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет остутствие ошибок при обращении к Id ОС.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ID()
         {
             int id = this.OSID.ID;
@@ -60,7 +60,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет присвоенный тип сметного объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Kind()
         {
             EA0ObjectKind kind = this.OSID.Kind;
@@ -70,7 +70,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительский объект ОС.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Parent()
         {
             IA0ObjectID parent = this.OSID.Parent;
@@ -87,7 +87,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Id родительского узла ОС.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ParentNodeID()
         {
             int parentNode = this.OSID.ParentNodeID;
@@ -100,7 +100,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Guid родительского проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ProjGUID()
         {
             Guid projGuid = this.OSID.ProjGUID;
@@ -110,7 +110,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Id родительского проекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ProjID()
         {
             int projID = this.OSID.ProjID;

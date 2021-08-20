@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-31 11:36:05 +0300 (Пт, 31 июл 2020) $
-// $Revision: 335 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога проектов
 
 namespace A0Tests.Integrate.Estimate
@@ -20,7 +20,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность чтения данных проекта в головном комплексе.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с одним параметром")]
+        [Test(Description = "Тестирование метода Read с одним параметром"), Timeout(10000)]
         public void Test_Read()
         {
             IA0ObjectIterator iterator = this.Repo.ProjID.Read(null);
@@ -30,7 +30,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение данных проекта внутри другого комплекса с указанным Guid.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с двумя параметрами")]
+        [Test(Description = "Тестирование метода Read с двумя параметрами"), Timeout(10000)]
         public void Test_Read2()
         {
             IA0ObjectIterator iterator = this.Repo.ProjID.Read2(this.HeadComplexGuid, null);
@@ -40,7 +40,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение данных проекта внутри комплекса с указанным Guid и Id узла.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с тремя параметрами")]
+        [Test(Description = "Тестирование метода Read с тремя параметрами"), Timeout(10000)]
         public void Test_Read3()
         {
             IA0ObjectIterator iterator = this.Repo.ProjID.Read3(this.HeadComplexGuid, this.HeadNodeID, null);
@@ -50,7 +50,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение дополнительных полей проекта в головном комплексе.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с одним параметром с запросом к полям")]
+        [Test(Description = "Тестирование метода Read с одним параметром с запросом к полям"), Timeout(10000)]
         public void Test_ReadFields()
         {
             string field = "CreateDate";
@@ -61,7 +61,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение дополнительных полей проектов внутри комплекса с указанным Guid.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с двумя параметрами с запросом к полям")]
+        [Test(Description = "Тестирование метода Read с двумя параметрами с запросом к полям"), Timeout(10000)]
         public void Test_Read2Fields()
         {
             string field = "CreateDate";
@@ -72,7 +72,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет дополнительных полей проектов внутри комплекса с указанным Guid и Id узла.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с тремя параметрами с запросом к полям")]
+        [Test(Description = "Тестирование метода Read с тремя параметрами с запросом к полям"), Timeout(10000)]
         public void Test_Read3Fields()
         {
             string field = "CreateDate";
@@ -83,7 +83,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректоного параметра запроса к дополнительным полям в метод Read.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром"), Timeout(10000)]
         public void Test_ReadErrorFields()
         {
             IA0ObjectIterator iterator = this.Repo.ProjID.Read(this.CreateRequest("Error"));
@@ -93,7 +93,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректоного параметра запроса к дополнительным полям в метод Read2.
         /// </summary>
-        [Test(Description = "Тестирование метода Read2 с ошибочным параметром")]
+        [Test(Description = "Тестирование метода Read2 с ошибочным параметром"), Timeout(10000)]
         public void Test_Read2ErrorFields()
         {
             IA0ObjectIterator iterator = this.Repo.ProjID.Read2(this.HeadComplexGuid, this.CreateRequest("Error"));
@@ -103,7 +103,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректоного параметра запроса к дополнительным полям в метод Read3.
         /// </summary>
-        [Test(Description = "Тестирование метода Read3 с ошибочным параметром")]
+        [Test(Description = "Тестирование метода Read3 с ошибочным параметром"), Timeout(10000)]
         public void Test_Read3ErrorFields()
         {
             IA0ObjectIterator iterator = this.Repo.ProjID.Read3(this.HeadComplexGuid, this.HeadNodeID, this.CreateRequest("Error"));

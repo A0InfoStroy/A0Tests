@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-22 13:30:01 +0300 (Ср, 22 июл 2020) $
-// $Revision: 319 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога Договоров
 
 namespace A0Tests.Integrate.Estimate
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет остутствие ошибок при обращении к полям договоров.
         /// </summary>
-        [Test(Description = "Чтение договоров")]
+        [Test(Description = "Чтение договоров"), Timeout(20000)]
         public void Test_Read()
         {
             IA0FieldsIterator iter = this.ContractRepo.Read(this.GetProjGUID(), null, null, null);
@@ -70,7 +70,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность чтения полей договоров, полученных через запрос к дополнительным полям.
         /// </summary>
-        [Test(Description = "Чтение договоров с полями")]
+        [Test(Description = "Чтение договоров с полями"), Timeout(20000)]
         public void Test_ReadFields()
         {
             IAppFieldsRequest appFieldsReq = this.ContractRepo.GetFieldRequest();
@@ -89,7 +89,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра в запрос к дополнительным полям.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям"), Timeout(20000)]
         public void Test_ReadErrorFields()
         {
             IAppFieldsRequest appFieldsReq = this.ContractRepo.GetFieldRequest();
@@ -111,7 +111,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность чтения полей договоров, полученных через фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Чтение договоров с фильтрацией")]
+        [Test(Description = "Чтение договоров с фильтрацией"), Timeout(20000)]
         public void Test_ReadWhere()
         {
             int projectID = 133;
@@ -134,7 +134,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации"), Timeout(20000)]
         public void Test_ReadErrorIDWhere()
         {
             ISQLWhere whereReq = this.ContractRepo.GetWhereRequest();
@@ -156,7 +156,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность чтения полей договоров, полученных через сортирующий запрос.
         /// </summary>
-        [Test(Description = "Чтение договоров с сортировкой")]
+        [Test(Description = "Чтение договоров с сортировкой"), Timeout(20000)]
         public void Test_ReadOrder()
         {
             ISQLOrder orderReq = this.ContractRepo.GetOrderRequest();
@@ -177,7 +177,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра в сортирующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки"), Timeout(20000)]
         public void Test_ReadErrorOrder()
         {
             ISQLOrder orderReq = this.ContractRepo.GetOrderRequest();
@@ -199,7 +199,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверка работоспособности свойства EOF.
         /// </summary>
-        [Test(Description = "Чтение договоров")]
+        [Test(Description = "Чтение договоров"), Timeout(20000)]
         public void Test_EOF()
         {
             IA0FieldsIterator iter = this.ContractRepo.Read(this.GetProjGUID(), null, null, null);
@@ -213,7 +213,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверка работоспособности свойств BOF и EOF для пустого итератора.
         /// </summary>
-        [Test(Description = "Чтение договоров")]
+        [Test(Description = "Чтение договоров"), Timeout(20000)]
         public void Test_EmptyIterator()
         {
             IA0FieldsIterator iter = this.ContractRepo.Read(Guid.Empty, null, null, null);
@@ -224,7 +224,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверка работоспособности метода получения строчек.
         /// </summary>
-        [Test(Description = "Чтение договоров")]
+        [Test(Description = "Чтение договоров"), Timeout(20000)]
         public void Test_GetRows()
         {
             IA0FieldsIterator iter = this.ContractRepo.Read(this.GetProjGUID(), null, null, null);

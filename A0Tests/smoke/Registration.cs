@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты проверки регистрации A0Service
 
 namespace A0Tests.Smoke
@@ -21,7 +21,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет работособность создания IAPI.
         /// </summary>
-        [Test(Description = "Проверка создания IAPI")]
+        [Test(Description = "Проверка создания IAPI"), Timeout(15000)]
         public void Create()
         {
             // Создание A0 API.

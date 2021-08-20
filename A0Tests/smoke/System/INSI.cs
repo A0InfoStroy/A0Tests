@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты INSI
 
 namespace A0Tests.Smoke.Sys
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базам НСИ.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Bases()
         {
             Assert.NotNull(this.NSI.Bases);
@@ -54,7 +54,7 @@ namespace A0Tests.Smoke.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к сервисам домена.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Services()
         {
             Assert.NotNull(this.NSI.Services);

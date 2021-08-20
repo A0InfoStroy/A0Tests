@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты строк локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -52,7 +52,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода получаещего строку ЛС по Guid.
         /// </summary>
-        [Test(Description = "Запрос по Guid")]
+        [Test(Description = "Запрос по Guid"), Timeout(10000)]
         public void Test_ByGuid()
         {
             IA0LSString lsString = this.LSStrings.ByGUID(this.LSString.GUID);
@@ -63,7 +63,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода удаления строки ЛС по Guid.
         /// </summary>
-        [Test(Description = "Удаление строки")]
+        [Test(Description = "Удаление строки"), Timeout(10000)]
         public void Test_Delete()
         {
             this.LSStrings.Delete(this.LSStrings.Count - 1);

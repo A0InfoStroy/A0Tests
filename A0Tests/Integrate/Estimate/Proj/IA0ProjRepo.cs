@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-30 15:27:47 +0300 (Чт, 30 июл 2020) $
-// $Revision: 329 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога Проектов
 
 namespace A0Tests.Integrate.Estimate
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода создания проекта.
         /// </summary>
-        [Test(Description = "Создание/Удаление")]
+        [Test(Description = "Создание/Удаление"), Timeout(10000)]
         public void Test_New()
         {
             // Создание проекта в головном комплексе.
@@ -37,9 +37,26 @@ namespace A0Tests.Integrate.Estimate
         }
 
         /// <summary>
+        /// Проверяет работоспособность метода создания проекта.
+        /// </summary>
+        [Test(Description = "Создание/Удаление"), Timeout(10000)]
+        public void Test_New2()
+        {
+            IA0Proj proj = this.Repo.Proj.New2(this.HeadComplexGuid, this.HeadNodeID);
+            Assert.NotNull(proj);
+            proj.Title.Name = "Интеграционные тесты " + DateTime.Now.ToString();
+            this.Repo.Proj.Save(proj);
+
+            Assert.AreEqual(this.Proj.ID.ParentNodeID, proj.ID.ParentNodeID);
+            IA0ObjectIterator iterator = this.Repo.ProjID.Read2(this.HeadComplexGuid, null);
+            this.CheckChildInParent(iterator, proj.ID.GUID);
+            this.Repo.Proj.Delete(proj.ID.GUID);
+        }
+
+        /// <summary>
         /// Проверяет корректность удаления проекта.
         /// </summary>
-        [Test(Description = "Удаление")]
+        [Test(Description = "Удаление"), Timeout(10000)]
         public void Test_CreateDelete()
         {
             Guid projGuid = this.Proj.ID.GUID;
@@ -62,7 +79,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность изменения данных проекта.
         /// </summary>
-        [Test(Description = "Изменение/Загрузка")]
+        [Test(Description = "Изменение/Загрузка"), Timeout(10000)]
         public void Test_UpdateRead()
         {
             // Изменение.
@@ -78,7 +95,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет наличие проекта в головном комплексе после создания.
         /// </summary>
-        [Test(Description = "Проверка создания проекта в головном комплексе")]
+        [Test(Description = "Проверка создания проекта в головном комплексе"), Timeout(10000)]
         public void Test_ProjectParent()
         {
             IA0ObjectIterator iterator = this.Repo.ProjID.Read2(this.HeadComplexGuid, null);
@@ -88,7 +105,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Guid родительского объекта созданного проекта.
         /// </summary>
-        [Test(Description = "Проверка родительского узла проекта после создания")]
+        [Test(Description = "Проверка родительского узла проекта после создания"), Timeout(10000)]
         public void Test_ProjIDParentAfterNew()
         {
             Assert.AreEqual(this.HeadComplexGuid, this.Proj.ID.Parent.GUID);
@@ -97,7 +114,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет наличие проекта в головном комплексе после загрузки.
         /// </summary>
-        [Test(Description = "Проверка родительского узла проекта после загрузки")]
+        [Test(Description = "Проверка родительского узла проекта после загрузки"), Timeout(10000)]
         public void Test_ProjIDParentAfterLoad()
         {
             this.Proj = this.Repo.Proj.Load(this.Proj.ID.GUID, false);

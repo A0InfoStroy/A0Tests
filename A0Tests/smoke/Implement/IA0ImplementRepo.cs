@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0ImplementRepo
 
 namespace A0Tests.Smoke.Implement
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу операций над актами в системе.
         /// </summary>
-        [Test(Description = "Act Repo")]
+        [Test(Description = "Act Repo"), Timeout(20000)]
         public void Test_Act()
         {
             IA0ActRepo actRepo = this.Repo.Act;
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу поиска актов.
         /// </summary>
-        [Test(Description = "ActID Repo")]
+        [Test(Description = "ActID Repo"), Timeout(20000)]
         public void Test_ActID()
         {
             IA0ActIDRepo actIdRepo = this.Repo.ActID;

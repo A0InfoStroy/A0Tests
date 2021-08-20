@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-30 17:11:29 +0300 (Чт, 30 июл 2020) $
-// $Revision: 333 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога ресурсов
 
 namespace A0Tests.Integrate.Estimate
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения ресурсов.
         /// </summary>
-        [Test(Description = "Тестирование метода Read")]
+        [Test(Description = "Тестирование метода Read"), Timeout(10000)]
         public void Test_Read()
         {
             IA0FieldsIterator iterator = this.Repo.ResID.Read(this.GetProjGUID(), null, null, null);
@@ -38,7 +38,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения дополнительных полей ресурсов.
         /// </summary>
-        [Test(Description = "Чтение ресурсов с полями")]
+        [Test(Description = "Чтение ресурсов с полями"), Timeout(10000)]
         public void Test_ReadFields()
         {
             IAppFieldsRequest appFieldsReq = this.Repo.ResID.GetFieldRequest();
@@ -58,7 +58,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра запроса к дополнительным полям в метод Read.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям"), Timeout(10000)]
         public void Test_ReadErrorFields()
         {
             IAppFieldsRequest appFieldsReq = this.Repo.ResID.GetFieldRequest();
@@ -80,7 +80,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         ///  Проверяет чтение ресурсов с учетом фильтрующего запроса.
         /// </summary>
-        [Test(Description = "Чтение договоров с фильтрацией")]
+        [Test(Description = "Чтение договоров с фильтрацией"), Timeout(10000)]
         public void Test_ReadWhere()
         {
             int projectID = 181;
@@ -105,7 +105,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного значения поля в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации"), Timeout(10000)]
         public void Test_ReadErrorIDWhere()
         {
             ISQLWhere whereReq = this.Repo.ResID.GetWhereRequest();
@@ -127,7 +127,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение ресурсов с учетом сортирующего запроса.
         /// </summary>
-        [Test(Description = "Чтение договоров с сортировкой")]
+        [Test(Description = "Чтение договоров с сортировкой"), Timeout(10000)]
         public void Test_ReadOrder()
         {
             ISQLOrder orderReq = this.Repo.ResID.GetOrderRequest();
@@ -150,7 +150,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра в сортирующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки"), Timeout(10000)]
         public void Test_ReadErrorOrder()
         {
             ISQLOrder orderReq = this.Repo.ResID.GetOrderRequest();

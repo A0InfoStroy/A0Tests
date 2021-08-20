@@ -100,9 +100,9 @@
     <Compile Include="Integrate\Implement\Act\IA0Act.cs" />
     <Compile Include="Integrate\Implement\Act\IA0TreeNode.cs" />
     <Compile Include="Integrate\Implement\Act\NewAct.cs" />
+    <Compile Include="Integrate\Implement\Services\IA0ImplementActServices.cs" />
     <Compile Include="Integrate\Print\IA0Print.cs" />
     <Compile Include="Integrate\System\IA0SysTreeLevelList.cs" />
-    <Compile Include="settings\UserConfig.cs" />
     <Compile Include="smoke\App\IA0Admin.cs" />
     <Compile Include="smoke\App\IA0Log.cs" />
     <Compile Include="smoke\App\IConnection.cs" />
@@ -189,7 +189,6 @@
     <Compile Include="smoke\System\IA0SysOrganizationsDomain.cs" />
     <Compile Include="smoke\System\IA0SystemRepo.cs" />
     <Compile Include="smoke\System\INSI.cs" />
-    <Compile Include="util\FileStreamHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -203,13 +202,16 @@
     <Folder Include="Integrate\Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="settings\userConfig.xml" />
+    <ProjectReference Include="..\A0Tets.Config\A0Tets.Config.csproj">
+      <Project>{1d6173f2-1c51-4007-aa15-24a205e1b24c}</Project>
+      <Name>A0Tets.Config</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="A0Service">
       <Guid>{D244FFDD-2540-4CC4-825B-2AC22EA079C5}</Guid>
       <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
+      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>

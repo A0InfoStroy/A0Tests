@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность удаления ЛС.
         /// </summary>
-        [Test(Description = "Удаление")]
+        [Test(Description = "Удаление"), Timeout(20000)]
         public void Test_CreateDelete()
         {
             Guid lsGuid = this.LS.ID.GUID;
@@ -42,7 +42,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность редактирования данных ЛС.
         /// </summary>
-        [Test(Description = "Изменение/Загрузка")]
+        [Test(Description = "Изменение/Загрузка"), Timeout(20000)]
         public void Test_CreateUpdateReadDelete()
         {
             // Изменение
@@ -58,7 +58,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительский проект ЛС.
         /// </summary>
-        [Test(Description = "Проверка создания ЛС в проекте")]
+        [Test(Description = "Проверка создания ЛС в проекте"), Timeout(20000)]
         public void Test_LsInProject()
         {
             IA0ObjectIterator iterator = this.Repo.LSID.Read(this.Proj.ID.GUID, null, null, null);
@@ -68,7 +68,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительскую объектную смету ЛС после создания.
         /// </summary>
-        [Test(Description = "Проверка родительского узла ЛС после создания")]
+        [Test(Description = "Проверка родительского узла ЛС после создания"), Timeout(20000)]
         public void Test_LSIDParentAfterNew()
         {
             Assert.AreEqual(this.OS.ID.GUID, this.LS.ID.Parent.GUID);
@@ -77,7 +77,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительскую объектную смету ЛС после загрузки.
         /// </summary>
-        [Test(Description = "Проверка родительского узла ОС после загрузки")]
+        [Test(Description = "Проверка родительского узла ОС после загрузки"), Timeout(20000)]
         public void Test_OSIDParentAfterLoad()
         {
             this.LS = this.Repo.LS.Load2(this.LS.ID.GUID);
@@ -87,7 +87,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода загрузки ЛС по Id.
         /// </summary>
-        [Test(Description = "Проверка загрузки ЛС по ID")]
+        [Test(Description = "Проверка загрузки ЛС по ID"), Timeout(20000)]
         public void Test_LoadByID()
         {
             IA0LS ls = this.Repo.LS.Load(this.LS.ID);
@@ -97,7 +97,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода копирования ЛС.
         /// </summary>
-        [Test(Description = "Проверка копирования ЛС")]
+        [Test(Description = "Проверка копирования ЛС"), Timeout(20000)]
         public void Test_Copy()
         {
             IA0LS lsCopy = this.Repo.LS.Copy(this.LS.ID.GUID, this.OS.ID.GUID);
@@ -109,7 +109,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода перемещения ЛС.
         /// </summary>
-        [Test(Description = "Проверка перемещения ЛС")]
+        [Test(Description = "Проверка перемещения ЛС"), Timeout(20000)]
         public void Test_Move()
         {
             // Создание ОС в которую будет произведено перемещение.

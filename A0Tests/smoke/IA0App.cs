@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-03 12:29:48 +0300 (Вт, 03 ноя 2020) $
-// $Revision: 408 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0App
 
 namespace A0Tests.Smoke
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к информации о версии приложения.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Version()
         {
             IVersion version = this.App.Version;
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id процесса.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_ProcessID()
         {
             uint processID = this.App.ProcessID;
@@ -65,7 +65,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к текущей директории.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_CurrentDir()
         {
             string currentDir = this.App.CurrentDir;
@@ -76,7 +76,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к протоколу А0.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Log()
         {
             IA0LogDomain log = this.App.Log;
@@ -86,7 +86,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку видимости отладочной формы.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Visible()
         {
             bool visible = this.App.Visible;
@@ -95,7 +95,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к соединению с БД.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Connection()
         {
             IConnection connection = this.App.Connection;
@@ -105,7 +105,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к административной части.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Admin()
         {
             IA0Admin admin = this.App.Admin;
@@ -115,7 +115,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену объектов с атрибутами приложения.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Attributes()
         {
             IAppAttributesDomain attributes = this.App.Attributes;
@@ -125,7 +125,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к домену с расширениями атрибутов объектов.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_AttrExtension()
         {
             IAppAttrExtensionDomain attrExtension = this.App.AttrExtension;

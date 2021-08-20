@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-31 11:36:05 +0300 (Пт, 31 июл 2020) $
-// $Revision: 335 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты ИД комплекса
 
 namespace A0Tests.Integrate.Estimate
@@ -46,7 +46,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Guid комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_GUID()
         {
             Guid guid = this.ComplexID.GUID;
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ID()
         {
             int id = this.ComplexID.ID;
@@ -64,7 +64,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет тип сметного объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Kind()
         {
             EA0ObjectKind kind = this.ComplexID.Kind;
@@ -74,7 +74,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет родительский объект комплекса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Parent()
         {
             IA0ObjectID parent = this.ComplexID.Parent;
@@ -91,7 +91,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет Id узла родительского объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ParentNodeID()
         {
             int parentNode = this.ComplexID.ParentNodeID;

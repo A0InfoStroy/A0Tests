@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-29 16:25:27 +0300 (Ср, 29 июл 2020) $
-// $Revision: 327 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты дерева ОС
 
 namespace A0Tests.Integrate.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.OSTree.Attr["ProjID"];
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.OSTree.Attr["LGM.TZNorm"];
@@ -63,7 +63,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения головного узла дерева, его полей и операций.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Head()
         {
             IA0TreeNode head = this.OSTree.Head;

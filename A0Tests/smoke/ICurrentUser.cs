@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты ICurrentUser
 
 namespace A0Tests.Smoke
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет работоспособность чтения Id сессии.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_ACExitNotify()
         {
             string sessionID = this.CurrentUser.SessionID;

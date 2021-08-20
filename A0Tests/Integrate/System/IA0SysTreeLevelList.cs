@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-07 11:25:11 +0300 (Пт, 07 авг 2020) $
-// $Revision: 355 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты списка уровней дерева системных объектов
 
 namespace A0Tests.Integrate.Sys
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к количеству элементов списка.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Count()
         {
             int count = this.LevelList.Count;
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Sys
         /// <summary>
         /// Проверяет работоспособность добавления и удаления элементов списка по индексу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_AddDelete()
         {
             A0SysTreeLevel level = A0SysTreeLevel.Destination;

@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога ИД локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность чтения данных ЛС в родительском проекте.
         /// </summary>
-        [Test(Description = "Тестирование метода Read")]
+        [Test(Description = "Тестирование метода Read"), Timeout(20000)]
         public void Test_Read()
         {
             IA0ObjectIterator iterator = this.Repo.LSID.Read(this.Proj.ID.GUID, null, null, null);
@@ -31,7 +31,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение данных и дополнительных аттрибутов ЛС в родительском проекте.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с запросом к полям")]
+        [Test(Description = "Тестирование метода Read с запросом к полям"), Timeout(20000)]
         public void Test_ReadAppField()
         {
             IAppLSFieldsRequest appFieldsReq = this.Repo.LSID.GetFiledsRequest();
@@ -43,7 +43,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректоного параметра запроса к дополнительным полям в метод Read.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям"), Timeout(20000)]
         public void Test_ReadErrorFields()
         {
             IAppLSFieldsRequest appFieldsReq = this.Repo.LSID.GetFiledsRequest();
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение данных ЛС с учетом фильтрующего запроса.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с фильтрацией")]
+        [Test(Description = "Тестирование метода Read с фильтрацией"), Timeout(20000)]
         public void Test_ReadWhere()
         {
             ISQLWhere where = this.Repo.LSID.GetWhereRequest();
@@ -73,7 +73,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         ///  Проверяет обработку исключения при передаче некорректного значения поля в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации"), Timeout(20000)]
         public void Test_ReadErrorIDWhere()
         {
             ISQLWhere where = this.Repo.LSID.GetWhereRequest();
@@ -92,7 +92,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного наименования поля в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным полем для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным полем для фильтрации"), Timeout(20000)]
         public void Test_ReadErrorFieldWhere()
         {
             ISQLWhere where = this.Repo.LSID.GetWhereRequest();
@@ -104,7 +104,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение данных ЛС с учетом сортирующего запроса.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с сортировкой")]
+        [Test(Description = "Тестирование метода Read с сортировкой"), Timeout(20000)]
         public void Test_ReadOrder()
         {
             IA0LS secondLS = this.CreateLS("Вторая ЛС " + DateTime.Now.ToString());
@@ -130,7 +130,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра в сортирующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки"), Timeout(20000)]
         public void Test_ReadErrorOrder()
         {
             ISQLOrder order = this.Repo.LSID.GetOrderRequest();

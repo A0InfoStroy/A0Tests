@@ -1,6 +1,6 @@
-﻿// $Date: 2020-10-29 15:27:15 +0300 (Чт, 29 окт 2020) $
-// $Revision: 402 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога ИД акта смет
 
 namespace A0Tests.Integrate.Implement
@@ -22,7 +22,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет корректность чтения данных акта в родительском проекте.
         /// </summary>
-        [Test(Description = "Тестирование метода Read")]
+        [Test(Description = "Тестирование метода Read"), Timeout(20000)]
         public void Test_Read()
         {
             IA0ObjectIterator iterator = this.ImplRepo.ActID.Read(this.Proj.ID.GUID, null, null, null);
@@ -32,7 +32,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет чтение дополнительных аттрибутов акта в родительском проекте.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с запросом к полям")]
+        [Test(Description = "Тестирование метода Read с запросом к полям"), Timeout(20000)]
         public void Test_ReadAppField()
         {
             IAppLSFieldsRequest appFieldsReq = this.ImplRepo.ActID.GetFiledsRequest();
@@ -44,7 +44,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректоного параметра запроса к дополнительным полям в метод Read.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям"), Timeout(20000)]
         public void Test_ReadErrorFields()
         {
             IAppLSFieldsRequest appFieldsReq = this.ImplRepo.ActID.GetFiledsRequest();
@@ -56,7 +56,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет чтение данных акта с учетом фильтрующего запроса.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с фильтрацией")]
+        [Test(Description = "Тестирование метода Read с фильтрацией"), Timeout(20000)]
         public void Test_ReadWhere()
         {
             ISQLWhere where = this.ImplRepo.ActID.GetWhereRequest();
@@ -74,7 +74,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного значения поля в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации"), Timeout(20000)]
         public void Test_ReadErrorIDWhere()
         {
             ISQLWhere where = this.ImplRepo.ActID.GetWhereRequest();
@@ -93,7 +93,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного наименования поля в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным полем для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным полем для фильтрации"), Timeout(20000)]
         public void Test_ReadErrorFieldWhere()
         {
             ISQLWhere where = this.ImplRepo.ActID.GetWhereRequest();
@@ -105,7 +105,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет чтение данных акта с учетом сортирующего запроса.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с сортировкой")]
+        [Test(Description = "Тестирование метода Read с сортировкой"), Timeout(20000)]
         public void Test_ReadOrder()
         {
             IA0Act secondAct = this.CreateAct("Второй акт " + DateTime.Now.ToString());
@@ -123,7 +123,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра в сортирующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки"), Timeout(20000)]
         public void Test_ReadErrorOrder()
         {
             ISQLOrder order = this.ImplRepo.ActID.GetOrderRequest();
@@ -135,7 +135,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет корректность чтения данных акта и его дополнительных полей при наличии всех запросов.
         /// </summary>
-        [Test(Description = "Акты в проекте")]
+        [Test(Description = "Акты в проекте"), Timeout(20000)]
         public void Test_ReadWithAllArgs()
         {
             // TODO: GUID Проекта
@@ -197,7 +197,7 @@ namespace A0Tests.Integrate.Implement
             }
         }
 
-        [Test(Description = "Выборка актов по бизнес этапу")]
+        [Test(Description = "Выборка актов по бизнес этапу"), Timeout(20000)]
         public void Test_SelectActsByBussinesStage()
         {
             List<IA0BussinessStage> stages = new List<IA0BussinessStage>();

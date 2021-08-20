@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-29 16:25:27 +0300 (Ср, 29 июл 2020) $
-// $Revision: 327 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты каталога ИД объектных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет корректность чтения данных ОС в родительском проекте.
         /// </summary>
-        [Test(Description = "Тестирование метода Read")]
+        [Test(Description = "Тестирование метода Read"), Timeout(10000)]
         public void Test_Read()
         {
             IA0ObjectIterator iterator = this.Repo.OSID.Read(this.Proj.ID.GUID, null, null, null);
@@ -31,7 +31,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение дополнительных аттрибутов ОС в родительском проекте.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с запросом к полям")]
+        [Test(Description = "Тестирование метода Read с запросом к полям"), Timeout(10000)]
         public void Test_ReadAppField()
         {
             IAppLSFieldsRequest appFieldsReq = this.Repo.OSID.GetFiledsRequest();
@@ -43,7 +43,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректоного параметра запроса к дополнительным полям в метод Read.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром запроса к полям"), Timeout(10000)]
         public void Test_ReadErrorFields()
         {
             IAppLSFieldsRequest appFieldsReq = this.Repo.OSID.GetFiledsRequest();
@@ -55,7 +55,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение данных ОС с учетом фильтрующего запроса.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с фильтрацией")]
+        [Test(Description = "Тестирование метода Read с фильтрацией"), Timeout(10000)]
         public void Test_ReadWhere()
         {
             ISQLWhere where = this.Repo.OSID.GetWhereRequest();
@@ -73,7 +73,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного значения поля в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром ID для фильтрации"), Timeout(10000)]
         public void Test_ReadErrorIDWhere()
         {
             ISQLWhere where = this.Repo.OSID.GetWhereRequest();
@@ -92,7 +92,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного наименования поля в фильтрующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным полем для фильтрации")]
+        [Test(Description = "Тестирование метода Read с ошибочным полем для фильтрации"), Timeout(10000)]
         public void Test_ReadErrorFieldWhere()
         {
             ISQLWhere where = this.Repo.OSID.GetWhereRequest();
@@ -104,7 +104,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет чтение данных ОС с учетом сортирующего запроса.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с сортировкой")]
+        [Test(Description = "Тестирование метода Read с сортировкой"), Timeout(10000)]
         public void Test_ReadOrder()
         {
             IA0OS secondOS = this.CreateOS("Вторая ОС " + DateTime.Now.ToString());
@@ -130,7 +130,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет обработку исключения при передаче некорректного параметра в сортирующий запрос.
         /// </summary>
-        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки")]
+        [Test(Description = "Тестирование метода Read с ошибочным параметром сортировки"), Timeout(10000)]
         public void Test_ReadErrorOrder()
         {
             ISQLOrder order = this.Repo.OSID.GetOrderRequest();
@@ -177,7 +177,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления полей к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Add()
         {
             string field = "field";
@@ -191,7 +191,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность родительского узла запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Parent()
         {
             string field = "field";
@@ -208,7 +208,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к дереву запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Tree()
         {
             string field = "field";
@@ -219,7 +219,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность итогов запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Totals()
         {
             string field = "field";
@@ -275,7 +275,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет остутствие ошибок при обращении к строке запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Str()
         {
             string query = this.Where.Str;
@@ -284,7 +284,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления одного аргумента к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Add1()
         {
             string firstArg = "firstArg";
@@ -295,7 +295,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления двух аргументов к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Add2()
         {
             string firstArg = "firstArg";
@@ -308,7 +308,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления трех аргументов к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Add3()
         {
             string firstArg = "firstArg";
@@ -322,7 +322,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления AND к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_And()
         {
             this.WhereNode = this.WhereNode.And();
@@ -332,7 +332,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления AND и одного аргумента к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_And1()
         {
             string firstArg = "firstArg";
@@ -344,7 +344,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления AND и двух аргументов к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_And2()
         {
             string firstArg = "firstArg";
@@ -357,7 +357,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления AND и трех аргументов к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_And3()
         {
             string firstArg = "firstArg";
@@ -371,7 +371,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления закрывающей скобки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_CloseBracket()
         {
             this.WhereNode = this.WhereNode.CloseBracket();
@@ -381,7 +381,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения количества узлов запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Count()
         {
             string firstArg = "firstArg";
@@ -393,7 +393,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения узла запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Item()
         {
             string firstArg = "firstArg";
@@ -405,7 +405,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления открывающей скобки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OpenBracket()
         {
             this.WhereNode = this.WhereNode.OpenBracket();
@@ -415,7 +415,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления OR к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Or()
         {
             this.WhereNode = this.WhereNode.Or();
@@ -425,7 +425,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления OR и одного аргумента к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Or1()
         {
             string firstArg = "firstArg";
@@ -437,7 +437,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления OR и двух аргументов к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Or2()
         {
             string firstArg = "firstArg";
@@ -450,7 +450,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность метода добавления OR и трех аргументов к запросу.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Or3()
         {
             string firstArg = "firstArg";
@@ -464,7 +464,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения строки узла запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_NodeStr()
         {
             string firstArg = "firstArg";
@@ -511,7 +511,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность добавления критериев сортировки и очистки запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_AddClear()
         {
             string orderArg = "orderArg";
@@ -528,7 +528,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность удаления критериев сортировки из списка запроса.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Delete()
         {
             string orderArg = "orderArg";

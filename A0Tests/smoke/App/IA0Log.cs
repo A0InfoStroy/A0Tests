@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-05 11:40:37 +0300 (Чт, 05 ноя 2020) $
-// $Revision: 410 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0Log
 
 namespace A0Tests.Smoke.App
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку ведения записи лога в файл.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Active()
         {
             bool active = this.LogDomain.Active;
@@ -54,7 +54,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к событию протокола.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Event()
         {
             IA0LogEvent logEvent = this.LogDomain.Event;
@@ -63,7 +63,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения имени файла протокола.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_FileName()
         {
             string fileName = this.LogDomain.FileName;
@@ -74,7 +74,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения протокола.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Log()
         {
             IA0Log log = this.LogDomain.Log;
@@ -84,7 +84,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения и записи включения/выключения трассировки.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_TraceMessages()
         {
             bool traceMessages = this.LogDomain.TraceMessages;
@@ -132,7 +132,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода добавления в протокол записи об ошибке.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Error()
         {
             this.Log.Error(null);
@@ -141,7 +141,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода добавления в протокол записи об исключении.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_ExceptLog()
         {
             this.Log.ExceptLog(null);
@@ -150,7 +150,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода добавления в протокол записи.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Message()
         {
             this.Log.Message(null);
@@ -159,7 +159,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода добавления в протокол записи о трассировке.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Trace()
         {
             this.Log.Trace(null);
@@ -168,7 +168,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода добавления в протокол записи о предупреждении.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Warning()
         {
             this.Log.Warning(null);

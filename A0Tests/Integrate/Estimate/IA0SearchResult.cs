@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-31 11:37:52 +0300 (Пт, 31 июл 2020) $
-// $Revision: 337 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты результа поиска
 
 namespace A0Tests.Integrate.Estimate
@@ -47,7 +47,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения количества элементов списка результатов поиска.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Count()
         {
             int count = this.SearchResult.Count;
@@ -57,7 +57,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения данных списка с результатами поиска.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Next()
         {
             for (int i = 0; i < this.SearchResult.Count; i++)

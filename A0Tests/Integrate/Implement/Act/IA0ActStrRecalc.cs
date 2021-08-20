@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты пересчета строки Акта
 
 namespace A0Tests.Integrate.Implement
@@ -63,7 +63,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к типу пересчета.
         /// </summary>
-        [Test(Description = "Тест Kind")]
+        [Test(Description = "Тест Kind"), Timeout(20000)]
         public void Test_Kind()
         {
             EA0LSStrRecalcKind kind = this.StrRecalc.Kind;
@@ -72,7 +72,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к наименованию пересчета.
         /// </summary>
-        [Test(Description = "Тест Name")]
+        [Test(Description = "Тест Name"), Timeout(20000)]
         public void Test_Name()
         {
             string name = this.StrRecalc.Name;
@@ -97,7 +97,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id таблицы.
         /// </summary>
-        [Test(Description = "Тест TableID")]
+        [Test(Description = "Тест TableID"), Timeout(20000)]
         public void Test_TableID()
         {
             int tableID = this.StrRecalc.TableID;
@@ -106,7 +106,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id строки таблицы.
         /// </summary>
-        [Test(Description = "Тест TableRow")]
+        [Test(Description = "Тест TableRow"), Timeout(20000)]
         public void Test_TableRow()
         {
             int tableRow = this.StrRecalc.TableRow;
@@ -115,7 +115,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Только базовые итоги".
         /// </summary>
-        [Test(Description = "Тест BaseTotals")]
+        [Test(Description = "Тест BaseTotals"), Timeout(20000)]
         public void Test_BaseTotals()
         {
             bool baseTotals = this.StrRecalc.BaseTotals;
@@ -124,7 +124,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Только стандартные итоги".
         /// </summary>
-        [Test(Description = "Тест StandardTotals")]
+        [Test(Description = "Тест StandardTotals"), Timeout(20000)]
         public void Test_StandardTotals()
         {
             bool standardTotals = this.StrRecalc.StandardTotals;
@@ -133,7 +133,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку составного индекса.
         /// </summary>
-        [Test(Description = "Тест CompositeIndex")]
+        [Test(Description = "Тест CompositeIndex"), Timeout(20000)]
         public void Test_CompositeIndex()
         {
             bool standardTotals = this.StrRecalc.CompositeIndex;
@@ -142,7 +142,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку операции деления.
         /// </summary>
-        [Test(Description = "Тест Divide")]
+        [Test(Description = "Тест Divide"), Timeout(20000)]
         public void Test_Divide()
         {
             bool divide = this.StrRecalc.Divide;
@@ -151,7 +151,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Применить к нормам ТЗР".
         /// </summary>
-        [Test(Description = "Тест ChangeTZOR")]
+        [Test(Description = "Тест ChangeTZOR"), Timeout(20000)]
         public void Test_ChangeTZOR()
         {
             bool divide = this.StrRecalc.ChangeTZOR;
@@ -160,7 +160,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Применить к нормам ЭМ".
         /// </summary>
-        [Test(Description = "Тест ChangeMashMech")]
+        [Test(Description = "Тест ChangeMashMech"), Timeout(20000)]
         public void Test_ChangeMashMech()
         {
             bool changeMashMech = this.StrRecalc.ChangeMashMech;
@@ -169,7 +169,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Применить к нормам ТЗМ".
         /// </summary>
-        [Test(Description = "Тест ChangeTZM")]
+        [Test(Description = "Тест ChangeTZM"), Timeout(20000)]
         public void Test_ChangeTZM()
         {
             bool changeTZM = this.StrRecalc.ChangeTZM;
@@ -178,7 +178,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Применить к нормам МЗ".
         /// </summary>
-        [Test(Description = "Тест ChangeMaterial")]
+        [Test(Description = "Тест ChangeMaterial"), Timeout(20000)]
         public void Test_ChangeMaterial()
         {
             bool changeMaterial = this.StrRecalc.ChangeMaterial;
@@ -187,7 +187,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Применить к нормам всех ресурсов".
         /// </summary>
-        [Test(Description = "Тест ChangeAllResources")]
+        [Test(Description = "Тест ChangeAllResources"), Timeout(20000)]
         public void Test_ChangeAllResources()
         {
             bool changeAllResources = this.StrRecalc.ChangeAllResources;
@@ -196,7 +196,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ОЗП.
         /// </summary>
-        [Test(Description = "Тест ToOZP")]
+        [Test(Description = "Тест ToOZP"), Timeout(20000)]
         public void Test_ToOZP()
         {
             double toOZP = this.StrRecalc.ToOZP;
@@ -205,7 +205,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ЭМ.
         /// </summary>
-        [Test(Description = "Тест ToEM")]
+        [Test(Description = "Тест ToEM"), Timeout(20000)]
         public void Test_ToEM()
         {
             double toEM = this.StrRecalc.ToEM;
@@ -214,7 +214,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ЗПМ.
         /// </summary>
-        [Test(Description = "Тест ToZPM")]
+        [Test(Description = "Тест ToZPM"), Timeout(20000)]
         public void Test_ToZPM()
         {
             double toZPM = this.StrRecalc.ToZPM;
@@ -223,7 +223,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для МЗ.
         /// </summary>
-        [Test(Description = "Тест ToMZ")]
+        [Test(Description = "Тест ToMZ"), Timeout(20000)]
         public void Test_ToMZ()
         {
             double toMZ = this.StrRecalc.ToMZ;
@@ -232,7 +232,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к единому индексу.
         /// </summary>
-        [Test(Description = "Тест Uni")]
+        [Test(Description = "Тест Uni"), Timeout(20000)]
         public void Test_Uni()
         {
             double uni = this.StrRecalc.Uni;
@@ -241,7 +241,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "К 'чистой' ЭМ".
         /// </summary>
-        [Test(Description = "Тест UsePureEM")]
+        [Test(Description = "Тест UsePureEM"), Timeout(20000)]
         public void Test_UsePureEM()
         {
             bool usePureEM = this.StrRecalc.UsePureEM;
@@ -265,7 +265,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Только базовые итоги".
         /// </summary>
-        [Test(Description = "Тест BaseTotals")]
+        [Test(Description = "Тест BaseTotals"), Timeout(20000)]
         public void Test_BaseTotals()
         {
             bool baseTotals = this.StrRecalc.BaseTotals;
@@ -274,7 +274,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Только основные итоги".
         /// </summary>
-        [Test(Description = "Тест StandardTotals")]
+        [Test(Description = "Тест StandardTotals"), Timeout(20000)]
         public void Test_StandardTotals()
         {
             bool standardTotals = this.StrRecalc.StandardTotals;
@@ -283,7 +283,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку составного индекса.
         /// </summary>
-        [Test(Description = "Тест CompositeIndex")]
+        [Test(Description = "Тест CompositeIndex"), Timeout(20000)]
         public void Test_CompositeIndex()
         {
             bool compositeIndex = this.StrRecalc.CompositeIndex;
@@ -292,7 +292,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку операции деления.
         /// </summary>
-        [Test(Description = "Тест Divide")]
+        [Test(Description = "Тест Divide"), Timeout(20000)]
         public void Test_Divide()
         {
             bool divide = this.StrRecalc.Divide;
@@ -301,7 +301,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ОЗП.
         /// </summary>
-        [Test(Description = "Тест ToOZP")]
+        [Test(Description = "Тест ToOZP"), Timeout(20000)]
         public void Test_ToOZP()
         {
             double toOZP = this.StrRecalc.ToOZP;
@@ -310,7 +310,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ЭМ.
         /// </summary>
-        [Test(Description = "Тест ToEM")]
+        [Test(Description = "Тест ToEM"), Timeout(20000)]
         public void Test_ToEM()
         {
             double toEM = this.StrRecalc.ToEM;
@@ -319,7 +319,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ЗПМ.
         /// </summary>
-        [Test(Description = "Тест ToZPM")]
+        [Test(Description = "Тест ToZPM"), Timeout(20000)]
         public void Test_ToZPM()
         {
             double toZPM = this.StrRecalc.ToZPM;
@@ -328,7 +328,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для МЗ.
         /// </summary>
-        [Test(Description = "Тест ToMZ")]
+        [Test(Description = "Тест ToMZ"), Timeout(20000)]
         public void Test_ToMZ()
         {
             double toMZ = this.StrRecalc.ToMZ;
@@ -337,7 +337,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к единому индексу.
         /// </summary>
-        [Test(Description = "Тест Uni")]
+        [Test(Description = "Тест Uni"), Timeout(20000)]
         public void Test_Uni()
         {
             double uni = this.StrRecalc.Uni;
@@ -346,7 +346,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "К 'чистой' ЭМ".
         /// </summary>
-        [Test(Description = "Тест UsePureEM")]
+        [Test(Description = "Тест UsePureEM"), Timeout(20000)]
         public void Test_UsePureEM()
         {
             bool usePureEM = this.StrRecalc.UsePureEM;
@@ -355,7 +355,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к Id справочника индексов.
         /// </summary>
-        [Test(Description = "Тест IndexRefID")]
+        [Test(Description = "Тест IndexRefID"), Timeout(20000)]
         public void Test_IndexRefID()
         {
             int indexRefID = this.StrRecalc.IndexRefID;
@@ -364,7 +364,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к шифру справочника цен.
         /// </summary>
-        [Test(Description = "Тест IndexRefMark")]
+        [Test(Description = "Тест IndexRefMark"), Timeout(20000)]
         public void Test_IndexRefMark()
         {
             string indexRefMark = this.StrRecalc.IndexRefMark;
@@ -373,7 +373,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к наименования справочника цен.
         /// </summary>
-        [Test(Description = "Тест IndexRefName")]
+        [Test(Description = "Тест IndexRefName"), Timeout(20000)]
         public void Test_IndexRefName()
         {
             string indexRefName = this.StrRecalc.IndexRefName;
@@ -409,7 +409,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ЭМ.
         /// </summary>
-        [Test(Description = "Тест ToEM")]
+        [Test(Description = "Тест ToEM"), Timeout(20000)]
         public void Test_ToEM()
         {
             double toEM = this.StrRecalc.ToEM;
@@ -418,7 +418,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ЗПМ.
         /// </summary>
-        [Test(Description = "Тест ToZPM")]
+        [Test(Description = "Тест ToZPM"), Timeout(20000)]
         public void Test_ToZPM()
         {
             double toZPM = this.StrRecalc.ToZPM;
@@ -427,7 +427,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для МЗ из РП.
         /// </summary>
-        [Test(Description = "Тест ToMZFromRP")]
+        [Test(Description = "Тест ToMZFromRP"), Timeout(20000)]
         public void Test_ToMZFromRP()
         {
             double toMZFromRP = this.StrRecalc.ToMZFromRP;
@@ -436,7 +436,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для МЗ из УВР.
         /// </summary>
-        [Test(Description = "Тест ToMZFromUVR")]
+        [Test(Description = "Тест ToMZFromUVR"), Timeout(20000)]
         public void Test_ToMZFromUVR()
         {
             double toMZFromUVR = this.StrRecalc.ToMZFromUVR;
@@ -445,7 +445,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для оборудования.
         /// </summary>
-        [Test(Description = "Тест ToEq")]
+        [Test(Description = "Тест ToEq"), Timeout(20000)]
         public void Test_ToEq()
         {
             double toEq = this.StrRecalc.ToEq;
@@ -454,7 +454,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ОМ.
         /// </summary>
-        [Test(Description = "Тест ToOM")]
+        [Test(Description = "Тест ToOM"), Timeout(20000)]
         public void ToOM()
         {
             double toOM = this.StrRecalc.ToOM;
@@ -463,7 +463,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу для ТР.
         /// </summary>
-        [Test(Description = "Тест ToTr")]
+        [Test(Description = "Тест ToTr"), Timeout(20000)]
         public void ToTr()
         {
             double toTr = this.StrRecalc.ToTr;
@@ -490,7 +490,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Только базовые итоги".
         /// </summary>
-        [Test(Description = "Тест BaseTotals")]
+        [Test(Description = "Тест BaseTotals"), Timeout(20000)]
         public void Test_BaseTotals()
         {
             bool baseTotals = this.StrRecalc.BaseTotals;
@@ -499,7 +499,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку "Только основные итоги".
         /// </summary>
-        [Test(Description = "Тест StandardTotals")]
+        [Test(Description = "Тест StandardTotals"), Timeout(20000)]
         public void Test_StandardTotals()
         {
             bool standardTotals = this.StrRecalc.StandardTotals;
@@ -508,7 +508,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к признаку операции деления.
         /// </summary>
-        [Test(Description = "Тест Divide")]
+        [Test(Description = "Тест Divide"), Timeout(20000)]
         public void Test_Divide()
         {
             bool divide = this.StrRecalc.Divide;
@@ -517,7 +517,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу к НР.
         /// </summary>
-        [Test(Description = "Тест ToNR")]
+        [Test(Description = "Тест ToNR"), Timeout(20000)]
         public void Test_ToNR()
         {
             double toNR = this.StrRecalc.ToNR;
@@ -526,7 +526,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к индексу к СП.
         /// </summary>
-        [Test(Description = "Тест ToSP")]
+        [Test(Description = "Тест ToSP"), Timeout(20000)]
         public void Test_ToSP()
         {
             double toSP = this.StrRecalc.ToSP;

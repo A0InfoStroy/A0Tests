@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты итогов ЛС
 
 namespace A0Tests.Integrate.Estimate
@@ -49,7 +49,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.LSTotal.Attr["ProjID"];
@@ -58,7 +58,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.LSTotal.Attr["LGM.TZNorm"];
@@ -67,7 +67,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Строительные".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Construction()
         {
             decimal construction = this.LSTotal.Construction;
@@ -76,7 +76,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Оборудование".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Equipment()
         {
             decimal equipment = this.LSTotal.Equipment;
@@ -85,7 +85,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Монтажные".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Mounting()
         {
             decimal mounting = this.LSTotal.Mounting;
@@ -94,7 +94,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет работоспособность чтения наименования итогов ЛС.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Name()
         {
             string name = this.LSTotal.Name;
@@ -104,7 +104,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Прочие".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Other()
         {
             decimal name = this.LSTotal.Other;
@@ -113,7 +113,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к графе "Всего".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Total()
         {
             decimal name = this.LSTotal.Total;

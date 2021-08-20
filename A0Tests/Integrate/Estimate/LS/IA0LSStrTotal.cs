@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты итогов строки локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому атрибуту.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.LSStrTotal.Attr["ProjID"];
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к расширенному атрибуту.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             dynamic attr = this.LSStrTotal.Attr["LGM.TZNorm"];
@@ -63,7 +63,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "3 Эксплуатация машин".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseEM()
         {
             decimal baseEM = this.LSStrTotal.BaseEM;
@@ -72,7 +72,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому ФОТ.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseFot()
         {
             decimal baseFot = this.LSStrTotal.BaseFot;
@@ -81,7 +81,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "5 Материальные затраты".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseMZ()
         {
             decimal baseMZ = this.LSStrTotal.BaseMZ;
@@ -90,7 +90,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "7 Накладные расходы".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseNR()
         {
             decimal baseNR = this.LSStrTotal.BaseNR;
@@ -99,7 +99,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "2 Основная зарплата".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseOZP()
         {
             decimal baseOZP = this.LSStrTotal.BaseOZP;
@@ -108,7 +108,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "1 Прямые затраты".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BasePZ()
         {
             decimal basePZ = this.LSStrTotal.BasePZ;
@@ -117,7 +117,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "8 Сметная прибыль".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseSP()
         {
             decimal baseSP = this.LSStrTotal.BaseSP;
@@ -126,7 +126,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "28 Сметная стоимость оборудования".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseSSob()
         {
             decimal baseSSob = this.LSStrTotal.BaseSSob;
@@ -135,7 +135,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "45 Возврат материалов".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseVM()
         {
             decimal baseVM = this.LSStrTotal.BaseVM;
@@ -144,7 +144,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "56 Зимнее удорожание".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseWinterRise()
         {
             decimal baseWinterRise = this.LSStrTotal.BaseWinterRise;
@@ -153,7 +153,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "4 в т.ч. з/п машинистов".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseZPM()
         {
             decimal baseZPM = this.LSStrTotal.BaseZPM;
@@ -162,7 +162,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к базовому "13 Сметная ЗП в НР".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_BaseZPnr()
         {
             decimal baseZPnr = this.LSStrTotal.BaseZPnr;
@@ -171,7 +171,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "37 Другие затраты по оборудованию".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_DRZob()
         {
             decimal drZob = this.LSStrTotal.DRZob;
@@ -180,7 +180,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "3 Эксплуатация машин".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EM()
         {
             decimal em = this.LSStrTotal.EM;
@@ -189,7 +189,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "62 Сторонняя ЭМ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EMOutside()
         {
             decimal emOutside = this.LSStrTotal.EMOutside;
@@ -198,7 +198,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "22 Прочие машины".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EMpr()
         {
             decimal empr = this.LSStrTotal.EMpr;
@@ -207,7 +207,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "18 Эксплуатация машин по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EMts()
         {
             decimal emts = this.LSStrTotal.EMts;
@@ -216,7 +216,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "19 Эксплуатация машин ВПТ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EMvt()
         {
             decimal emvt = this.LSStrTotal.EMvt;
@@ -225,7 +225,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "65 Сторонее оборудование".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EquipOutside()
         {
             decimal equipOutside = this.LSStrTotal.EquipOutside;
@@ -234,7 +234,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "25 Материалы ЭСН по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ESNts()
         {
             decimal esNts = this.LSStrTotal.ESNts;
@@ -243,7 +243,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "36 Работы-затраты".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Expense()
         {
             decimal expense = this.LSStrTotal.Expense;
@@ -252,7 +252,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к ФОТ.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_FOT()
         {
             decimal fot = this.LSStrTotal.FOT;
@@ -261,7 +261,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "35 Комплектация".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Kob()
         {
             decimal kob = this.LSStrTotal.Kob;
@@ -270,7 +270,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "20 Косвенные расходы".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_KR()
         {
             decimal kr = this.LSStrTotal.KR;
@@ -279,7 +279,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "21 Количество машин ВПТ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MSHvt()
         {
             decimal msHvt = this.LSStrTotal.MSHvt;
@@ -288,7 +288,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "5 Материальные затраты".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MZ()
         {
             decimal mz = this.LSStrTotal.MZ;
@@ -297,7 +297,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "61 Сторонние МЗ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MZOutside()
         {
             decimal mzOutside = this.LSStrTotal.MZOutside;
@@ -306,7 +306,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "27 Прочие материалы".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MZpr()
         {
             decimal mzpr = this.LSStrTotal.MZpr;
@@ -315,7 +315,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "24 Материалы по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MZts()
         {
             decimal mzts = this.LSStrTotal.MZts;
@@ -324,7 +324,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "7 Накладные расходы".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_NR()
         {
             decimal nr = this.LSStrTotal.NR;
@@ -333,7 +333,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "29 Отпускная стоимость оборудования".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OSob()
         {
             decimal oSob = this.LSStrTotal.OSob;
@@ -342,7 +342,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "30 Оборудование по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Ots()
         {
             decimal ots = this.LSStrTotal.Ots;
@@ -351,7 +351,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "2 Основная зарплата".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OZP()
         {
             decimal ozp = this.LSStrTotal.OZP;
@@ -360,7 +360,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "64 Сторонняя ОЗП".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OZPOutside()
         {
             decimal ozpOutside = this.LSStrTotal.OZPOutside;
@@ -369,7 +369,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "14 ОЗП по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OZPts()
         {
             decimal ozpts = this.LSStrTotal.OZPts;
@@ -378,7 +378,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "16 ЗП рабочих ВПТ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OZPvt()
         {
             decimal ozpvt = this.LSStrTotal.OZPvt;
@@ -387,7 +387,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "1 Прямые затраты".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_PZ()
         {
             decimal pz = this.LSStrTotal.PZ;
@@ -396,7 +396,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "23 Неучтенные материалы".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_RP()
         {
             decimal rp = this.LSStrTotal.RP;
@@ -405,7 +405,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "26 Материалы РП по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_RPts()
         {
             decimal rpts = this.LSStrTotal.RPts;
@@ -414,7 +414,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "8 Сметная прибыль".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_SP()
         {
             decimal sp = this.LSStrTotal.SP;
@@ -423,7 +423,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "28 Сметная стоимость оборудования".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_SSob()
         {
             decimal ssob = this.LSStrTotal.SSob;
@@ -432,7 +432,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "33 Транспортировка оборудования".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TRob()
         {
             decimal tRob = this.LSStrTotal.TRob;
@@ -441,7 +441,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "32 Тара и упаковка".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TUob()
         {
             decimal tUob = this.LSStrTotal.TUob;
@@ -450,7 +450,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "Затраты труда".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TZ()
         {
             decimal tz = this.LSStrTotal.TZ;
@@ -459,7 +459,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "41 Трудозатраты машинистов".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TZM()
         {
             double tzm = this.LSStrTotal.TZM;
@@ -468,7 +468,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "43 Трудозатраты машинистов ВПТ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TZMvt()
         {
             double tzMvt = this.LSStrTotal.TZMvt;
@@ -477,7 +477,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "44 Нормативная трудоемкость в НР".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TZnr()
         {
             double tznr = this.LSStrTotal.TZnr;
@@ -486,7 +486,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "40 Трудозатраты основных рабочих".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TZO()
         {
             double tzo = this.LSStrTotal.TZO;
@@ -495,7 +495,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "42 Трудозатраты рабочих ВПТ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TZOvt()
         {
             double tzOvt = this.LSStrTotal.TZOvt;
@@ -504,7 +504,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "34 Заготов.-складские расходы".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TZRob()
         {
             decimal tzRob = this.LSStrTotal.TZRob;
@@ -513,7 +513,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "38 Услуги посредников".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_UPob()
         {
             decimal uPob = this.LSStrTotal.UPob;
@@ -522,7 +522,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         ///  Проверяет отстутствие ошибок при обращении к "45 Возврат материалов".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VM()
         {
             decimal vm = this.LSStrTotal.VM;
@@ -531,7 +531,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "46 Возврат материалов по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VMts()
         {
             decimal vmts = this.LSStrTotal.VMts;
@@ -540,7 +540,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "47 Возврат оборудования".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VO()
         {
             decimal vo = this.LSStrTotal.VO;
@@ -549,7 +549,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "48 Возврат оборудования по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VOts()
         {
             decimal vots = this.LSStrTotal.VOts;
@@ -558,7 +558,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "56 Зимнее удорожание".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_WinterRise()
         {
             decimal winterRise = this.LSStrTotal.WinterRise;
@@ -567,7 +567,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "4 в т.ч. зарплата машинистов".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPM()
         {
             decimal zpm = this.LSStrTotal.ZPM;
@@ -576,7 +576,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "63 Сторонняя ЗПМ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPMOutside()
         {
             decimal zpmOutside = this.LSStrTotal.ZPMOutside;
@@ -585,7 +585,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "15 ЗП машинистов по справочникам".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPMts()
         {
             decimal zpmts = this.LSStrTotal.ZPMts;
@@ -594,7 +594,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "17 ЗП машинистов ВПТ".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPMvt()
         {
             decimal vt = this.LSStrTotal.ZPMvt;
@@ -603,7 +603,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "13 Сметная ЗП в НР".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPnr()
         {
             decimal zPnr = this.LSStrTotal.ZPnr;
@@ -612,7 +612,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "49 Пуск и регулировка".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPR()
         {
             decimal zpr = this.LSStrTotal.ZPR;
@@ -621,7 +621,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отстутствие ошибок при обращении к "31 Запчасти".
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZTCHob()
         {
             decimal ztcHob = this.LSStrTotal.ZTCHob;

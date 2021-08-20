@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 
 namespace A0Tests.Integrate.Implement
 {
@@ -21,7 +21,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода удаления текстовой строки акта по Guid.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_DeleteString()
         {
             // Терминальный узел для создания строки.
@@ -41,7 +41,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода удаления текстовых строк акта по индексу.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_DeleteStrings()
         {
             // Терминальный узел для создания строки.
@@ -69,7 +69,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода создания текстовых строк и их позиций в списке.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_CreateStr()
         {
             // Терминальный узел для создания строки.
@@ -116,7 +116,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность редактирования типа учета ресурсов строки акта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ResAccounting()
         {
             // Терминальный узел для создания строки
@@ -161,7 +161,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность концевика акта.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Prog()
         {
             IA0ProgEstimate prog = this.Act.Prog;
@@ -176,7 +176,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода пересчета.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Recalc()
         {
             this.Act.Recalc();

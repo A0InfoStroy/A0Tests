@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-05 10:52:39 +0300 (Ср, 05 авг 2020) $
-// $Revision: 343 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты ресурсов строки
 
 namespace A0Tests.Integrate.Implement
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет наличие элементов в списке ресурсов.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Count()
         {
             Assert.Greater(this.Resources.Count, 0);
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность чтения элементов в списке ресурсов.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_Items()
         {
             for (var i = 0; i < this.Resources.Count; ++i)
@@ -67,7 +67,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверка работоспособности метода создания ресурса по обоснованию.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_CreateByBasing()
         {
             string basing = "ССЦ01-101-1865";

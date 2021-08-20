@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IAppAttributesDomain
 
 namespace A0Tests.Smoke.App
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу объектов с атрибутами.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Repo()
         {
             Assert.NotNull(this.Domain.Repo);
@@ -89,7 +89,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода чтения каталога объектов с атрибутами.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Read()
         {
             Assert.NotNull(this.Repo.Read());
@@ -98,7 +98,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет отсутствие ошибок при вызове метода получения описателя объекта по имени объекта.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Get()
         {
             Assert.NotNull(this.Repo.Get("A0ProjTitle"));

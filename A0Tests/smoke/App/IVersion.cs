@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IVersion
 
 namespace A0Tests.Smoke.App
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения версии продукта.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_ProductVersion()
         {
             string productVersion = this.Version.ProductVersion;
@@ -56,7 +56,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения версии БД.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_DBVersion()
         {
             string dbVersion = this.Version.DBVersion;
@@ -67,7 +67,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения даты издания системы.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_EditionDate()
         {
             string editionDate = this.Version.EditionDate;
@@ -78,7 +78,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения идентификатора лицензии.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_LicenseID()
         {
             string licenseID = this.Version.LicenseID;
@@ -89,7 +89,7 @@ namespace A0Tests.Smoke.App
         /// <summary>
         /// Проверяет работоспособность чтения версии API.
         /// </summary>
-        [Test]
+        [Test, Timeout(15000)]
         public void Test_Version()
         {
             string version = this.Version.Version;

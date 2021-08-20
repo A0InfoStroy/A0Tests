@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты разъединения
 
 namespace A0Tests.Smoke
@@ -26,7 +26,7 @@ namespace A0Tests.Smoke
             base.SetUp();
 
             // Установка соединения с БД А0.
-            EConnectReturnCode returnCode = this.A0.Connect3(this.ConnStr, this.UserName, this.Password);
+            EConnectReturnCode returnCode = this.A0.Connect3(this.Config.ConnectionString, this.Config.UserName, this.Config.Password);
             if (returnCode != EConnectReturnCode.crcSuccess)
             {
                 throw new Exception(string.Format("Не могу установить соединение с БД А0. Код возврата {0}", returnCode));
@@ -36,7 +36,7 @@ namespace A0Tests.Smoke
         /// <summary>
         /// Проверяет работоспособность метода разъединения с БД А0.
         /// </summary>
-        [Test(Description = "Проверка разъединения")]
+        [Test(Description = "Проверка разъединения"), Timeout(15000)]
         public void TestDisconnect()
         {
             this.A0.Disconnect();

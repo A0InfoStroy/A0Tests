@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-28 13:37:37 +0300 (Вт, 28 июл 2020) $
-// $Revision: 321 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты расценки строки локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -45,7 +45,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к базовому атрибуту расценки.
         /// </summary>
-        [Test(Description = "Тест базового атрибута")]
+        [Test(Description = "Тест базового атрибута"), Timeout(10000)]
         public void Test_AttrCore()
         {
             dynamic attr = this.StrBasing.Attr["ProjID"];
@@ -54,7 +54,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к расширенному атрибуту расценки.
         /// </summary>
-        [Test(Description = "Тест расширенного атрибута")]
+        [Test(Description = "Тест расширенного атрибута"), Timeout(10000)]
         public void Test_AttrExt()
         {
             // dynamic V = m_StrBasing.Attr["LGM.TZNorm"];
@@ -63,7 +63,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к обоснованию расценки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Basing()
         {
             string basing = this.StrBasing.Basing;
@@ -72,7 +72,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к наименованию расценки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_Name()
         {
             string name = this.StrBasing.Name;
@@ -81,7 +81,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к району/подрайону.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_RegSimb()
         {
             string regSimb = this.StrBasing.RegSimb;
@@ -90,7 +90,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к виду учета транспортировки.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_TransAcntKind()
         {
             ETransAcntKind transAcntKind = this.StrBasing.TransAcntKind;
@@ -99,7 +99,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к составу работ.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_WorkList()
         {
             string workList = this.StrBasing.WorkList;
@@ -108,7 +108,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к эксплуатации машин (ЭМ).
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EM()
         {
             decimal em = this.StrBasing.EM;
@@ -117,7 +117,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ЭМ с поправкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EM_Corr()
         {
             decimal emCorr = this.StrBasing.EM_Corr;
@@ -126,7 +126,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ЭМ прямой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_EM_Direct()
         {
             decimal emDirect = this.StrBasing.EM_Direct;
@@ -135,7 +135,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к основной заработной плате (ОЗП).
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OZP()
         {
             decimal ozp = this.StrBasing.OZP;
@@ -144,7 +144,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ОЗП с поправкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OZP_Corr()
         {
             decimal ozpCorr = this.StrBasing.OZP_Corr;
@@ -153,7 +153,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ОЗП прямой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_OZP_Direct()
         {
             decimal ozpDirect = this.StrBasing.OZP_Direct;
@@ -162,7 +162,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к прямым затратам (ПЗ).
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_PZ()
         {
             decimal pz = this.StrBasing.PZ;
@@ -171,7 +171,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ПЗ с поправкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_PZ_Corr()
         {
             decimal pzCorr = this.StrBasing.PZ_Corr;
@@ -180,7 +180,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ПЗ прямым.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_PZ_Direct()
         {
             decimal pzDirect = this.StrBasing.PZ_Direct;
@@ -189,7 +189,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к возврату материалов (ВМ).
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VM()
         {
             decimal vm = this.StrBasing.VM;
@@ -198,7 +198,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ВМ с поправкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VM_Corr()
         {
             decimal vmCorr = this.StrBasing.VM_Corr;
@@ -207,7 +207,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ВМ прямым.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_VM_Direct()
         {
             decimal vmDirect = this.StrBasing.VM_Direct;
@@ -216,7 +216,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к "в т.ч. ЗП машинистов" (ЗПМ).
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPM()
         {
             decimal zpm = this.StrBasing.ZPM;
@@ -225,7 +225,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ЗПМ с поправкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPM_Corr()
         {
             decimal zpmCorr = this.StrBasing.ZPM_Corr;
@@ -234,7 +234,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к ЗПМ прямой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_ZPM_Direct()
         {
             decimal zpmDirect = this.StrBasing.ZPM_Direct;
@@ -243,7 +243,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к материальным затратам (МЗ).
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MZ()
         {
             decimal mz = this.StrBasing.MZ;
@@ -252,7 +252,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к МЗ с поправкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MZ_Corr()
         {
             decimal mzCorr = this.StrBasing.MZ_Corr;
@@ -261,7 +261,7 @@ namespace A0Tests.Integrate.Estimate
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к МЗ прямым.
         /// </summary>
-        [Test]
+        [Test, Timeout(10000)]
         public void Test_MZ_Direct()
         {
             decimal mzDirect = this.StrBasing.MZ_Direct;

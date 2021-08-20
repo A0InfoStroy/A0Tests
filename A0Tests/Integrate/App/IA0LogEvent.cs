@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-06 14:27:26 +0300 (Пт, 06 ноя 2020) $
-// $Revision: 414 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Тесты событий протокола.
 
 namespace A0Tests.Integrate
@@ -99,7 +99,7 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет работоспособность обработчика событий в протоколе А0.
         /// </summary>
-        [Test]
+        [Test, Timeout(2000)]
         public void Test_Log()
         {
             string error = "Error";
@@ -130,7 +130,7 @@ namespace A0Tests.Integrate
         /// <summary>
         /// Проверяет работоспособность обработчика событий в протоколе А0 с выключенной трассировкой.
         /// </summary>
-        [Test]
+        [Test, Timeout(2000)]
         public void Test_Trace()
         {
             // Отключение трассировки

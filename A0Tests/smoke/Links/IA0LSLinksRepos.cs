@@ -1,6 +1,6 @@
-﻿// $Date: 2020-08-17 15:35:09 +0300 (Пн, 17 авг 2020) $
-// $Revision: 374 $
-// $Author: agalkin $
+﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
+// $Revision: 533 $
+// $Author: eloginov $
 // Базовые тесты IA0LSLinksRepos
 
 namespace A0Tests.Smoke.Links
@@ -45,7 +45,7 @@ namespace A0Tests.Smoke.Links
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу связей ЛС по изменению.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_MutationID()
         {
             IA0LSMutationLinkRepoID mutationId = this.Repos.MutationID;
@@ -55,7 +55,7 @@ namespace A0Tests.Smoke.Links
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу связей ЛС по исполнению.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_ExecutionID()
         {
             IA0LSExecutionLinkRepoID executionID = this.Repos.ExecutionID;
@@ -65,7 +65,7 @@ namespace A0Tests.Smoke.Links
         /// <summary>
         /// Проверяет отсутствие ошибок при обращении к каталогу связей ЛС по калькуляции.
         /// </summary>
-        [Test]
+        [Test, Timeout(20000)]
         public void Test_CalculationID()
         {
             IA0LSCalculationLinkRepoID calculationID = this.Repos.CalculationID;
