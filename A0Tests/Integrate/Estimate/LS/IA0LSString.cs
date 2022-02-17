@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-02 11:54:16 +0300 (Пн, 02 ноя 2020) $
-// $Revision: 406 $
-// $Author: agalkin $
+﻿// $Date: 2022-02-16 17:32:55 +0300 (Ср, 16 фев 2022) $
+// $Revision: 573 $
+// $Author: vbutov $
 // Тесты строки локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -557,6 +557,22 @@ namespace A0Tests.Integrate.Estimate
             double volume = 1d;
             this.LSString.Volume = volume;
             Assert.AreEqual(volume, this.LSString.Volume);
+        }
+
+        /// <summary>
+        /// Сторонний ресурс
+        /// </summary>
+        [Test]
+        public void Test_Outside()
+        {
+            if (this.LSString.AllowOutside)
+            {
+                this.LSString.Outside = true;
+                Assert.IsTrue(this.LSString.Outside);
+
+                this.LSString.Outside = false;
+                Assert.IsFalse(this.LSString.Outside);
+            }            
         }
 
         /// <summary>
