@@ -1,6 +1,6 @@
-﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
-// $Revision: 533 $
-// $Author: eloginov $
+﻿// $Date: 2022-02-16 17:23:11 +0300 (Ср, 16 фев 2022) $
+// $Revision: 572 $
+// $Author: vbutov $
 
 namespace A0Tests.Integrate.Implement
 {
@@ -41,7 +41,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода удаления текстовых строк акта по индексу.
         /// </summary>
-        [Test, Timeout(20000)]
+        [Test, Timeout(30000)]
         public void Test_DeleteStrings()
         {
             // Терминальный узел для создания строки.
@@ -69,7 +69,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность метода создания текстовых строк и их позиций в списке.
         /// </summary>
-        [Test, Timeout(20000)]
+        [Test, Timeout(30000)]
         public void Test_CreateStr()
         {
             // Терминальный узел для создания строки.
@@ -116,7 +116,7 @@ namespace A0Tests.Integrate.Implement
         /// <summary>
         /// Проверяет работоспособность редактирования типа учета ресурсов строки акта.
         /// </summary>
-        [Test, Timeout(20000)]
+        [Test, Timeout(30000)]
         public void Test_ResAccounting()
         {
             // Терминальный узел для создания строки
@@ -204,6 +204,74 @@ namespace A0Tests.Integrate.Implement
             }
 
             return null;
+        }
+        /// <summary>
+        /// Проверяет корректность создания строки работы ЛС.
+        /// </summary>
+        [Test(Description = "Создание строки работы"), Timeout(30000)]
+        public void Test_CreateWorkString()
+        {
+            int stringsCount = this.LS.Strings.Count;
+
+            // Пример расценки из НСИ.
+            // БД: a0NSI_TER_01. Таблица: Works.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Деревообрабатывающее оборудование - 2553
+            // ОБОРУДОВАНИЕ ОБЩЕГО НАЗНАЧЕНИЯ. ОБОРУДОВАНИЕ ЛЕСОПИЛЬНОГО ПРОИЗВОДСТВА. РАМА ЛЕСОПИЛЬНАЯ ОДНОЭТАЖНАЯ, МАССА 4,5Т - 787669 - 787668
+
+            IA0ActString actString = this.Act.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: this.LS.Tree.Head.ID);
+            Assert.NotNull(actString);
+
+            Assert.True(this.Act.Strings.Count == stringsCount + 1);
+
+            IA0ActString actStr = this.Act.Strings.Items[this.Act.Strings.Count - 1];
+            Assert.AreEqual(actString.GUID, actStr.GUID);
+
+            actStr.Volume = 10;
+
+            // Пересчитываем смету для актуализации итогов
+            Act.Recalc();
+
+            var total = Act.Totals.ByName["9 Сметная стоимость"];
+
+            // Стоимость 40101
+            Assert.AreEqual(40101, total.Total);
+        }
+
+        /// <summary>
+        /// Проверяет корректность создания строки ресурса ЛС.
+        /// </summary>
+        [Test(Description = "Создание строки ресурса"), Timeout(30000)]
+        public void Test_CreateResString()
+        {
+            int stringsCount = this.LS.Strings.Count;
+
+            // Пример расценки из НСИ. 
+            // БД: a0NSI_TER_01. Таблица: Resource.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Перевозка грузов для строительства - 907
+            // АСФАЛЬТОБЕТОН, РАСТВОРЫ, БЕТОН ТОВАРНЫЙ-ПОГРУЗКА - 6197091
+
+            IA0ActString actString = this.Act.CreateResString(aNSIID: 7, aFolderID: 907, aResID: 6197091, aNodeID: this.LS.Tree.Head.ID);
+            Assert.NotNull(actString);
+
+            Assert.True(this.Act.Strings.Count == stringsCount + 1);
+
+            IA0ActString actStr = this.Act.Strings.Items[this.Act.Strings.Count - 1];
+            Assert.AreEqual(actString.GUID, actStr.GUID);
+
+            actStr.Volume = 10;
+            actStr.Resources.Items[0].Price = 10;
+
+            // Пересчитываем смету для актуализации итогов
+            Act.Recalc();
+
+            var total = Act.Totals.ByName["9 Сметная стоимость"];
+
+            // Стоимость 100
+            Assert.AreEqual(100, total.Total);
         }
     }
 }
