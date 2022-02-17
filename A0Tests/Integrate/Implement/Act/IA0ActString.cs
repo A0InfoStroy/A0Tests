@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-02 11:54:16 +0300 (Пн, 02 ноя 2020) $
-// $Revision: 406 $
-// $Author: agalkin $
+﻿// $Date: 2022-02-16 17:32:55 +0300 (Ср, 16 фев 2022) $
+// $Revision: 573 $
+// $Author: vbutov $
 // Тесты строки Акта
 
 namespace A0Tests.Integrate.Implement
@@ -414,6 +414,22 @@ namespace A0Tests.Integrate.Implement
         public void Test_WorkKindNRSP()
         {
             string workKindNRSP = this.ActString.WorkKindNRSP;
+        }
+
+        /// <summary>
+        /// Сторонний ресурс
+        /// </summary>
+        [Test]
+        public void Test_Outside()
+        {
+            if (this.ActString.AllowOutside)
+            {
+                this.ActString.Outside = true;
+                Assert.IsTrue(this.ActString.Outside);
+
+                this.ActString.Outside = false;
+                Assert.IsFalse(this.ActString.Outside);
+            }
         }
 
         /// <summary>
