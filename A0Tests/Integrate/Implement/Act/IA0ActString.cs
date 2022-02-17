@@ -1,6 +1,6 @@
-﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
-// $Revision: 533 $
-// $Author: eloginov $
+﻿// $Date: 2022-02-17 15:11:15 +0300 (Чт, 17 фев 2022) $
+// $Revision: 574 $
+// $Author: vbutov $
 // Тесты строки Акта
 
 namespace A0Tests.Integrate.Implement
@@ -668,6 +668,56 @@ namespace A0Tests.Integrate.Implement
             Assert.AreEqual(defaultValue, this.ActString.UnitCoef);
             this.ActString.MUnit = "100м2";
             Assert.AreEqual(hundredSquareMetersValue, this.ActString.UnitCoef);
+        }
+
+        /// <summary>
+        /// Сторонний ресурс в строке работе
+        /// </summary>
+        [Test]
+        public void Test_OutsideWork()
+        {
+            // Расценка работа.
+            // БД: a0NSI_TER_01. Таблица: Works.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Деревообрабатывающее оборудование - 2553
+            // ОБОРУДОВАНИЕ ОБЩЕГО НАЗНАЧЕНИЯ. ОБОРУДОВАНИЕ ЛЕСОПИЛЬНОГО ПРОИЗВОДСТВА. РАМА ЛЕСОПИЛЬНАЯ ОДНОЭТАЖНАЯ, МАССА 4,5Т - 787669 - 787668
+
+            IA0ActString actString = this.Act.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: this.LS.Tree.Head.ID);
+            Assert.NotNull(actString);
+
+            Assert.IsFalse(actString.AllowOutside);
+        }
+
+        /// <summary>
+        /// Сторонний ресурс в строке ресурсе
+        /// </summary>
+        [Test]
+        public void Test_OutsideRes()
+        {
+            // Пример расценки из НСИ. 
+            // БД: a0NSI_TER_01. Таблица: Resource.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Оборудование лифтов - 924
+            // ЛИФТЫ ПАССАЖИРСКИЕ Г/П 400 КГ - 262300
+
+            IA0ActString actString = this.Act.CreateResString(aNSIID: 7, aFolderID: 924, aResID: 262300, aNodeID: this.LS.Tree.Head.ID);
+            Assert.NotNull(actString);
+
+            Assert.IsTrue(actString.AllowOutside);
+
+            actString.Outside = true;
+            Assert.IsTrue(actString.Outside);
+
+            // В строке ожидается 1 ресурс с флагом Outside
+            Assert.AreEqual(1, actString.Resources.Count);
+            Assert.IsTrue(actString.Resources.Items[0].Outside);
+
+
+            actString.Outside = false;
+            Assert.IsFalse(actString.Outside);
+            Assert.IsFalse(actString.Resources.Items[0].Outside);
         }
     }
 }
