@@ -1,6 +1,6 @@
-﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
-// $Revision: 533 $
-// $Author: eloginov $
+﻿// $Date: 2022-02-17 15:29:35 +0300 (Чт, 17 фев 2022) $
+// $Revision: 575 $
+// $Author: vbutov $
 // Тесты строки локальных смет
 
 namespace A0Tests.Integrate.Estimate
@@ -567,6 +567,61 @@ namespace A0Tests.Integrate.Estimate
         {
             string workKindNRSP = this.LSString.WorkKindNRSP;
             Assert.NotNull(workKindNRSP);
+        }
+
+        /// <summary>
+        /// Сторонний ресурс в строке работе
+        /// </summary>
+        [Test]
+        public void Test_OutsideWork()
+        {
+            // Расценка работа.
+            // БД: a0NSI_TER_01. Таблица: Works.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Деревообрабатывающее оборудование - 2553
+            // ОБОРУДОВАНИЕ ОБЩЕГО НАЗНАЧЕНИЯ. ОБОРУДОВАНИЕ ЛЕСОПИЛЬНОГО ПРОИЗВОДСТВА. РАМА ЛЕСОПИЛЬНАЯ ОДНОЭТАЖНАЯ, МАССА 4,5Т - 787669 - 787668
+
+            // Создание строки типа Работа, на основе расценки из БД НСИ
+            IA0LSString lsString = this.LS.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: this.LS.Tree.Head.ID);
+            Assert.NotNull(lsString);
+
+            // В строке такого типа ресурс назначить сторонним нельзя
+            Assert.IsFalse(lsString.AllowOutside);
+        }
+
+        /// <summary>
+        /// Сторонний ресурс в строке ресурсе
+        /// </summary>
+        [Test]
+        public void Test_OutsideRes()
+        {
+            // Пример расценки из НСИ. 
+            // БД: a0NSI_TER_01. Таблица: Resource.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Оборудование лифтов - 924
+            // ЛИФТЫ ПАССАЖИРСКИЕ Г/П 400 КГ - 262300
+
+            // Создание строки типа Ресурс, на основе расценки из БД НСИ
+            IA0LSString lsString = this.LS.CreateResString(aNSIID: 7, aFolderID: 924, aResID: 262300, aNodeID: this.LS.Tree.Head.ID);
+            Assert.NotNull(lsString);
+
+            // В строке типа Ресурс должно быть разрешено назначение ресурса сторонним
+            Assert.IsTrue(lsString.AllowOutside);
+
+            // Назначаем ресурс сторонним
+            lsString.Outside = true;
+            Assert.IsTrue(lsString.Outside);
+
+            // В строке ожидается 1 ресурс с флагом Outside
+            Assert.AreEqual(1, lsString.Resources.Count);
+            // В ресурсе флаг должен соответствовать флагу в строке
+            Assert.IsTrue(lsString.Resources.Items[0].Outside);
+
+            lsString.Outside = false;
+            Assert.IsFalse(lsString.Outside);
+            Assert.IsFalse(lsString.Resources.Items[0].Outside);
         }
     }
 
