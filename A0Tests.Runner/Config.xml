@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Properties>
+	<ServiceAppProperties>
+		<HelpMode>false</HelpMode>
+		<ResTxtFilePath>-</ResTxtFilePath>
+		<ResXmlFilePath>-</ResXmlFilePath>
+		<SaveResInConsole>true</SaveResInConsole>
+		<ProtocolFilePath>protocol.txt</ProtocolFilePath>
+	</ServiceAppProperties>
+
+	<RunProperties>
+		<!--Выбор тестируемого проекта ../../../A0Tests/bin/Debug/A0Tests.dll-->
+		<Project>../../../A0Tests/bin/Debug/A0Tests.dll</Project>
+		<!--Выбор категории тестов: A0Tests.Smoke A0Tests.Integrate A0Tests.Smoke.Test_Connect -->
+		<Filter>A0Tests.Smoke.Test_Connect</Filter>
+		<Filter>A0Tests.Smoke.Estimate.Test_IA0EstimateRepo</Filter>
+		<PaparamsOutput>true</PaparamsOutput>
+	</RunProperties>
+</Properties>
