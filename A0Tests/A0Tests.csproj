@@ -100,6 +100,7 @@
     <Compile Include="Integrate\Implement\Act\IA0Act.cs" />
     <Compile Include="Integrate\Implement\Act\IA0TreeNode.cs" />
     <Compile Include="Integrate\Implement\Act\NewAct.cs" />
+    <Compile Include="Integrate\Implement\Services\ActCreatorOptionsCustom.cs" />
     <Compile Include="Integrate\Implement\Services\IA0ImplementActServices.cs" />
     <Compile Include="Integrate\Print\IA0Print.cs" />
     <Compile Include="Integrate\System\IA0SysTreeLevelList.cs" />
