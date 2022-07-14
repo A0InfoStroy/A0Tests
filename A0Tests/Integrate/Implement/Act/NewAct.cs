@@ -1,6 +1,6 @@
-﻿// $Date: 2020-09-21 13:33:22 +0300 (Пн, 21 сен 2020) $
-// $Revision: 377 $
-// $Author: agalkin $
+﻿// $Date: 2022-07-13 21:06:16 +0300 (Ср, 13 июл 2022) $
+// $Revision: 591 $
+// $Author: eloginov $
 // Создание акта для тестов
 
 namespace A0Tests
@@ -12,7 +12,7 @@ namespace A0Tests
     /// <summary>
     /// Базовый класс для создания тестируемого акта.
     /// </summary>
-    public class NewAct : NewLS
+    public abstract class NewAct : NewLS
     {
         /// <summary>
         /// Получает или устанавливает акт.
@@ -71,34 +71,70 @@ namespace A0Tests
     /// <summary>
     /// Базовый класс для создания тестируемой строки акта.
     /// </summary>
-    public class NewActString : NewAct
+    public abstract class NewActStringBase : NewAct
     {
         /// <summary>
         /// Получает или устанавливает строку акта.
         /// </summary>
-        protected IA0ActString ActString { get; private set; }
+        protected IA0ActString ActString { get;  set; }
 
         /// <summary>
-        /// Осуществляет операции проводимые перед тестированием.
+        /// Создание текстовой строки акта.
         /// </summary>
-        public override void SetUp()
+        protected void CreateTxtActString()
         {
-            base.SetUp();
+            int stringsCount = this.Act.Strings.Count;
             this.ActString = this.Act.CreateTxtString(EA0StringKind.skMK, "basing", this.Act.Tree.Head.ID);
             this.ActString.TotalVolume = 1;
             this.ActString.Volume = 100;
             this.ImplRepo.Act.Save(this.Act);
             Assert.IsNotNull(this.ActString);
-            Assert.IsTrue(this.Act.Strings.Count > 0, "В тестовой ЛС нет строк");
+            Assert.IsTrue(this.Act.Strings.Count == stringsCount + 1, "В тестовом акте количество строк не изменилось");
         }
 
         /// <summary>
-        /// Осуществляет операции проводимые по завершению тестирования.
+        /// Создание строки работы акта.
         /// </summary>
-        public override void TearDown()
+        protected void CreateWorkActString()
         {
-            this.Act.DeleteString(this.ActString.GUID);
-            base.TearDown();
+            int stringsCount = this.Act.Strings.Count;
+
+            // Расценка работа.
+            // БД: a0NSI_TER_01. Таблица: Works.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Деревообрабатывающее оборудование - 2553
+            // ОБОРУДОВАНИЕ ОБЩЕГО НАЗНАЧЕНИЯ. ОБОРУДОВАНИЕ ЛЕСОПИЛЬНОГО ПРОИЗВОДСТВА. РАМА ЛЕСОПИЛЬНАЯ ОДНОЭТАЖНАЯ, МАССА 4,5Т - 787669 - 787668
+
+            this.ActString = this.Act.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: this.LS.Tree.Head.ID);
+            this.ActString.TotalVolume = 1;
+            this.ActString.Volume = 100;
+            this.ImplRepo.Act.Save(this.Act);
+            Assert.IsNotNull(this.ActString);
+            Assert.IsTrue(this.Act.Strings.Count == stringsCount + 1);
         }
+
+        /// <summary>
+        /// Создание строки русурса акта.
+        /// </summary>
+        protected void CreateResActString()
+        {
+            int stringsCount = this.Act.Strings.Count;
+
+            // Пример расценки из НСИ. 
+            // БД: a0NSI_TER_01. Таблица: Resource.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Оборудование лифтов - 924
+            // ЛИФТЫ ПАССАЖИРСКИЕ Г/П 400 КГ - 262300
+
+            this.ActString = this.Act.CreateResString(aNSIID: 7, aFolderID: 924, aResID: 262300, aNodeID: this.LS.Tree.Head.ID);
+            this.ActString.TotalVolume = 1;
+            this.ActString.Volume = 100;
+            this.ImplRepo.Act.Save(this.Act);
+            Assert.IsNotNull(this.ActString);
+            Assert.IsTrue(this.Act.Strings.Count == stringsCount + 1);
+        }
+
     }
 }

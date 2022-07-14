@@ -1,10 +1,11 @@
-﻿// $Date: 2021-06-07 13:29:27 +0300 (Пн, 07 июн 2021) $
-// $Revision: 533 $
+﻿// $Date: 2022-07-13 21:06:16 +0300 (Ср, 13 июл 2022) $
+// $Revision: 591 $
 // $Author: eloginov $
 // Тесты пересчета строки Акта
 
 namespace A0Tests.Integrate.Implement
 {
+    using ActString.ActStrRecalcs;
     using A0Service;
     using NUnit.Framework;
 
@@ -12,7 +13,7 @@ namespace A0Tests.Integrate.Implement
     /// Базовый класс для тестов пересчета строки акта.
     /// </summary>
     /// <typeparam name="T">Тип пересчета.</typeparam>
-    public abstract class Test_CustomActStrRecalc<T> : Test_IA0ActStrRecalcs
+    public abstract class Test_CustomActStrRecalc<T> : Test_IA0ActStrRecalcsBase
         where T : class, IA0LSStrRecalc
     {
         /// <summary>

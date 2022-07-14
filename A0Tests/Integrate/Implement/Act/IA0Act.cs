@@ -1,6 +1,6 @@
-﻿// $Date: 2022-02-16 17:23:11 +0300 (Ср, 16 фев 2022) $
-// $Revision: 572 $
-// $Author: vbutov $
+﻿// $Date: 2022-03-28 11:04:45 +0300 (Пн, 28 мар 2022) $
+// $Revision: 576 $
+// $Author: eloginov $
 
 namespace A0Tests.Integrate.Implement
 {
@@ -22,7 +22,7 @@ namespace A0Tests.Integrate.Implement
         /// Проверяет работоспособность метода удаления текстовой строки акта по Guid.
         /// </summary>
         [Test, Timeout(20000)]
-        public void Test_DeleteString()
+        public void Test_DeleteTxtString()
         {
             // Терминальный узел для создания строки.
             IA0TreeNode node = this.GetNodeID(this.Act.Tree.Head);
@@ -39,6 +39,72 @@ namespace A0Tests.Integrate.Implement
         }
 
         /// <summary>
+        /// Проверяет работоспособность метода удаления строки ресурса акта по Guid.
+        /// </summary>
+        [Test(Description = "Удаление строки работы акта по GUID"), Timeout(20000)]
+        public void Test_DeleteWorkString()
+        {
+            // Терминальный узел для создания строки.
+            IA0TreeNode node = this.GetNodeID(this.Act.Tree.Head);
+            Assert.NotNull(node);
+
+            // Создание строки.
+            IA0ActString str = this.Act.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: node.ID);
+            Guid strGuid = str.GUID;
+            Assert.NotNull(this.Act.Strings.ByGUID(strGuid));
+
+            str.Volume = 10;
+            // Пересчитываем смету для актуализации итогов
+            Act.Recalc();
+
+            var total = Act.Totals.ByName["9 Сметная стоимость"];
+            //Проерка корректности полученной стоимости 100
+            Assert.AreEqual(40101, total.Total);
+
+            this.Act.DeleteString(strGuid);
+
+            // Проверка отсутствия строки.
+            Assert.Null(this.Act.Strings.ByGUID(strGuid));
+
+            //После удаления строки стоимость должна быть 0
+            Assert.AreEqual(0, total.Total);
+        }
+
+        /// <summary>
+        /// Проверяет работоспособность метода удаления строки работы акта по Guid.
+        /// </summary>
+        [Test(Description = "Удаление строки ресурса акта по GUID"), Timeout(20000)]
+        public void Test_DeleteResString()
+        {
+            // Терминальный узел для создания строки.
+            IA0TreeNode node = this.GetNodeID(this.Act.Tree.Head);
+            Assert.NotNull(node);
+
+            // Создание строки.
+            IA0ActString str = this.Act.CreateResString(aNSIID: 7, aFolderID: 907, aResID: 6197091, aNodeID: node.ID);
+            Guid strGuid = str.GUID;
+            Assert.NotNull(this.Act.Strings.ByGUID(strGuid));
+
+            str.Volume = 10;
+            str.Resources.Items[0].Price = 10;
+            // Пересчитываем смету для актуализации итогов
+            Act.Recalc();
+
+            var total = Act.Totals.ByName["9 Сметная стоимость"];
+            //Проерка корректности полученной стоимости 100
+            Assert.AreEqual(100, total.Total);
+
+            this.Act.DeleteString(strGuid);
+
+            // Проверка отсутствия строки.
+            Assert.Null(this.Act.Strings.ByGUID(strGuid));
+
+            //После удаления строки стоимость должна быть 0
+            Assert.AreEqual(0, total.Total);
+        }
+
+
+        /// <summary>
         /// Проверяет работоспособность метода удаления текстовых строк акта по индексу.
         /// </summary>
         [Test, Timeout(30000)]
@@ -52,9 +118,31 @@ namespace A0Tests.Integrate.Implement
             IA0ActString str1 = this.Act.CreateTxtString(EA0StringKind.skWork, "1", node.ID);
             Guid strGuid1 = str1.GUID;
             Assert.NotNull(this.Act.Strings.ByGUID(strGuid1));
-            IA0ActString str2 = this.Act.CreateTxtString(EA0StringKind.skWork, "2", node.ID);
+            IA0ActString str2    = this.Act.CreateTxtString(EA0StringKind.skWork, "2", node.ID);
             Guid strGuid2 = str2.GUID;
             Assert.NotNull(this.Act.Strings.ByGUID(strGuid2));
+
+            IA0ActString actWorkString = this.Act.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: node.ID);
+            Guid workStrGuid = actWorkString.GUID;
+            Assert.NotNull(this.Act.Strings.ByGUID(actWorkString.GUID));
+
+            IA0ActString actResString = Act.CreateResString(aNSIID: 7, aFolderID: 907, aResID: 6197091, aNodeID: node.ID);
+            Guid resStrGuid = actResString.GUID;
+            Assert.NotNull(this.Act.Strings.ByGUID(actResString.GUID));
+
+            // Устанавливаем объем для строк
+            actWorkString.Volume = 10;
+            actResString.Volume = 10;
+            actResString.Resources.Items[0].Price = 10;
+
+            // Пересчитываем смету для актуализации итогов
+            Act.Recalc();
+
+            var total = Act.Totals.ByName["9 Сметная стоимость"];
+
+            //Проерка корректности полученной стоимости 40101+100
+            Assert.AreEqual(40201, total.Total);
+
             int count = this.Act.Strings.Count;
             for (int i = 0; i < count; i++)
             {
@@ -64,6 +152,11 @@ namespace A0Tests.Integrate.Implement
             // Проверка отсутствия строк.
             Assert.Null(this.Act.Strings.ByGUID(strGuid1));
             Assert.Null(this.Act.Strings.ByGUID(strGuid2));
+            Assert.Null(this.Act.Strings.ByGUID(workStrGuid));
+            Assert.Null(this.Act.Strings.ByGUID(resStrGuid));
+
+            //После удаления строк стоимость должна быть 0
+            Assert.AreEqual(0, total.Total);
         }
 
         /// <summary>
@@ -129,7 +222,12 @@ namespace A0Tests.Integrate.Implement
                 "Строка для тестирования ресурса",
                 node.ID);
 
+            IA0ActString strWork = this.Act.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: node.ID);
+            IA0ActString strRes = this.Act.CreateResString(aNSIID: 7, aFolderID: 907, aResID: 6197091, aNodeID: node.ID);
+                
             Assert.Greater(str.Resources.Count, 0, "У тестовой строки нет ресурсов");
+            Assert.Greater(strWork.Resources.Count, 0, "У тестовой строки работы нет ресурсов");
+            Assert.Greater(strRes.Resources.Count, 0, "У тестовой строки ресураса нет ресурсов");
 
             List<EA0ResAccounting> accountings = new List<EA0ResAccounting>();
             accountings.Add(EA0ResAccounting.raIncluded);
@@ -142,6 +240,8 @@ namespace A0Tests.Integrate.Implement
             {
                 // Изменение типа учета ресурсов.
                 str.Resources.Items[0].Accounting = acc;
+                strWork.Resources.Items[0].Accounting = acc;
+                strRes.Resources.Items[0].Accounting = acc;
 
                 // Сохранение акта.
                 this.A0.Implement.Repo.Act.Save(newAct);
@@ -152,9 +252,15 @@ namespace A0Tests.Integrate.Implement
 
                 // Поиск строки в загруженом акте.
                 str = newAct.Strings.ByGUID(str.GUID);
+                strWork = newAct.Strings.ByGUID(strWork.GUID);
+                strRes = newAct.Strings.ByGUID(strRes.GUID);
 
                 Assert.NotNull(str);
+                Assert.NotNull(strWork);
+                Assert.NotNull(strRes);
                 Assert.AreEqual(str.Resources.Items[0].Accounting, acc);
+                Assert.AreEqual(strWork.Resources.Items[0].Accounting, acc);
+                Assert.AreEqual(strRes.Resources.Items[0].Accounting, acc);
             }
         }
 

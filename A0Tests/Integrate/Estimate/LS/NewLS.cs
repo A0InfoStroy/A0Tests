@@ -1,6 +1,6 @@
-﻿// $Date: 2020-11-26 12:19:01 +0300 (Чт, 26 ноя 2020) $
-// $Revision: 438 $
-// $Author: agalkin $
+﻿// $Date: 2022-07-13 20:54:50 +0300 (Ср, 13 июл 2022) $
+// $Revision: 585 $
+// $Author: eloginov $
 // Создание ЛС для тестов
 
 namespace A0Tests
@@ -12,7 +12,7 @@ namespace A0Tests
     /// <summary>
     /// Базовый класс для создания тестируемой ЛС.
     /// </summary>
-    public class NewLS : NewOS
+    public abstract class NewLS : NewOS
     {
         /// <summary>
         /// Получает или устанавливает ЛС.
@@ -65,9 +65,9 @@ namespace A0Tests
     }
 
     /// <summary>
-    /// Базовый класс для создания тестируемой строки ЛС.
+    /// Базовый класс для создания абстрактной тестируемой строки ЛС.
     /// </summary>
-    public class NewLSString : NewLS
+    public abstract class NewLSStringBase : NewLS
     {
         /// <summary>
         /// Получает или устанавливает строку ЛС.
@@ -75,27 +75,62 @@ namespace A0Tests
         protected IA0LSString LSString { get; set; }
 
         /// <summary>
-        /// Осуществляет операции проводимые перед тестированием.
+        /// Создание текстовой строки ЛС.
         /// </summary>
-        public override void SetUp()
+        protected void CreateTxtLSString()
         {
-            base.SetUp();
-            this.LSString = this.LS.CreateTxtString(EA0StringKind.skMK, "1234", this.LS.Tree.Head.ID);
-            this.LSString.TotalVolume = 1;
-            this.LSString.Volume = 100.0; // Устанавливаем объём для строки (необходим для создания акта)
+            int stringsCount = this.LS.Strings.Count;
+            LSString = this.LS.CreateTxtString(EA0StringKind.skMK, "1234", this.LS.Tree.Head.ID);
+            LSString.TotalVolume = 1;
+            LSString.Volume = 100.0; // Устанавливаем объём для строки (необходим для создания акта)
             this.Repo.LS.Save(this.LS);
-            Assert.IsNotNull(this.LSString);
-            Assert.IsTrue(this.LS.Strings.Count > 0, "В тестовой ЛС нет строк");
+            Assert.IsNotNull(LSString);
+            Assert.IsTrue(this.LS.Strings.Count == stringsCount + 1, "В тестовой ЛС количество строк не изменилось");
         }
 
         /// <summary>
-        /// Осуществляет операции проводимые по завершению тестирования.
+        /// Создание строки работы ЛС.
         /// </summary>
-        public override void TearDown()
+        protected void CreateWorkLSString()
         {
-            Assert.NotNull(this.LSString);
-            this.LSString = null;
-            base.TearDown();
+            int stringsCount = this.LS.Strings.Count;
+
+            // Пример расценки из НСИ.
+            // БД: a0NSI_TER_01. Таблица: Works.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Деревообрабатывающее оборудование - 2553
+            // ОБОРУДОВАНИЕ ОБЩЕГО НАЗНАЧЕНИЯ. ОБОРУДОВАНИЕ ЛЕСОПИЛЬНОГО ПРОИЗВОДСТВА. РАМА ЛЕСОПИЛЬНАЯ ОДНОЭТАЖНАЯ, МАССА 4,5Т - 787669 - 787668
+
+            LSString = this.LS.CreateWorkString(aNSIID: 7, aFolderID: 2553, aWorkID: 787669, aNodeID: this.LS.Tree.Head.ID);
+            LSString.TotalVolume = 1;
+            LSString.Volume = 100.0; // Устанавливаем объём для строки (необходим для создания акта)
+            this.Repo.LS.Save(this.LS);
+            Assert.NotNull(LSString);
+            Assert.IsTrue(this.LS.Strings.Count == stringsCount + 1, "В тестовой ЛС количество строк не изменилось");
+        }
+
+        /// <summary>
+        /// Создание строки ресураса ЛС.
+        /// </summary>
+        protected void CreateResLSString()
+        {
+            int stringsCount = this.LS.Strings.Count;
+
+            // Пример расценки из НСИ. 
+            // БД: a0NSI_TER_01. Таблица: Resource.
+            // Получать надо из System.NSI
+            // ТЕР-01 - 7
+            // Перевозка грузов для строительства - 907
+            // АСФАЛЬТОБЕТОН, РАСТВОРЫ, БЕТОН ТОВАРНЫЙ-ПОГРУЗКА - 6197091
+
+            LSString = this.LS.CreateResString(aNSIID: 7, aFolderID: 907, aResID: 6197091, aNodeID: this.LS.Tree.Head.ID);
+            LSString.TotalVolume = 1;
+            LSString.Volume = 100.0; // Устанавливаем объём для строки (необходим для создания акта)
+            this.Repo.LS.Save(this.LS);
+            Assert.NotNull(LSString);
+            Assert.IsTrue(this.LS.Strings.Count == stringsCount + 1, "В тестовой ЛС количество строк не изменилось");
+
         }
     }
 }

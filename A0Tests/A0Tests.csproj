@@ -60,8 +60,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="A0Tests.cs" />
-    <Compile Include="Functional\Calculations\Resources\ActStrResource.cs" />
-    <Compile Include="Functional\Calculations\Resources\LSStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\ActStrResource\ActStrResourceBase.cs" />
+    <Compile Include="Functional\Calculations\Resources\ActStrResource\ResActString_ActStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\ActStrResource\TxtActString_ActStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\ActStrResource\WorkActString_ActStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\LSStrResource\LSStrResourceBase.cs" />
+    <Compile Include="Functional\Calculations\Resources\LSStrResource\ResLSString_LSStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\LSStrResource\TxtLSString_LSStrResource.cs" />
+    <Compile Include="Functional\Calculations\Resources\LSStrResource\WorkLSString_LSStrResource.cs" />
     <Compile Include="Functional\IA0EstimateLSService.cs" />
     <Compile Include="Integrate\App\IA0LogEvent.cs" />
     <Compile Include="Integrate\App\IA0SOOperationManager.cs" />
@@ -76,6 +82,20 @@
     <Compile Include="Integrate\Estimate\Contracts\NewContract.cs" />
     <Compile Include="Integrate\Estimate\IA0EstimateImport.cs" />
     <Compile Include="Integrate\Estimate\IA0SearchResult.cs" />
+    <Compile Include="Integrate\Estimate\LSString\IA0LSStringBase.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrResource\ResLSString_IA0LSResource.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrResource\TxtLSString_IA0LSResource.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrResource\WorkLSString_IA0LSResource.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrBasing\ResLSString_IA0LSStrBasing.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrBasing\TxtLSString_IA0LSStrBasing.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrBasing\WorkLSString_IA0LSStrBasing.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrTotal\ResLSString_IA0LSStrTotal.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrTotal\TxtLSString_IA0LSStrTotal.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrTotal\WorkLSString_IA0LSStrTotal.cs" />
+    <Compile Include="Integrate\Estimate\LSString\ResLSString.cs" />
+    <Compile Include="Integrate\Estimate\LSString\TxtLSString.cs" />
+    <Compile Include="Integrate\Estimate\LSString\WorkLSString.cs" />
+    <Compile Include="Integrate\Estimate\LS\IA0Executions.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSID.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSStrings.cs" />
     <Compile Include="Integrate\Estimate\LS\NewLS.cs" />
@@ -94,13 +114,34 @@
     <Compile Include="Integrate\Estimate\Res\IA0ResIDRepo.cs" />
     <Compile Include="Integrate\IA0DocEntrys.cs" />
     <Compile Include="Integrate\IACExitNotify.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrBasing\ResActString_IA0ActStrBasing.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrBasing\TxtActString_IA0ActStrBasing.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrBasing\WorkActString_IA0ActStrBasing.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrRecalcs\ResActString_IA0ActStrRecalcs.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrRecalcs\TxtActString_IA0ActStrRecalcs.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrRecalcs\WorkActString_IA0ActStrRecalcs.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResources\ResActString_IA0ActResources.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResources\TxtActString_IA0ActResources.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResources\WorkActString_IA0ActResources.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResource\ResActString_IA0ActResourceBase.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResource\TxtActString_IA0ActResourceBase.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResource\WorkActString_IA0ActResourceBase.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrTotal\ResActString_IA0ActStrTotal.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrTotal\TxtActString_IA0ActStrTotal.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrTotal\WorkActString_IA0ActStrTotal.cs" />
+    <Compile Include="Integrate\Implement\ActString\ResActString.cs" />
+    <Compile Include="Integrate\Implement\ActString\TxtActString.cs" />
+    <Compile Include="Integrate\Implement\ActString\WorkActString.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActID.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActIDRepo.cs" />
-    <Compile Include="Integrate\Implement\Act\IA0ActResources.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResources\IA0ActResourcesBase.cs" />
     <Compile Include="Integrate\Implement\Act\IA0Act.cs" />
     <Compile Include="Integrate\Implement\Act\IA0TreeNode.cs" />
     <Compile Include="Integrate\Implement\Act\NewAct.cs" />
     <Compile Include="Integrate\Implement\Services\IA0ImplementActServices.cs" />
+    <Compile Include="Integrate\Implement\Services\ImplementServices\ResLSString_IA0ImplementServices.cs" />
+    <Compile Include="Integrate\Implement\Services\ImplementServices\TxtLSString_IA0ImplementServices.cs" />
+    <Compile Include="Integrate\Implement\Services\ImplementServices\WorkLSString_IA0ImplementServices.cs" />
     <Compile Include="Integrate\Print\IA0Print.cs" />
     <Compile Include="Integrate\System\IA0SysTreeLevelList.cs" />
     <Compile Include="smoke\App\IA0Admin.cs" />
@@ -117,15 +158,14 @@
     <Compile Include="Integrate\Estimate\IA0EstimateServices.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LS.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSIDRepo.cs" />
-    <Compile Include="Integrate\Estimate\LS\IA0LSStrBasing.cs" />
-    <Compile Include="Integrate\Estimate\LS\IA0LSString.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrBasing\IA0LSStrBasingBase.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSStrRecalc.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSStrRecalcs.cs" />
-    <Compile Include="Integrate\Estimate\LS\IA0LSStrTotal.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrTotal\IA0LSStrTotalBase.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSTitle.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSTotal.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSTree.cs" />
-    <Compile Include="Integrate\Estimate\LS\IA0LSResource.cs" />
+    <Compile Include="Integrate\Estimate\LSString\LSStrResource\IA0LSResourceBase.cs" />
     <Compile Include="Integrate\Estimate\LS\IA0LSTotals.cs" />
     <Compile Include="Integrate\Estimate\LS\CustomLS.cs" />
     <Compile Include="Integrate\Estimate\OS\IA0OSRepo.cs" />
@@ -133,16 +173,16 @@
     <Compile Include="Integrate\Estimate\Proj\IA0ProjRepo.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActRepo.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActTitle.cs" />
-    <Compile Include="Integrate\Implement\Act\IA0ActString.cs" />
+    <Compile Include="Integrate\Implement\ActString\IA0ActStringBase.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActStrRecalc.cs" />
-    <Compile Include="Integrate\Implement\Act\IA0ActStrRecalcs.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrRecalcs\IA0ActStrRecalcsBase.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActTotal.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActTotals.cs" />
-    <Compile Include="Integrate\Implement\Act\IA0ActStrBasing.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrBasing\IA0ActStrBasingBase.cs" />
     <Compile Include="Integrate\Implement\Act\IA0ActTree.cs" />
-    <Compile Include="Integrate\Implement\Act\IA0ActStrTotal.cs" />
-    <Compile Include="Integrate\Implement\Act\IA0ActResource.cs" />
-    <Compile Include="Integrate\Implement\Services\IA0ImplementServices.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrTotal\IA0ActStrTotalBase.cs" />
+    <Compile Include="Integrate\Implement\ActString\ActStrResource\IA0ActResourceBase.cs" />
+    <Compile Include="Integrate\Implement\Services\ImplementServices\IA0ImplementServices.cs" />
     <Compile Include="Integrate\Integrate.cs" />
     <Compile Include="Integrate\System\FactorTable\FactorTable.cs" />
     <Compile Include="Integrate\System\Organizations\Organizations.cs" />
@@ -211,7 +251,7 @@
     <COMReference Include="A0Service">
       <Guid>{D244FFDD-2540-4CC4-825B-2AC22EA079C5}</Guid>
       <VersionMajor>2</VersionMajor>
-      <VersionMinor>9</VersionMinor>
+      <VersionMinor>12</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>

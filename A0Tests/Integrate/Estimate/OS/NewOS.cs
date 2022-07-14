@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-29 16:25:27 +0300 (Ср, 29 июл 2020) $
-// $Revision: 327 $
-// $Author: agalkin $
+﻿// $Date: 2022-07-13 21:14:16 +0300 (Ср, 13 июл 2022) $
+// $Revision: 598 $
+// $Author: eloginov $
 // Создание ОС для тестов
 
 namespace A0Tests
@@ -12,7 +12,7 @@ namespace A0Tests
     /// <summary>
     /// Базовый класс для создания тестируемой ОС.
     /// </summary>
-    public class NewOS : NewProj
+    public abstract class NewOS : NewProj
     {
         /// <summary>
         /// Получает или устанавливает ОС.

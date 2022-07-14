@@ -1,6 +1,6 @@
-﻿// $Date: 2020-07-31 11:36:05 +0300 (Пт, 31 июл 2020) $
-// $Revision: 335 $
-// $Author: agalkin $
+﻿// $Date: 2022-07-13 21:14:16 +0300 (Ср, 13 июл 2022) $
+// $Revision: 598 $
+// $Author: eloginov $
 // Создание проекта для тестов
 
 namespace A0Tests
@@ -12,7 +12,7 @@ namespace A0Tests
     /// <summary>
     ///  Базовый класс для создания тестируемого проекта.
     /// </summary>
-    public class NewProj : Test_EstimateCustom
+    public abstract class NewProj : Test_EstimateCustom
     {
         /// <summary>
         /// Получает или устанавливает проект.
